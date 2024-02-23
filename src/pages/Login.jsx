@@ -31,7 +31,7 @@ const Login = () => {
       password: "",
     },
     onSubmit: (values) => {
-      login(values).then(() => navigate("/profile"));
+      login(values).then(() => navigate("/"));
     },
     validationSchema: userSchema,
     validateOnChange: true,
@@ -51,7 +51,7 @@ const Login = () => {
             name="email"
             type="email"
             label="Email"
-            placeholder="Ex: 'manolitogafotas@gmail.com'"
+            placeholder="pablo@pablo.com"
             value={values.email}
             error={touched.email && errors.email}
             onChange={handleChange}
@@ -61,7 +61,7 @@ const Login = () => {
             name="password"
             type="password"
             label="Password"
-            placeholder="Ex: '12345678'"
+            placeholder="12345678"
             value={values.password}
             error={touched.password && errors.password}
             onChange={handleChange}
