@@ -48,6 +48,7 @@ const Login = () => {
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <Input
+            autocomplete="off"
             name="email"
             type="email"
             label="Email"
@@ -66,6 +67,7 @@ const Login = () => {
             error={touched.password && errors.password}
             onChange={handleChange}
             onBlur={handleBlur}
+            autocomplete="off"
           />
         </div>
         <Button

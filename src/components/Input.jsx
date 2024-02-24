@@ -1,4 +1,5 @@
 const Input = ({
+  autocomplete,
   value,
   onChange,
   name,
@@ -14,6 +15,7 @@ const Input = ({
         {label}
       </label>
       <input
+        autoComplete={autocomplete}
         type={type}
         name={name}
         id={name}
