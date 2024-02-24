@@ -57,6 +57,7 @@ const Register = () => {
       <form onSubmit={handleSubmit}>
         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
           <Input
+            autocomplete="off"
             name="username"
             label="User name"
             placeholder="Lorena"
@@ -66,6 +67,7 @@ const Register = () => {
             onBlur={handleBlur}
           />
           <Input
+            autocomplete="off"
             name="email"
             type="email"
             label="Email"
@@ -76,6 +78,7 @@ const Register = () => {
             onBlur={handleBlur}
           />
           <Input
+            autocomplete="off"
             name="password"
             type="password"
             label="Password"
