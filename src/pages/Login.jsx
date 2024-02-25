@@ -5,6 +5,7 @@ import Button from "../components/Button";
 import { useContext } from "react";
 import AuthContext from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import Map from "../components/Map";
 
 const userSchema = object({
   email: string().email("Enter a valid email").required("Required field"),
@@ -77,6 +78,8 @@ const Login = () => {
           text="Sign in"
         />
       </form>
+
+      <Map />
     </div>
   );
 };
