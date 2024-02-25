@@ -1,0 +1,12 @@
+.custom-calendar {
+    width: 400px;
+    background-color: aquamarine;
+  }
+
+  .react-calendar {
+    background-color: aquamarine;
+  }
+  
+  .react-calendar__tile--active {
+    background-color: #cfe2ff; 
+  }
