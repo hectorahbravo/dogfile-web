@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./components/Home";
 import Map from "./components/Map";
+import Calendar from "react-calendar";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/maps" element={<Map />} />
+          <Route path="/calendar" element={<Calendar />} />
         </Routes>
       </div>
     </div>
