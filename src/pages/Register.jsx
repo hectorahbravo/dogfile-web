@@ -1,9 +1,9 @@
 import { object, string, mixed } from "yup";
 import { useFormik } from "formik";
-import Input from "../components/Input";
+import Input from "../components/Input/Input";
 import { register } from "../services/AuthService";
 import { useNavigate } from "react-router-dom";
-import Button from "../components/Button";
+import Button from "../components/Button/Button";
 
 const userSchema = object({
   username: string().required("Required field"),

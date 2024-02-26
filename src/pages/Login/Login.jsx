@@ -1,11 +1,12 @@
-import Input from "../components/Input";
+import Input from "../../components/Input/Input";
 import { useFormik } from "formik";
 import { string, object } from "yup";
-import Button from "../components/Button";
+import Button from "../../components/Button/Button";
 import { useContext } from "react";
-import AuthContext from "../contexts/AuthContext";
+import AuthContext from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import Map from "../components/Map";
+import Logo from '../../assets/images/logo6.png'
+import './Login.css'
 
 const userSchema = object({
   email: string().email("Enter a valid email").required("Required field"),
@@ -41,7 +42,8 @@ const Login = () => {
   });
 
   return (
-    <div>
+    <div className="login-container">
+    <img className="logo" src={Logo} />
       <h1 className="text-tw-primary uppercase font-bold text-3xl underline">
         Sign in your account
       </h1>
@@ -58,6 +60,7 @@ const Login = () => {
             error={touched.email && errors.email}
             onChange={handleChange}
             onBlur={handleBlur}
+            className="login-form"
           />
           <Input
             name="password"
@@ -76,10 +79,9 @@ const Login = () => {
           extraClassName="mt-4"
           disabled={!isValid}
           text="Sign in"
+          className="btn-login"
         />
       </form>
-
-      <Map />
     </div>
   );
 };

@@ -1,3 +1,5 @@
+import './Input.css'
+
 const Input = ({
   autocomplete,
   value,
@@ -8,10 +10,11 @@ const Input = ({
   label,
   error,
   onBlur,
+  className
 }) => {
   return (
     <div>
-      <label htmlFor={name} className="form-label">
+      <label htmlFor={name}>
         {label}
       </label>
       <input
@@ -23,7 +26,7 @@ const Input = ({
         onChange={onChange}
         placeholder={placeholder}
         onBlur={onBlur}
-        className="form-control"
+        className={className}
       />
       {error && <div className="invalid-feedback">{error}</div>}
     </div>
