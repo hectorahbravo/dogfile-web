@@ -1,24 +1,21 @@
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Login from "./pages/Login";
+import Login from "./pages/Login/Login";
 import Register from "./pages/Register";
-import Home from "./components/Home";
+import Home from "./components/Home/Home";
 import Map from "./components/Map";
 import Calendar from "react-calendar";
 
 function App() {
   return (
     <div>
-      <Navbar />
-      <div className="container">
+       {location.pathname !== '/' && <Navbar />}
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/maps" element={<Map />} />
           <Route path="/calendar" element={<Calendar />} />
         </Routes>
-      </div>
     </div>
   );
 }
