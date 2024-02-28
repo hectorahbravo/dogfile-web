@@ -9,10 +9,10 @@ import Logo from '../../assets/images/logo6.png'
 import './Login.css'
 
 const userSchema = object({
-  email: string().email("Enter a valid email").required("Required field"),
+  email: string().email("Email no válido").required("Requerido"),
   password: string()
-    .min(8, "Password of at least 8 characters")
-    .required("Required field"),
+    .min(8, "Debe tener 8 caracteres como mínimo")
+    .required("Requerido"),
 });
 
 const Login = () => {
@@ -42,38 +42,40 @@ const Login = () => {
   });
 
   return (
+    <div className="background">
     <div className="login-container">
     <img className="logo" src={Logo} />
-      <h1 className="text-tw-primary uppercase font-bold text-3xl underline">
-        Sign in your account
-      </h1>
-
+    
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
+      <div className="input-container">
           <Input
             autocomplete="off"
             name="email"
             type="email"
             label="Email"
-            placeholder="pablo@pablo.com"
+            placeholder="email"
             value={values.email}
             error={touched.email && errors.email}
             onChange={handleChange}
             onBlur={handleBlur}
             className="login-form"
+            classNamePlaceholder="placeholder"
           />
           <Input
             name="password"
             type="password"
             label="Password"
-            placeholder="12345678"
+            placeholder="contraseña"
             value={values.password}
             error={touched.password && errors.password}
             onChange={handleChange}
             onBlur={handleBlur}
             autocomplete="off"
+            className="login-form"
+            classNamePlaceholder="placeholder"
           />
-        </div>
+       </div>
+       <div className="container-buttons">
         <Button
           type={"button"}
           extraClassName="mt-4"
@@ -81,9 +83,19 @@ const Login = () => {
           text="Sign in"
           className="btn-login"
         />
+        <Button
+          type={"button"}
+          extraClassName="mt-4"
+          disabled={!isValid}
+          text="Sign in"
+          className="btn-login"
+        />
+       </div>
+
       </form>
     </div>
-  );
+    </div>
+  )
 };
 
 export default Login;

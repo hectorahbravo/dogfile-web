@@ -10,13 +10,11 @@ const Input = ({
   label,
   error,
   onBlur,
-  className
+  className,
+  classNamePlaceholder
 }) => {
   return (
     <div>
-      <label htmlFor={name}>
-        {label}
-      </label>
       <input
         autoComplete={autocomplete}
         type={type}
@@ -26,9 +24,9 @@ const Input = ({
         onChange={onChange}
         placeholder={placeholder}
         onBlur={onBlur}
-        className={className}
+        className={`${className} ${classNamePlaceholder}`}
       />
-      {error && <div className="invalid-feedback">{error}</div>}
+      {error && <div className="error-text">{error}</div>}
     </div>
   );
 };

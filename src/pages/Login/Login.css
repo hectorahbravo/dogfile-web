@@ -1,16 +1,35 @@
-.login-container {
-    position: relative;
+.background {
+    position: fixed;
     width: 390px;
     height: 844px;
     background-color: rgb(240, 239, 214);
 }
 
+.login-container {
+    display: flex;
+    flex-direction: column; /* Alinea los elementos en columna */
+    justify-content: center;
+    margin-top: -75px;
+    align-items: center;   
+    height: 100vh;
+     /* Ajusta la altura del contenedor al 100% del viewport */
+}
+
+.input-container {
+    margin-bottom: 80px;
+
+}
+
+
+
 .logo {
-position: absolute;
-width: 233px;
-height: 226px;
-left: 79px;
-right: 78px;
-top: 172px;
-bottom: 446px;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 15px;
+    margin-top: 5px; /* Ajusta el espacio entre el logo y el formulario */
+}
+
+.container-buttons {
+    position: relative;
+    margin-top: -60px;
 }
