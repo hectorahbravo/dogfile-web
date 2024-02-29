@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login/Login";
-import Register from "./pages/Register";
+import Register from "./pages/Register/Register";
 import Home from "./components/Home/Home";
 import Map from "./components/Map";
 import Calendar from "react-calendar";
@@ -9,7 +9,7 @@ import Calendar from "react-calendar";
 function App() {
   return (
     <div>
-       {location.pathname !== '/' && <Navbar />}
+       {location.pathname !== '/' && location.pathname !== '/register' && <Navbar />}
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />

@@ -8,3 +8,24 @@ background: rgba(216, 117, 0, 0);
 color: rgb(155, 135, 104);
 
 }
+
+.btn-sign {
+margin-top: 70px;
+ position: relative;
+ width: 282px;
+ height: 54px;
+ border: 2px solid rgb(155, 135, 104);
+ border-radius: 50px;
+ background: rgb(155, 135, 104);
+ color: white;
+}
+
+.btn-register {
+ position: relative;
+ width: 282px;
+ height: 54px;
+ border: 2px solid rgb(155, 135, 104);
+ border-radius: 50px;
+ background: rgb(155, 135, 104);
+ color: white;
+}
