@@ -1,17 +1,18 @@
 import { object, string, mixed } from "yup";
 import { useFormik } from "formik";
-import Input from "../components/Input/Input";
-import { register } from "../services/AuthService";
+import Input from "../../components/Input/Input";
+import { register } from "../../services/AuthService";
 import { useNavigate } from "react-router-dom";
-import Button from "../components/Button/Button";
+import Button from "../../components/Button/Button";
+import './Register.css'
 
 const userSchema = object({
-  username: string().required("Required field"),
-  email: string().email("Enter a valid email").required("Required field"),
+  username: string().required("Campo requerido"),
+  email: string().email("Introduce un email válido").required("Campo requerido"),
   password: string()
-    .min(8, "Password of at least 8 characters")
-    .required("Required field"),
-  avatar: mixed().required("Required field"),
+    .min(8, "Debe tener 8 caracteres mínimo")
+    .required("Campo requerido"),
+  avatar: mixed().required("Campo requerido"),
 });
 
 const Register = () => {
@@ -49,46 +50,10 @@ const Register = () => {
     validateOnMount: true,
   });
   return (
-    <div>
-      <h1 className="text-tw-primary uppercase font-bold text-3xl underline">
-        Register your account
-      </h1>
-
-      <form onSubmit={handleSubmit}>
-        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Input
-            autocomplete="off"
-            name="username"
-            label="User name"
-            placeholder="Lorena"
-            value={values.username}
-            error={touched.username && errors.username}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          <Input
-            autocomplete="off"
-            name="email"
-            type="email"
-            label="Email"
-            placeholder="lorena@lorena.com"
-            value={values.email}
-            error={touched.email && errors.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          <Input
-            autocomplete="off"
-            name="password"
-            type="password"
-            label="Password"
-            placeholder="12345678"
-            value={values.password}
-            error={touched.password && errors.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          <Input
+    <div className="background">
+    <div className="register-container">
+    <form onSubmit={handleSubmit}>
+    <Input
             name="avatar"
             type="file"
             label="Add your photo"
@@ -98,10 +63,51 @@ const Register = () => {
               setFieldValue("avatar", event.currentTarget.files[0]);
             }}
             onBlur={handleBlur}
+            className="image-canva"
           />
+    <div className="input-container">
+          <Input
+            autocomplete="off"
+            name="username"
+            label="User name"
+            placeholder="Introduce tu nombre"
+            value={values.username}
+            error={touched.username && errors.username}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className="register-form"
+          />
+          <Input
+            autocomplete="off"
+            name="email"
+            type="email"
+            label="Email"
+            placeholder="Introduce tu e-mail"
+            value={values.email}
+            error={touched.email && errors.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className="register-form"
+          />
+          <Input
+            autocomplete="off"
+            name="password"
+            type="password"
+            label="Password"
+            placeholder="Añade una contraseña"
+            value={values.password}
+            error={touched.password && errors.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className="register-form"
+          />
+    
         </div>
-        <Button text="Create account" />
-      </form>
+        </form>
+        <div className="container-buttons">
+        <Button className="btn-register" text="Registrar" />
+        </div>
+    </div>
     </div>
   );
 };

@@ -41,6 +41,10 @@ const Login = () => {
     validateOnMount: true,
   });
 
+  const handleSignIn = () => {
+    navigate("/register");
+  };
+
   return (
     <div className="background">
     <div className="login-container">
@@ -81,13 +85,14 @@ const Login = () => {
           extraClassName="mt-4"
           disabled={!isValid}
           text="Sign in"
-          className="btn-login"
+          className="btn-sign"
+          onClick={handleSignIn}
         />
         <Button
           type={"button"}
           extraClassName="mt-4"
           disabled={!isValid}
-          text="Sign in"
+          text="Log in"
           className="btn-login"
         />
        </div>
