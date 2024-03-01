@@ -4,10 +4,8 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Map from "./components/Map";
 import Calendar from "./components/Calendar/Calendar";
-
 import Reports from "./components/Reports";
 import Recomendation from "./components/Recomendation";
-
 import UserProfile from "./pages/UserProfile/UserProfile";
 
 function App() {

@@ -4,11 +4,13 @@ import Input from "../../components/Input/Input";
 import { register } from "../../services/AuthService";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
-import './Register.css'
+import "./Register.css";
 
 const userSchema = object({
   username: string().required("Campo requerido"),
-  email: string().email("Introduce un email válido").required("Campo requerido"),
+  email: string()
+    .email("Introduce un email válido")
+    .required("Campo requerido"),
   password: string()
     .min(8, "Debe tener 8 caracteres mínimo")
     .required("Campo requerido"),
@@ -34,7 +36,7 @@ const Register = () => {
       avatar: "",
     },
     onSubmit: (values) => {
-      console.log('hola')
+      console.log("hola");
       const data = new FormData();
       Object.keys(values).forEach((keyValue) => {
         data.append(keyValue, values[keyValue]);
@@ -52,9 +54,9 @@ const Register = () => {
   });
   return (
     <div className="background">
-    <div className="register-container">
-    <form onSubmit={handleSubmit}>
-    <Input
+      <div className="register-container">
+        <form onSubmit={handleSubmit}>
+          <Input
             name="avatar"
             type="file"
             label="Add your photo"
@@ -66,50 +68,48 @@ const Register = () => {
             onBlur={handleBlur}
             className="image-canva"
           />
-    <div className="input-container">
-          <Input
-            autocomplete="off"
-            name="username"
-            label="User name"
-            placeholder="Introduce tu nombre"
-            value={values.username}
-            error={touched.username && errors.username}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className="login-form"
-          />
-          <Input
-            autocomplete="off"
-            name="email"
-            type="email"
-            label="Email"
-            placeholder="Introduce tu e-mail"
-            value={values.email}
-            error={touched.email && errors.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className="login-form"
-          />
-          <Input
-            autocomplete="off"
-            name="password"
-            type="password"
-            label="Password"
-            placeholder="Añade una contraseña"
-            value={values.password}
-            error={touched.password && errors.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className="login-form"
-          />
-    
-        </div>
-        <div className="container-buttons">
-        <Button type="submit" className="btn-register" text="Registrar" />
-        </div>
+          <div className="input-container">
+            <Input
+              autocomplete="off"
+              name="username"
+              label="User name"
+              placeholder="Introduce tu nombre"
+              value={values.username}
+              error={touched.username && errors.username}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className="login-form"
+            />
+            <Input
+              autocomplete="off"
+              name="email"
+              type="email"
+              label="Email"
+              placeholder="Introduce tu e-mail"
+              value={values.email}
+              error={touched.email && errors.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className="login-form"
+            />
+            <Input
+              autocomplete="off"
+              name="password"
+              type="password"
+              label="Password"
+              placeholder="Añade una contraseña"
+              value={values.password}
+              error={touched.password && errors.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className="login-form"
+            />
+          </div>
+          <div className="container-buttons">
+            <Button type="submit" className="btn-register" text="Registrar" />
+          </div>
         </form>
-       
-    </div>
+      </div>
     </div>
   );
 };

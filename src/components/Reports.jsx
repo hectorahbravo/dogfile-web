@@ -2,8 +2,8 @@ import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import { useFormik } from "formik";
 import { date, number, object, string } from "yup";
-import Input from "./Input";
-import Button from "./Button";
+import Input from "./Input/Input";
+import Button from "./Button/Button";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZG9nZmlsZSIsImEiOiJjbHN6dXUwNjEwaHdhMmxucmJqZzZ6cmtuIn0.ewRuBpz297DIvwMjqYls9Q";
