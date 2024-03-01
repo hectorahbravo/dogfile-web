@@ -2,13 +2,13 @@ import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import { useFormik } from "formik";
 import { number, object, string } from "yup";
-import Input from "./Input";
-import Button from "./Button";
+import Input from "./Input/Input";
+import Button from "./Button/Button";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZG9nZmlsZSIsImEiOiJjbHN6dXUwNjEwaHdhMmxucmJqZzZ6cmtuIn0.ewRuBpz297DIvwMjqYls9Q";
 
-const reportSchema = object({
+const recomendationSchema = object({
   title: string().required("El título es obligatorio"),
   description: string().required("La descripción es obligatoria"),
   location: string().required("El lugar es obligatorio"),
@@ -16,7 +16,7 @@ const reportSchema = object({
   longitude: number().required("La longitud es obligatoria"),
 });
 
-const Reports = () => {
+const Recpmendations = () => {
   const mapContainer = useRef(null);
   const [lng, setLng] = useState(-3.703462);
   const [lat, setLat] = useState(40.416816);
@@ -45,7 +45,7 @@ const Reports = () => {
     onSubmit: (values) => {
       console.log({ ...values, latitude: lat, longitude: lng });
     },
-    validationSchema: reportSchema,
+    validationSchema: recomendationSchema,
     validateOnChange: true,
     validateOnBlur: true,
     validateOnMount: true,
@@ -143,4 +143,4 @@ const Reports = () => {
   );
 };
 
-export default Reports;
+export default Recpmendations;
