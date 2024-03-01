@@ -33,7 +33,8 @@ const Login = () => {
       password: "",
     },
     onSubmit: (values) => {
-      login(values).then(() => navigate("/"));
+      console.log("hola")
+      login(values).then(() => navigate("/user"));
     },
     validationSchema: userSchema,
     validateOnChange: true,
@@ -89,8 +90,7 @@ const Login = () => {
           onClick={handleSignIn}
         />
         <Button
-          type={"button"}
-          extraClassName="mt-4"
+          type="submit"
           disabled={!isValid}
           text="Log in"
           className="btn-login"
