@@ -1,0 +1,35 @@
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 282px;
+    height: 30px;
+    border: 1px solid rgb(205, 192, 172);
+    border-radius: 11px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    background: rgb(255, 255, 255);
+    padding: 10px;
+    margin-bottom: 10px;
+; /* Agrega un poco de espacio interno para los elementos dentro del formulario */
+}
+
+.register-form {
+display: flex;
+flex-direction: column;
+width: 282px;
+height: 35px;
+padding: 10px;
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+background: #e2e1c7;
+margin-bottom: 10px;
+}
+
+.error-text {
+    font-size: 10px;
+    margin-bottom: 5px;
+}
+.placeholder {
+    text-align: start; 
+    left: 5px; /* Alinea el placeholder con un pequeño margen a la izquierda */
+    font-size: 0.8em; /* Establece el tamaño de fuente del placeholder */
+    color: rgba(0, 0, 0, 0.5); /* Color del texto del placeholder */
+}

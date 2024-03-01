@@ -1,0 +1,35 @@
+.background {
+    position: fixed;
+    width: 390px;
+    height: 844px;
+    background-color: #F0EFD6;
+}
+
+.login-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0EFD6;
+     /* Ajusta la altura del contenedor al 100% del viewport */
+}
+
+.input-container {
+    margin-bottom: 40px;
+
+}
+  
+.logo {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 15px;
+    margin-top: 5px; /* Ajusta el espacio entre el logo y el formulario */
+}
+
+.container-buttons {
+   display: flex;
+   flex-direction: column;
+}
+
