@@ -34,6 +34,7 @@ const Register = () => {
       avatar: "",
     },
     onSubmit: (values) => {
+      console.log('hola')
       const data = new FormData();
       Object.keys(values).forEach((keyValue) => {
         data.append(keyValue, values[keyValue]);
@@ -41,7 +42,7 @@ const Register = () => {
 
       register(data)
         .then(() => {
-          navigate("/login");
+          navigate("/");
         })
         .catch((err) => console.error(err));
     },
@@ -75,7 +76,7 @@ const Register = () => {
             error={touched.username && errors.username}
             onChange={handleChange}
             onBlur={handleBlur}
-            className="register-form"
+            className="login-form"
           />
           <Input
             autocomplete="off"
@@ -87,7 +88,7 @@ const Register = () => {
             error={touched.email && errors.email}
             onChange={handleChange}
             onBlur={handleBlur}
-            className="register-form"
+            className="login-form"
           />
           <Input
             autocomplete="off"
@@ -99,14 +100,15 @@ const Register = () => {
             error={touched.password && errors.password}
             onChange={handleChange}
             onBlur={handleBlur}
-            className="register-form"
+            className="login-form"
           />
     
         </div>
-        </form>
         <div className="container-buttons">
-        <Button className="btn-register" text="Registrar" />
+        <Button type="submit" className="btn-register" text="Registrar" />
         </div>
+        </form>
+       
     </div>
     </div>
   );
