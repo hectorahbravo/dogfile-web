@@ -2,7 +2,7 @@ import { object, string, mixed } from "yup";
 import { useFormik } from "formik";
 import Input from "../../components/Input/Input";
 import { register } from "../../services/AuthService";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import "./Register.css";
 
@@ -53,13 +53,14 @@ const Register = () => {
   });
   return (
     <div className="background">
+      <Link to={"/"}>atras</Link>
       <div className="register-container">
         <form onSubmit={handleSubmit}>
           <Input
             name="avatar"
             type="file"
             label="Add your photo"
-            //value={values.avatar}
+            value={values.avatar}
             error={touched.avatar && errors.avatar}
             onChange={(event) => {
               setFieldValue("avatar", event.currentTarget.files[0]);
