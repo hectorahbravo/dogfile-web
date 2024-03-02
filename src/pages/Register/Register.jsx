@@ -36,7 +36,6 @@ const Register = () => {
       avatar: "",
     },
     onSubmit: (values) => {
-      console.log("hola");
       const data = new FormData();
       Object.keys(values).forEach((keyValue) => {
         data.append(keyValue, values[keyValue]);
