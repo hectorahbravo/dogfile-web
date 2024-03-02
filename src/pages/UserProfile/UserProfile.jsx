@@ -1,29 +1,10 @@
-import { useEffect, useState } from "react";
-import Profile from '../../components/Profile/Profile'
-import { useParams } from "react-router-dom";
-import { getUser } from '../../services/UserService'
+import { useContext } from "react";
+import AuthContext from "../../contexts/AuthContext";
+import Profile from "../../components/Profile/Profile";
 
 const UserProfile = () => {
-  const { id } = useParams()
+  const { user } = useContext(AuthContext);
+  return <Profile user={user} />;
+};
 
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    getUser(id)
-      .then(user => {
-        setUser(user)
-        setLoading(false)
-      })
-  }, [id])
-
-  if (loading) {
-    return <p>Loading...</p>
-  }
-
-  return (
-    <Profile user={user}/>
-  )
-}
-
-export default UserProfile
+export default UserProfile;
