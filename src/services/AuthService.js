@@ -7,5 +7,5 @@ export const register = (data) => {
 };
 
 export const login = (data) => {
-  return http.post("/", data);
+  return http.post("/login", data);
 };
