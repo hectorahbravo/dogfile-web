@@ -8,6 +8,7 @@ import Reports from "./components/Reports";
 import Recomendation from "./components/Recomendation";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import ProtectedRoute from "./components/ProtectedRoute";
+import CreateDogPage from './pages/CreateDogPage/CreateDogPage'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         location.pathname !== "/user" && <Navbar />}
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="create-dog/:userId" element={<ProtectedRoute><CreateDogPage /></ProtectedRoute>} />
         <Route path="/register" element={<Register />} />
         <Route path="/user" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
         <Route path="/maps" element={<Map />} />

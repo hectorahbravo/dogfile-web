@@ -10,8 +10,8 @@ export const getUser = (id) => {
   return http.get(`/users/${id}`);
 };
 
-export const getUserTweets = (id) => {
-  return http.get(`/tweets/${id}`);
+export const getUserDogs = (userId, dogId) => {
+  return http.get(`users/${userId}/dogs/${dogId}`);
 };
 
 export const toggleLike = (tweetOwner, tweet) => {
