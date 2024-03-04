@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import { date, number, object, string } from "yup";
 import Input from "./Input/Input";
 import Button from "./Button/Button";
+import { reportCreate } from "../services/ReportService";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZG9nZmlsZSIsImEiOiJjbHN6dXUwNjEwaHdhMmxucmJqZzZ6cmtuIn0.ewRuBpz297DIvwMjqYls9Q";
@@ -48,6 +49,7 @@ const Reports = () => {
       longitude: null,
     },
     onSubmit: (values) => {
+      reportCreate(values);
       console.log({ ...values, latitude: lat, longitude: lng });
     },
     validationSchema: reportSchema,
@@ -102,7 +104,6 @@ const Reports = () => {
     });
   };
 
-  console.log(errors);
   return (
     <div>
       <div
@@ -110,6 +111,7 @@ const Reports = () => {
         className="map-container"
         style={{ height: "500px" }}
       ></div>
+      {errors.longitude && <p>Selecciona un punto en el mapa</p>}
 
       <form onSubmit={handleSubmit}>
         <Input
@@ -155,7 +157,7 @@ const Reports = () => {
         <Input
           label="Hora"
           name="time"
-          type="text"
+          type="time"
           placeholder="Ingrese la hora"
           value={values.time}
           error={touched.time && errors.time}
