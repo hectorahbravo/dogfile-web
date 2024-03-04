@@ -5,8 +5,8 @@ import Button from "../../components/Button/Button";
 import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import Logo from '../../assets/images/logo6.png'
-import './Login.css'
+import Logo from "../../assets/images/logo6.png";
+import "./Login.css";
 
 const userSchema = object({
   email: string().email("Email no válido").required("Requerido"),
@@ -33,7 +33,6 @@ const Login = () => {
       password: "",
     },
     onSubmit: (values) => {
-      console.log("hola")
       login(values).then(() => navigate("/user"));
     },
     validationSchema: userSchema,
@@ -48,59 +47,58 @@ const Login = () => {
 
   return (
     <div className="background">
-    <div className="login-container">
-    <img className="logo" src={Logo} />
-    
-      <form onSubmit={handleSubmit}>
-      <div className="input-container">
-          <Input
-            autocomplete="off"
-            name="email"
-            type="email"
-            label="Email"
-            placeholder="email"
-            value={values.email}
-            error={touched.email && errors.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className="login-form"
-            classNamePlaceholder="placeholder"
-          />
-          <Input
-            name="password"
-            type="password"
-            label="Password"
-            placeholder="contraseña"
-            value={values.password}
-            error={touched.password && errors.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            autocomplete="off"
-            className="login-form"
-            classNamePlaceholder="placeholder"
-          />
-       </div>
-       <div className="container-buttons">
-        <Button
-          type={"button"}
-          extraClassName="mt-4"
-          disabled={!isValid}
-          text="Sign in"
-          className="btn-sign"
-          onClick={handleSignIn}
-        />
-        <Button
-          type="submit"
-          disabled={!isValid}
-          text="Log in"
-          className="btn-login"
-        />
-       </div>
+      <div className="login-container">
+        <img className="logo" src={Logo} />
 
-      </form>
+        <form onSubmit={handleSubmit}>
+          <div className="input-container">
+            <Input
+              autocomplete="off"
+              name="email"
+              type="email"
+              label="Email"
+              placeholder="email"
+              value={values.email}
+              error={touched.email && errors.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className="login-form"
+              classNamePlaceholder="placeholder"
+            />
+            <Input
+              name="password"
+              type="password"
+              label="Password"
+              placeholder="contraseña"
+              value={values.password}
+              error={touched.password && errors.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              autocomplete="off"
+              className="login-form"
+              classNamePlaceholder="placeholder"
+            />
+          </div>
+          <div className="container-buttons">
+            <Button
+              type={"button"}
+              extraClassName="mt-4"
+              disabled={!isValid}
+              text="Sign in"
+              className="btn-sign"
+              onClick={handleSignIn}
+            />
+            <Button
+              type="submit"
+              disabled={!isValid}
+              text="Log in"
+              className="btn-login"
+            />
+          </div>
+        </form>
+      </div>
     </div>
-    </div>
-  )
+  );
 };
 
 export default Login;
