@@ -14,7 +14,7 @@ const userSchema = object({
   password: string()
     .min(8, "Debe tener 8 caracteres mínimo")
     .required("Campo requerido"),
-  avatar: mixed().required("Campo requerido"),
+  avatar: mixed(),
 });
 
 const Register = () => {
