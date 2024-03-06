@@ -33,7 +33,7 @@ const Register = () => {
       username: "",
       email: "",
       password: "",
-      avatar: "",
+      avatar: null, // Cambia el valor inicial a null
     },
     onSubmit: (values) => {
       const data = new FormData();
@@ -51,6 +51,7 @@ const Register = () => {
     validateOnBlur: true,
     validateOnMount: true,
   });
+
   return (
     <div className="background">
       <Link to={"/"}>atras</Link>
@@ -60,10 +61,9 @@ const Register = () => {
             name="avatar"
             type="file"
             label="Add your photo"
-            value={values.avatar}
             error={touched.avatar && errors.avatar}
             onChange={(event) => {
-              setFieldValue("avatar", event.currentTarget.files[0]);
+              setFieldValue("avatar", event.currentTarget.files[0]); // Establece el archivo seleccionado en el estado
             }}
             onBlur={handleBlur}
             className="image-canva"

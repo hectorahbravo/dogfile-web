@@ -3,6 +3,8 @@ import { createHttp } from "./BaseService";
 const http = createHttp(true);
 
 export const getDog = (id, dogId) => {
+  const route = `/users/${id}/dogs/${dogId}`;
+  console.log("Requesting dog data from route:", route);
   return http.get(`/users/${id}/dogs/${dogId}`);
 };
 

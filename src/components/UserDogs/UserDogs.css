@@ -1,0 +1,41 @@
+.user-dogs-container {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los elementos se envuelvan si no caben en una sola fila */
+  justify-content: center; /* Centra los elementos horizontalmente */
+  margin-top: -25px;
+}
+
+.avatar-link {
+  text-decoration: none; /* Quita la subrayado predeterminado de los enlaces */
+  color: inherit; /* Hereda el color del texto del padre */
+  margin: 10px; /* Ajusta el margen entre cada perrito */
+  text-align: center; /* Centra el texto dentro del enlace */
+}
+
+.avatar-preview {
+  border-radius: 50%; /* Hace que la imagen sea redonda */
+  width: 40px; /* Ajusta el ancho de la imagen según tus preferencias */
+  height: 40px; /* Ajusta la altura de la imagen según tus preferencias */
+  object-fit: cover; /* Ajusta el tamaño de la imagen para cubrir el contenedor */
+}
+
+.empty-circle {
+  background-color: lightgray; /* Color de fondo para el círculo vacío */
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  border-radius: 50%; /* Hace que el contenedor sea un círculo */
+  width: 40px; /* Ajusta el ancho del círculo */
+  height: 40px; /* Ajusta la altura del círculo */
+  color: #333; /* Color del símbolo de más */
+  text-decoration: none; /* Quita el subrayado predeterminado de los enlaces */
+  overflow: hidden; /* Oculta cualquier parte del símbolo de más que se extienda fuera del círculo */
+}
+
+.empty-circle p {
+  text-align: center;
+  margin: 0px;
+  font-size: 24px;
+  position: absolute;
+}
