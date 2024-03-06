@@ -7,7 +7,7 @@ import {
   optionsFrecuencia,
   optionsIcono,
   optionsTipo,
-} from '../../dist/constants/reminderSelectForm.js'
+} from "../../dist/constant/reminderSelectForm";
 
 const reminderSchema = object({
   title: string().required("El título es obligatorio"),
@@ -41,6 +41,7 @@ const ReminderForm = () => {
         hour: "",
       },
       onSubmit: (values) => {
+        reminderCreate(values);
         console.log(values);
       },
       validationSchema: reminderSchema,
