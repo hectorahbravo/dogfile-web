@@ -12,6 +12,7 @@ import CreateDogPage from './pages/CreateDogPage/CreateDogPage'
 import DogProfilePage from './pages/DogProfilePage/DogProfilePage'
 import { useLocation } from "react-router-dom";
 import EditDog from "./pages/EditDogProfile/EditDogProfile";
+import ReminderForm from "./components/Reminder/ReminderForm";
 
 function App() {
   const location = useLocation();
@@ -30,10 +31,19 @@ function App() {
         <Route path="/:userId/dogs/:dogId" element={<ProtectedRoute><DogProfilePage /></ProtectedRoute>} />
         <Route path="/users/:userId/dogs/:dogId/edit" element={<ProtectedRoute><EditDog /></ProtectedRoute>} />
         <Route path="/user" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
+        <Route
+          path="/user"
+          element={
+            <ProtectedRoute>
+              <UserProfile />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/maps" element={<Map />} />
         <Route path="/calendar" element={<Calendar />} />
-        <Route path="/reports" element={<Reports />} />
-        <Route path="/recomendation" element={<Recomendation />} />
+        <Route path="/reports/new" element={<Reports />} />
+        <Route path="/recomendation/new" element={<Recomendation />} />
+        <Route path="/reminder/new" element={<ReminderForm />} />
       </Routes>
     </div>
   );

@@ -24,7 +24,6 @@ const Reports = () => {
   const mapContainer = useRef(null);
   const [lng, setLng] = useState(-3.703462);
   const [lat, setLat] = useState(40.416816);
-  const [zoom, setZoom] = useState(16);
   const [map, setMap] = useState(null);
   const [marker, setMarker] = useState(null);
 

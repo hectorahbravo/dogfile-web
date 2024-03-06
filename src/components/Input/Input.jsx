@@ -1,4 +1,4 @@
-import './Input.css'
+import "./Input.css";
 
 const Input = ({
   autocomplete,
@@ -7,11 +7,10 @@ const Input = ({
   name,
   placeholder,
   type,
-  label,
   error,
   onBlur,
   className,
-  classNamePlaceholder
+  classNamePlaceholder,
 }) => {
   return (
     <div>
