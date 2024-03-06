@@ -10,7 +10,7 @@ import AuthContext from "../../contexts/AuthContext";
 const DogProfile = () => {
   const { user } = useContext(AuthContext);
   const { userId, dogId } = useParams();
-
+  console.log(userId, dogId)
   const [dog, setDog] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -33,7 +33,7 @@ const DogProfile = () => {
   return (
     <div className="dog-profile-container">
       <div className="avatar-container">
-      <p className="dog-name">{dog.name}<Link to={`/users/${user.id}/dogs/${dog.id}/edit}`}><img className="pencil" src={Pencil} alt="editar-perfil" /></Link></p>
+      <p className="dog-name">{dog.name}<Link to={`/users/${user.id}/dogs/${dog.id}/edit`}><img className="pencil" src={Pencil} alt="editar-perfil" /></Link></p>
       
         <img src={dog.avatar} alt="Dog Avatar" className="avatar" />
       </div>

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { object, string } from 'yup';
 import { useFormik } from 'formik';
 import Input from '../../components/Input/Input';
-import { createDog } from '../../services/DogService.js';
+import { createDog, editDog } from '../../services/DogService.js';
 import Button from '../../components/Button/Button';
 import './CreateDog.css';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -20,10 +20,11 @@ const dogSchema = object({
   avatar: string(),
 });
 
-const CreateDog = () => {
-  const { userId } = useParams();
+const CreateDog = ({ initialValues, isEdit }) => {
+  const { userId, dogId } = useParams();
   const navigate = useNavigate();
   const [avatarFile, setAvatarFile] = useState(null);
+
 
   const {
     values,
@@ -35,7 +36,7 @@ const CreateDog = () => {
     handleBlur,
     setFieldValue,
   } = useFormik({
-    initialValues: {
+    initialValues: initialValues || {
       name: '',
       birthdate: '',
       weight: '',
@@ -48,17 +49,28 @@ const CreateDog = () => {
       avatar: '',
       owner: userId,
     },
-    onSubmit: (values) => {
-      createDog(values)
-        .then(() => {
-          navigate('/user');
-        })
-        .catch((err) => console.error(err));
+    onSubmit:  (values) => {
+      console.log(values)
+  
+      if (isEdit) {
+        editDog(values, userId, dogId)
+          .then(() => {
+            navigate('/user');
+          })
+          .catch((err) => console.error(err));
+      } else {
+        createDog(values)
+          .then(() => {
+            navigate('/user');
+          })
+          .catch((err) => console.error(err));
+      }
     },
     validationSchema: dogSchema,
     validateOnBlur: true,
     validateOnMount: true,
   });
+
 
   const handleAvatarChange = (event) => {
     const file = event.currentTarget.files[0];
@@ -197,7 +209,7 @@ const CreateDog = () => {
             )}
           </div>
           <div className="container-buttons">
-            <Button type="submit" className="btn-register" text="Create Dog" />
+            <Button type="submit" className="btn-register" text={isEdit ? "Edit Dog" : "Create Dog"}  />
           </div>
         </form>
       </div>
