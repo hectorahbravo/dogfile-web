@@ -1,43 +1,41 @@
 import { useNavigate, useParams } from "react-router-dom";
 import CreateDog from "../../components/CreateDog/CreateDog";
 import { useEffect, useState } from "react";
-import { editDog, getDog } from "../../services/DogService"
+import { editDog, getDog } from "../../services/DogService";
 
 const EditDog = () => {
   const { userId, dogId } = useParams();
   const navigate = useNavigate();
 
-  const [dog, setDog] = useState({})
-  const [loading, setLoading] = useState({})
+  const [dog, setDog] = useState(null); // Inicializar como null en lugar de un objeto vacío
+  const [loading, setLoading] = useState(false); // Inicializar como un booleano
 
   useEffect(() => {
-    getDog(dogId)
+    setLoading(true); // Indicar que la carga está en curso
+    console.log('dogId', dogId)
+    getDog(userId, dogId)
       .then((dogDB) => {
+        console.log(dogDB)
         setDog(dogDB);
-        setLoading(false);
       })
-      .catch(error => console.log(error))
-  }, [userId, dogId])
-
-  const initialValues = {
-    name: dog.name,
-    birthdate: dog.birthdate,
-    weight: dog.weight,
-    vaccines: dog.vaccines,
-    allergies: dog.allergies,
-    foodType: dog.foodType,
-    foodTimes: dog.foodTimes,
-    foodKg: dog.foodKg,
-    temperament: dog.temperament,
-    avatar: dog.avatar,
-  }
+      .catch(error => {
+        console.error("Error fetching dog:", error);
+      })
+      .finally(() => {
+        setLoading(false); // Indicar que la carga ha finalizado
+      });
+  }, [userId, dogId]);
 
   const onSubmit = (values) => {
+    console.log(dogId)
     return editDog(userId, dogId, values)
       .then(editedDog => {
-        navigate(`/dogs/${editedDog.id}`)
+        navigate(`/dogs/${editedDog.id}`);
       })
-  }
+      .catch(error => {
+        console.error("Error editing dog:", error);
+      });
+  };
 
   return (
     <div>
@@ -47,11 +45,11 @@ const EditDog = () => {
       {loading ? (
         <p>Cargando...</p>
       ) : (
-        <CreateDog initialValues={initialValues} onSubmit={onSubmit} />
+        <CreateDog initialValues={dog || {}} onSubmit={onSubmit} isEdit={true} />
       )}
       
     </div>
-  )
-}
+  );
+};
 
 export default EditDog;
