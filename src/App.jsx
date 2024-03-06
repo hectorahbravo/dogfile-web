@@ -9,17 +9,26 @@ import Recomendation from "./components/Recomendation";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import ProtectedRoute from "./components/ProtectedRoute";
 import CreateDogPage from './pages/CreateDogPage/CreateDogPage'
+import DogProfilePage from './pages/DogProfilePage/DogProfilePage'
+import { useLocation } from "react-router-dom";
+import EditDog from "./pages/EditDogProfile/EditDogProfile";
 
 function App() {
+  const location = useLocation();
   return (
+    
     <div>
       {location.pathname !== "/" &&
         location.pathname !== "/register" &&
-        location.pathname !== "/user" && <Navbar />}
+        location.pathname !== "/user" && 
+        location.pathname !== "/create-dog/:userId" &&
+        !location.pathname.match(/^\/\w+\/dogs\/\w+$/) && <Navbar />}
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="create-dog/:userId" element={<ProtectedRoute><CreateDogPage /></ProtectedRoute>} />
+        <Route path="/create-dog/:userId" element={<ProtectedRoute><CreateDogPage /></ProtectedRoute>} />
         <Route path="/register" element={<Register />} />
+        <Route path="/:userId/dogs/:dogId" element={<ProtectedRoute><DogProfilePage /></ProtectedRoute>} />
+        <Route path="/users/:userId/dogs/:dogId/edit" element={<ProtectedRoute><EditDog /></ProtectedRoute>} />
         <Route path="/user" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
         <Route path="/maps" element={<Map />} />
         <Route path="/calendar" element={<Calendar />} />
