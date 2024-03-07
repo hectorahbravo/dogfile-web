@@ -8,6 +8,9 @@ import {
   optionsIcono,
   optionsTipo,
 } from "../../dist/constant/reminderSelectForm";
+import { useContext } from "react";
+import AuthContext from "../../contexts/AuthContext";
+import { reminderCreate } from "../../services/ReminderService";
 
 const reminderSchema = object({
   title: string().required("El título es obligatorio"),
@@ -23,11 +26,13 @@ const reminderSchema = object({
     ["daily", "monthly", "annually"],
     "Frecuencia inválida"
   ),
-  Date: date(),
+  startDate: date(),
+  endDate: date(),
   hour: string(),
 });
 
 const ReminderForm = () => {
+  const { user } = useContext(AuthContext);
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: {
@@ -37,12 +42,19 @@ const ReminderForm = () => {
         photo: "",
         repeat: false,
         frequency: "",
-        date: "",
+        startDate: "",
+        endDate: "",
         hour: "",
       },
       onSubmit: (values) => {
-        const dateString = values.date.toString();
-        reminderCreate({ ...values, date: dateString });
+        const startDateString = values.startDate.toString();
+        const endDateString = values.endDate.toString();
+        reminderCreate({
+          ...values,
+          startDate: startDateString,
+          endDate: endDateString,
+          user: user.id,
+        });
         console.log(values);
       },
       validationSchema: reminderSchema,
@@ -107,12 +119,22 @@ const ReminderForm = () => {
       <Input
         placeholder="Fecha de inicio"
         label="Fecha de inicio"
-        name="date"
+        name="startDate"
         type="date"
         onChange={handleChange}
         onBlur={handleBlur}
-        value={values.date}
-        error={touched.date && errors.date}
+        value={values.startDate}
+        error={touched.startDate && errors.startDate}
+      />
+      <Input
+        placeholder="Fecha de Fin"
+        label="Fecha de inicio"
+        name="endDate"
+        type="date"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={values.endDate}
+        error={touched.endDate && errors.endDate}
       />
       <Input
         placeholder="Hora"

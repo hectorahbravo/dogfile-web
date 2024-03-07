@@ -1,55 +1,59 @@
-import React, { useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import ReactCalendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import AuthContext from "../../contexts/AuthContext";
+import "./RemindersCalendar.css";
 
 function RemindersCalendar() {
-  const [reminders, setReminders] = useState([
-    {
-      id: "65e8cd90add02662b6b0f301",
-      title: "Medicina",
-      type: ["Array (1)"],
-      icon: "icon1",
-      photo:
-        "https://www.kiwoko.com/dw/image/v2/BDLQ_PRD/on/demandware.static/-/Sit…",
-      repeat: false,
-      frequency: "",
-      date: new Date("2024-03-07T20:30:00"),
-    },
-    {
-      id: "65e8cda7add02662b6b0f303",
-      title: "Medicin2",
-      type: ["Array (1)"],
-      icon: "icon1",
-      photo:
-        "https://www.kiwoko.com/dw/image/v2/BDLQ_PRD/on/demandware.static/-/Sit…",
-      repeat: true,
-      frequency: "daily",
-      date: new Date("2024-03-07T20:30:00"),
-    },
-    {
-      id: "65e8cdbbadd02662b6b0f305",
-      title: "Medicin3",
-      type: ["Array (1)"],
-      icon: "icon2",
-      photo:
-        "https://www.kiwoko.com/dw/image/v2/BDLQ_PRD/on/demandware.static/-/Sit…",
-      repeat: true,
-      frequency: "annually",
-      date: new Date("2024-03-20T20:30:00"),
-    },
-  ]);
+  const { user } = useContext(AuthContext);
+  const [reminders, setReminders] = useState([]);
+
+  useEffect(() => {
+    if (user && user.reminders) {
+      setReminders(user.reminders);
+    }
+  }, [user]);
 
   const tileContent = ({ date, view }) => {
     if (view === "month") {
-      const eventsOnDay = reminders.filter(
-        (reminder) =>
-          reminder.date.getFullYear() === date.getFullYear() &&
-          reminder.date.getMonth() === date.getMonth() &&
-          reminder.date.getDate() === date.getDate()
+      const currentDate = new Date(date);
+
+      const eventsOnDay = reminders.filter((reminder) => {
+        const reminderDate = new Date(reminder.startDate);
+        const endDate = new Date(reminder.endDate);
+
+        if (reminder.repeat) {
+          if (reminder.frequency === "daily") {
+            return currentDate >= reminderDate && currentDate <= endDate;
+          } else if (reminder.frequency === "monthly") {
+            return (
+              currentDate.getDate() === reminderDate.getDate() &&
+              currentDate >= reminderDate &&
+              currentDate <= endDate
+            );
+          } else if (reminder.frequency === "annually") {
+            return (
+              currentDate.getDate() === reminderDate.getDate() &&
+              currentDate.getMonth() === reminderDate.getMonth() &&
+              currentDate.getFullYear() >= reminderDate.getFullYear() &&
+              currentDate <= endDate
+            );
+          }
+        } else {
+          return currentDate.toDateString() === reminderDate.toDateString();
+        }
+      });
+
+      return (
+        <>
+          {eventsOnDay.map((event) => (
+            <>
+              <div>{event.icon}</div>
+              <div>{event.title}</div>
+            </>
+          ))}
+        </>
       );
-      return eventsOnDay.length > 0 ? (
-        <div>{eventsOnDay.length} events</div>
-      ) : null;
     }
   };
 
