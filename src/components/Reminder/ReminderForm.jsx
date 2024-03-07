@@ -23,7 +23,7 @@ const reminderSchema = object({
     ["daily", "monthly", "annually"],
     "Frecuencia inválida"
   ),
-  startingDate: date(),
+  Date: date(),
   hour: string(),
 });
 
@@ -37,11 +37,12 @@ const ReminderForm = () => {
         photo: "",
         repeat: false,
         frequency: "",
-        startingDate: "",
+        date: "",
         hour: "",
       },
       onSubmit: (values) => {
-        reminderCreate(values);
+        const dateString = values.date.toString();
+        reminderCreate({ ...values, date: dateString });
         console.log(values);
       },
       validationSchema: reminderSchema,
@@ -106,12 +107,12 @@ const ReminderForm = () => {
       <Input
         placeholder="Fecha de inicio"
         label="Fecha de inicio"
-        name="startingDate"
+        name="date"
         type="date"
         onChange={handleChange}
         onBlur={handleBlur}
-        value={values.startingDate}
-        error={touched.startingDate && errors.startingDate}
+        value={values.date}
+        error={touched.date && errors.date}
       />
       <Input
         placeholder="Hora"

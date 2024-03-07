@@ -3,7 +3,7 @@ const Select = ({ options, value, onChange, name, label, error }) => {
     <div>
       <label htmlFor={name}>{label}</label>
       <select id={name} name={name} value={value} onChange={onChange}>
-        <option value="">Selecciona</option>
+        <option value="none">Selecciona</option>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
