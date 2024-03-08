@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Map from "./components/Map";
@@ -74,6 +74,7 @@ function App() {
         <Route path="/reminder/new" element={<ReminderForm />} />
         <Route path="/reminders" element={<RemindersCalendar />} />
       </Routes>
+      <Navbar />
     </div>
   );
 }

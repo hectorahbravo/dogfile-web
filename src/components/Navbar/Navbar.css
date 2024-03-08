@@ -1,0 +1,51 @@
+.navbar {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  width: 100%; /* Asegurar que la barra de navegación ocupa todo el ancho */
+  position: fixed; /* Fijar la barra de navegación */
+  bottom: 0; /* Fijarla en la parte inferior */
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%; /* Asegurar que la barra de navegación ocupa todo el ancho */
+}
+
+.navbar-brand {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.navbar-logo {
+  text-decoration: none;
+  color: #000;
+}
+
+.navbar-links {
+  display: flex;
+}
+
+.navbar-link {
+  text-decoration: none;
+  color: #4a4a4a;
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-links {
+    margin-top: 10px;
+  }
+
+  .navbar-link {
+    margin: 0;
+    margin-top: 10px;
+  }
+}
