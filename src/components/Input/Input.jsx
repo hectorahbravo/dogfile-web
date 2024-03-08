@@ -11,6 +11,7 @@ const Input = ({
   onBlur,
   className,
   classNamePlaceholder,
+  style
 }) => {
   return (
     <div>
@@ -24,6 +25,7 @@ const Input = ({
         placeholder={placeholder}
         onBlur={onBlur}
         className={`${className} ${classNamePlaceholder}`}
+        style={style}
       />
       {error && <div className="error-text">{error}</div>}
     </div>
