@@ -1,0 +1,43 @@
+/* RemindersCalendar.module.css */
+.react-calendar {
+  width: 100%;
+  max-width: 500px; /* ajusta el máximo ancho según sea necesario */
+  margin: 0 auto;
+  font-family: "Open Sans", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.react-calendar__tile--active {
+  background-color: beige; /* color de fondo para el día seleccionado */
+}
+
+.react-calendar__tile--now {
+  background-color: #1a1707; /* color de fondo para el día actual */
+}
+
+.react-calendar__tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.react-calendar__tile > div {
+  border-radius: 50%; /* hace que los días sean redondos */ /* relación de aspecto para hacer la caja redonda */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+}
+
+.react-calendar__tile--hasActive:hover {
+  background-color: #f5deb3; /* color de fondo cuando se pasa el ratón por encima */
+}
+
+.react-calendar__tileContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: blueviolet;
+}
