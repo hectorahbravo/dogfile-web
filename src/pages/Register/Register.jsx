@@ -2,8 +2,9 @@ import { object, string, mixed } from "yup";
 import { useFormik } from "formik";
 import Input from "../../components/Input/Input";
 import { register } from "../../services/AuthService";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button/Button";
+import { editUser } from "../../services/UserService";
 import "./Register.css";
 
 const userSchema = object({
@@ -17,7 +18,8 @@ const userSchema = object({
   avatar: mixed(),
 });
 
-const Register = () => {
+const Register = ({initialValues, isEdit}) => {
+  const { userId } = useParams ();
   const navigate = useNavigate();
   const {
     values,
@@ -29,23 +31,35 @@ const Register = () => {
     handleChange,
     handleBlur,
   } = useFormik({
-    initialValues: {
+    initialValues: initialValues || {
       username: "",
       email: "",
       password: "",
       avatar: null, // Cambia el valor inicial a null
     },
     onSubmit: (values) => {
+      console.log("Submitting form with values:", values)
       const data = new FormData();
       Object.keys(values).forEach((keyValue) => {
         data.append(keyValue, values[keyValue]);
+        
       });
+      
 
-      register(data)
+      if (isEdit) {
+        editUser(userId, values)
+          .then(() => {
+            navigate('/user');
+          })
+          .catch((err) => console.error(err));
+      } else {
+
+      register(values)
         .then(() => {
           navigate("/");
         })
         .catch((err) => console.error(err));
+      }
     },
     validationSchema: userSchema,
     validateOnBlur: true,
@@ -93,20 +107,21 @@ const Register = () => {
               className="login-form"
             />
             <Input
-              autocomplete="off"
-              name="password"
-              type="password"
-              label="Password"
-              placeholder="Añade una contraseña"
-              value={values.password}
-              error={touched.password && errors.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className="login-form"
-            />
+  autocomplete="off"
+  name="password"
+  type="password"
+  label="Password"
+  placeholder="Añade una contraseña"
+  value={values.password}
+  error={touched.password && errors.password}
+  onChange={handleChange}
+  onBlur={handleBlur}
+  className="login-form"
+  style={{ display: isEdit ? "none" : "block" }} // Ocultar el campo si isEdit es true
+/>
           </div>
           <div className="container-buttons">
-            <Button type="submit" className="btn-register" text="Registrar" />
+          <Button type="submit" className="btn-register" text={isEdit ? "Guardar cambios" : "Registrar"}  />
           </div>
         </form>
       </div>

@@ -14,6 +14,6 @@ export const getUserDogs = (userId, dogId) => {
   return http.get(`users/${userId}/dogs/${dogId}`);
 };
 
-export const toggleLike = (tweetOwner, tweet) => {
-  return http.post(`/likes/${tweetOwner}/${tweet}`);
-};
+export const editUser = (body, userId) => {
+  return http.put(`users/${userId}`, body)
+}
