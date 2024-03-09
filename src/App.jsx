@@ -16,6 +16,7 @@ import ReminderForm from "./components/Reminder/ReminderForm";
 import EditProfile from "./pages/EdtiProfile/EditProfile";
 import RemindersCalendar from "./components/Reminder/RemindersCalendar"
 import './App.css'
+import Activation from "./components/Activation";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         location.pathname !== "/user" &&
         location.pathname !== "/create-dog/:userId" && <Navbar className="navbar"/>}
       <Routes>
+      <Route path="/activate/:token" element={<Activation/>}/>
         <Route path="/" element={<Login />} />
         <Route
           path="/create-dog/:userId"
@@ -84,7 +86,7 @@ function App() {
         <Route path="/reminder/new" element={<ReminderForm />} />
         <Route path="/reminders" element={<RemindersCalendar />} />
       </Routes>
-      <Navbar />
+    
     </div>
   );
 }

@@ -7,9 +7,27 @@ import { Link } from "react-router-dom";
 import Edit from "../../assets/images/editar-perfil.png";
 import Contact from "../../assets/images/contacto.png";
 import Logout from "../../assets/images/logout.png";
+import { deleteUser } from "../../services/UserService";
+import { useNavigate } from "react-router-dom";
+import { FaTrash } from "react-icons/fa";
+import { logout } from "../../stores/AccessTokenStore";
+
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
-
+  const navigate = useNavigate();
+ 
+  
+  const onDelete = () => {
+    if (window.confirm("¿Estás seguro de que deseas eliminar esta cuenta?")) {
+      deleteUser(user.id)
+        .then(() => {
+          navigate(`/`);
+        })
+        .catch(error => {
+          console.error("Error deleting dog:", error);
+        });
+    }
+  };
   return (
     <div className="background">
       <div className="user-container">
@@ -35,16 +53,23 @@ const UserProfile = () => {
             </div>
           </div>
           <div className="link-item">
-            <img className="icon-links" src={Logout} alt="salir" />
-            <div className="link-text">
-              <Link to="/">Salir</Link>
+          <button
+              className="text-white hover:text-tw-light-gray"
+              onClick={logout}
+            >
+                Logout
+            </button>
               <p className="arrow-link"></p>
             </div>
           </div>
+          <div className="link-item">
+          <button onClick={onDelete}><FaTrash /></button>
+              <p className="arrow-link"></p>
+            </div>
           {/* Aquí puedes agregar más elementos similares para otros enlaces de editar perfil */}
         </div>
       </div>
-    </div>
+   
   );
 };
 

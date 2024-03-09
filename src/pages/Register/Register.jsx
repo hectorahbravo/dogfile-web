@@ -18,7 +18,7 @@ const userSchema = object({
   avatar: mixed(),
 });
 
-const Register = ({initialValues, isEdit}) => {
+const Register = ({initialValues, isEdit, onSubmit}) => {
   const { userId } = useParams ();
   const navigate = useNavigate();
   const {
@@ -47,14 +47,14 @@ const Register = ({initialValues, isEdit}) => {
       
 
       if (isEdit) {
-        editUser(userId, values)
+        onSubmit(userId, data)
           .then(() => {
             navigate('/user');
           })
           .catch((err) => console.error(err));
       } else {
 
-      register(values)
+      register(data)
         .then(() => {
           navigate("/");
         })
@@ -65,6 +65,9 @@ const Register = ({initialValues, isEdit}) => {
     validateOnBlur: true,
     validateOnMount: true,
   });
+
+  console.log(errors)
+  console.log(values)
 
   return (
     <div className="background">
