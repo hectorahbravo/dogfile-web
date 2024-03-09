@@ -23,7 +23,7 @@ const UserProfile = () => {
           <div className="link-item">
             <img className="icon-links" src={Edit} alt="Editar perfil" />
             <div className="link-text">
-              <Link to="/">Editar perfil</Link>
+              <Link to={`/users/${user.id}/edit`}>Editar perfil</Link>
               <p className="arrow-link"></p>
             </div>
           </div>
