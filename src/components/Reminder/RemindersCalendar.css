@@ -108,6 +108,3 @@ abbr[title] {
   display: flex;
 }
 
-.react-calendar__month-view__days {
-  gap: 10px;
-}
