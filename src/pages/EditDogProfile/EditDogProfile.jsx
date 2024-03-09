@@ -1,11 +1,13 @@
 import { useNavigate, useParams } from "react-router-dom";
 import CreateDog from "../../components/CreateDog/CreateDog";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { editDog, getDog, deleteDog } from "../../services/DogService";
 import { FaTrash } from "react-icons/fa";
-import '../../components/DogProfile/DogProfile.css'
+import "../../components/DogProfile/DogProfile.css";
+import DogContext from "../../contexts/DogContext";
 
 const EditDog = () => {
+  const { fetchDogProfile } = useContext(DogContext);
   const { userId, dogId } = useParams();
   const navigate = useNavigate();
 
@@ -18,7 +20,7 @@ const EditDog = () => {
       .then((dogDB) => {
         setDog(dogDB);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error fetching dog:", error);
       })
       .finally(() => {
@@ -28,21 +30,26 @@ const EditDog = () => {
 
   const onSubmit = (values) => {
     return editDog(userId, dogId, values)
-      .then(editedDog => {
+      .then((editedDog) => {
+        fetchDogProfile(userId, dogId);
         navigate(`/dogs/${editedDog.id}`);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error editing dog:", error);
       });
   };
 
   const onDelete = () => {
-    if (window.confirm("¿Estás seguro de que deseas eliminar este perfil de perro?")) {
+    if (
+      window.confirm(
+        "¿Estás seguro de que deseas eliminar este perfil de perro?"
+      )
+    ) {
       deleteDog(userId, dogId)
         .then(() => {
           navigate(`/user`);
         })
-        .catch(error => {
+        .catch((error) => {
           console.error("Error deleting dog:", error);
         });
     }
@@ -55,8 +62,14 @@ const EditDog = () => {
         <p>Cargando...</p>
       ) : (
         <>
-          <CreateDog initialValues={dog || {}} onSubmit={onSubmit} isEdit={true} /><button onClick={onDelete}><FaTrash /></button>
-          
+          <CreateDog
+            initialValues={dog || {}}
+            onSubmit={onSubmit}
+            isEdit={true}
+          />
+          <button onClick={onDelete}>
+            <FaTrash />
+          </button>
         </>
       )}
     </div>

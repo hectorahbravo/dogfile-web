@@ -4,12 +4,26 @@ import { FaHome } from "react-icons/fa";
 import { FaMapMarkerAlt, FaCalendarAlt, FaCog } from "react-icons/fa";
 import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext";
+import DogContext from "../../contexts/DogContext";
 
 const Navbar = () => {
+  const { dogProfile } = useContext(DogContext);
 
   return (
     <nav className="navbar-container">
-      <NavLink to={"/"}></NavLink>
+      {/* Avatar del perfil del perro o un círculo si no hay perfil */}
+      {dogProfile ? (
+        <NavLink to={"/"}>
+          <img
+            src={dogProfile.avatar}
+            alt="dog_profile_image"
+            className="navbar-icons"
+          />
+        </NavLink>
+      ) : (
+        <div className="navbar-icons placeholder-circle"></div>
+      )}
+
       <NavLink to={"/"}>
         <FaMapMarkerAlt className="navbar-icons" color="grey" />
       </NavLink>
