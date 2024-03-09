@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Map from "./components/Map";
@@ -14,6 +14,8 @@ import { useLocation } from "react-router-dom";
 import EditDog from "./pages/EditDogProfile/EditDogProfile";
 import ReminderForm from "./components/Reminder/ReminderForm";
 import EditProfile from "./pages/EdtiProfile/EditProfile";
+import RemindersCalendar from "./components/Reminder/RemindersCalendar"
+import './App.css'
 
 function App() {
   const location = useLocation();
@@ -22,8 +24,7 @@ function App() {
       {location.pathname !== "/" &&
         location.pathname !== "/register" &&
         location.pathname !== "/user" &&
-        location.pathname !== "/create-dog/:userId" &&
-        !location.pathname.match(/^\/\w+\/dogs\/\w+$/) && <Navbar />}
+        location.pathname !== "/create-dog/:userId" && <Navbar className="navbar"/>}
       <Routes>
         <Route path="/" element={<Login />} />
         <Route

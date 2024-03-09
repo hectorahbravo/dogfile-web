@@ -1,33 +1,32 @@
 import { useNavigate, useParams } from "react-router-dom";
 import CreateDog from "../../components/CreateDog/CreateDog";
 import { useEffect, useState } from "react";
-import { editDog, getDog } from "../../services/DogService";
+import { editDog, getDog, deleteDog } from "../../services/DogService";
+import { FaTrash } from "react-icons/fa";
+import '../../components/DogProfile/DogProfile.css'
 
 const EditDog = () => {
   const { userId, dogId } = useParams();
   const navigate = useNavigate();
 
-  const [dog, setDog] = useState(null); // Inicializar como null en lugar de un objeto vacío
-  const [loading, setLoading] = useState(false); // Inicializar como un booleano
+  const [dog, setDog] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true); // Indicar que la carga está en curso
-    console.log('dogId', dogId)
+    setLoading(true);
     getDog(userId, dogId)
       .then((dogDB) => {
-        console.log(dogDB)
         setDog(dogDB);
       })
       .catch(error => {
         console.error("Error fetching dog:", error);
       })
       .finally(() => {
-        setLoading(false); // Indicar que la carga ha finalizado
+        setLoading(false);
       });
   }, [userId, dogId]);
 
   const onSubmit = (values) => {
-    console.log(dogId)
     return editDog(userId, dogId, values)
       .then(editedDog => {
         navigate(`/dogs/${editedDog.id}`);
@@ -37,17 +36,29 @@ const EditDog = () => {
       });
   };
 
-  return (
-    <div>
-      <h1>Editar Perfil</h1>
+  const onDelete = () => {
+    if (window.confirm("¿Estás seguro de que deseas eliminar este perfil de perro?")) {
+      deleteDog(userId, dogId)
+        .then(() => {
+          navigate(`/user`);
+        })
+        .catch(error => {
+          console.error("Error deleting dog:", error);
+        });
+    }
+  };
 
-      {/* Crear un componente reutilizable con la lógica del formulario */}
+  return (
+    <div className="dog-profile-container">
+      <h1>Editar Perfil</h1>
       {loading ? (
         <p>Cargando...</p>
       ) : (
-        <CreateDog initialValues={dog || {}} onSubmit={onSubmit} isEdit={true} />
+        <>
+          <CreateDog initialValues={dog || {}} onSubmit={onSubmit} isEdit={true} /><button onClick={onDelete}><FaTrash /></button>
+          
+        </>
       )}
-      
     </div>
   );
 };
