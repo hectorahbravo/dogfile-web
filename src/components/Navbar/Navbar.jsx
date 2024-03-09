@@ -2,9 +2,12 @@ import { NavLink } from "react-router-dom";
 import './Navbar.css'
 import { FaHome } from 'react-icons/fa';
 import { FaMapMarkerAlt, FaCalendarAlt, FaCog } from "react-icons/fa";
+import { useContext } from "react";
+import AuthContext from "../../contexts/AuthContext";
 
 
 const Navbar = () => {
+
   return (
     <nav className="navbar-container">
           <NavLink  to={"/"}>
