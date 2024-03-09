@@ -1,10 +1,11 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useContext } from "react";
 import mapboxgl from "mapbox-gl";
 import { useFormik } from "formik";
 import { date, number, object, string } from "yup";
 import Input from "./Input/Input";
 import Button from "./Button/Button";
 import { reportCreate } from "../services/ReportService";
+import AuthContext from "../contexts/AuthContext";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZG9nZmlsZSIsImEiOiJjbHN6dXUwNjEwaHdhMmxucmJqZzZ6cmtuIn0.ewRuBpz297DIvwMjqYls9Q";
@@ -21,6 +22,8 @@ const reportSchema = object({
 });
 
 const Reports = () => {
+  const { user } = useContext(AuthContext);
+
   const mapContainer = useRef(null);
   const [lng, setLng] = useState(-3.703462);
   const [lat, setLat] = useState(40.416816);
@@ -46,10 +49,11 @@ const Reports = () => {
       location: "",
       latitude: null,
       longitude: null,
+      user: "",
     },
     onSubmit: (values) => {
-      reportCreate(values);
-      console.log({ ...values, latitude: lat, longitude: lng });
+      console.log({ ...values, user: user.id });
+      reportCreate({ ...values, user: user.id });
     },
     validationSchema: reportSchema,
     validateOnChange: true,
