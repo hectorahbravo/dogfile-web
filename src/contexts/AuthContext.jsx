@@ -62,8 +62,9 @@ export const AuthContextProvider = ({ children }) => {
       isAuthFetched,
       user,
       login,
+      fetchCurrentUser
     }),
-    [isAuthFetched, user, login]
+    [isAuthFetched, user, login,fetchCurrentUser]
   );
 
   return (

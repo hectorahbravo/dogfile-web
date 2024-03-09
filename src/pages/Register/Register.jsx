@@ -6,7 +6,6 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import { editUser } from "../../services/UserService";
 import "./Register.css";
-
 const userSchema = object({
   username: string().required("Campo requerido"),
   email: string()
@@ -17,8 +16,7 @@ const userSchema = object({
     .required("Campo requerido"),
   avatar: mixed(),
 });
-
-const Register = ({ initialValues, isEdit }) => {
+const Register = ({ initialValues, isEdit, onSubmit }) => {
   const { userId } = useParams();
   const navigate = useNavigate();
   const {
@@ -43,9 +41,8 @@ const Register = ({ initialValues, isEdit }) => {
       Object.keys(values).forEach((keyValue) => {
         data.append(keyValue, values[keyValue]);
       });
-
       if (isEdit) {
-        editUser(userId, data)
+        onSubmit(userId, data)
           .then(() => {
             navigate("/user");
           })
@@ -62,7 +59,8 @@ const Register = ({ initialValues, isEdit }) => {
     validateOnBlur: true,
     validateOnMount: true,
   });
-
+  console.log(errors);
+  console.log(values);
   return (
     <div className="background">
       <Link to={"/"}>atras</Link>
@@ -129,5 +127,4 @@ const Register = ({ initialValues, isEdit }) => {
     </div>
   );
 };
-
 export default Register;
