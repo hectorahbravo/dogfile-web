@@ -1,14 +1,16 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useContext } from "react";
 import mapboxgl from "mapbox-gl";
 import { useFormik } from "formik";
 import { number, object, string } from "yup";
 import Input from "./Input/Input";
 import Button from "./Button/Button";
+import AuthContext from "../contexts/AuthContext";
+import { recommendationCreate } from "../services/RecommendationService";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZG9nZmlsZSIsImEiOiJjbHN6dXUwNjEwaHdhMmxucmJqZzZ6cmtuIn0.ewRuBpz297DIvwMjqYls9Q";
 
-const recomendationSchema = object({
+const recommendationSchema = object({
   title: string().required("El título es obligatorio"),
   description: string().required("La descripción es obligatoria"),
   location: string().required("El lugar es obligatorio"),
@@ -23,7 +25,7 @@ const Recpmendations = () => {
   const [zoom, setZoom] = useState(16);
   const [map, setMap] = useState(null);
   const [marker, setMarker] = useState(null);
-
+  const { user } = useContext(AuthContext);
   const {
     values,
     errors,
@@ -41,11 +43,17 @@ const Recpmendations = () => {
       latitude: null,
       longitude: null,
       image: "",
+      user: "",
     },
     onSubmit: (values) => {
-      console.log({ ...values, latitude: lat, longitude: lng });
+      recommendationCreate({
+        ...values,
+        latitude: lat,
+        longitude: lng,
+        user: user.id,
+      });
     },
-    validationSchema: recomendationSchema,
+    validationSchema: recommendationSchema,
     validateOnChange: true,
     validateOnBlur: true,
     validateOnMount: true,

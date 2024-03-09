@@ -5,7 +5,7 @@ import Register from "./pages/Register/Register";
 import Map from "./components/Map";
 import Calendar from "./components/Calendar/Calendar";
 import Reports from "./components/Reports";
-import Recomendation from "./components/Recomendation";
+import Recommendation from "./components/Recommendation";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import ProtectedRoute from "./components/ProtectedRoute";
 import CreateDogPage from "./pages/CreateDogPage/CreateDogPage";
@@ -14,9 +14,8 @@ import { useLocation } from "react-router-dom";
 import EditDog from "./pages/EditDogProfile/EditDogProfile";
 import ReminderForm from "./components/Reminder/ReminderForm";
 import EditProfile from "./pages/EdtiProfile/EditProfile";
-import RemindersCalendar from "./components/Reminder/RemindersCalendar"
-import './App.css'
-
+import RemindersCalendar from "./components/Reminder/RemindersCalendar";
+import "./App.css";
 
 function App() {
   const location = useLocation();
@@ -25,7 +24,9 @@ function App() {
       {location.pathname !== "/" &&
         location.pathname !== "/register" &&
         location.pathname !== "/user" &&
-        location.pathname !== "/create-dog/:userId" && <Navbar className="navbar"/>}
+        location.pathname !== "/create-dog/:userId" && (
+          <Navbar className="navbar" />
+        )}
       <Routes>
         <Route path="/" element={<Login />} />
         <Route
@@ -80,11 +81,10 @@ function App() {
         <Route path="/maps" element={<Map />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/reports/new" element={<Reports />} />
-        <Route path="/recomendation/new" element={<Recomendation />} />
+        <Route path="/recommendation/new" element={<Recommendation />} />
         <Route path="/reminder/new" element={<ReminderForm />} />
         <Route path="/reminders" element={<RemindersCalendar />} />
       </Routes>
-      <Navbar />
     </div>
   );
 }
