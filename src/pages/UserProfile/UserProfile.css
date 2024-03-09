@@ -1,84 +1,86 @@
-.background {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    background-color: #F0EFD6;
-    display: flex;
-    justify-content: center;
-    align-items: center; /* Centra los elementos en el centro del fondo */
-    flex-direction: column; /* Cambia la dirección del flujo a columnas */
-    position: relative; /* Establece posición relativa para el contenido */
-}
-
 .user-container {
-    margin-top: -200px; /* Cambia el valor del margen superior según sea necesario */
-    width: 100vw;
-    height: auto; /* Altura automática para adaptarse al contenido */
-    display: flex;
-    flex-direction: column; /* Alinea los elementos verticalmente */
-    justify-content: center;
-    align-items: center;
+  height: auto; /* Altura automática para adaptarse al contenido */
+  display: flex;
+  flex-direction: column; /* Alinea los elementos verticalmente */
+  justify-content: center;
+  align-items: center;
 }
-
 
 .user-dogs {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start; /* Alinea los elementos al principio del contenedor */
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start; /* Alinea los elementos al principio del contenedor */
+  max-width: 800px;
 }
 
 .links-container {
-    width: 70vh; /* Ancho igual a la mitad del alto del fondo */
-    height: 62vh; /* Alto igual a la mitad del alto del fondo */
-    background-color: #634a3a; /* Color de fondo */
-    border-radius: 100px; /* Bordes redondeados */
-    position: absolute; /* Establece posición absoluta para sobrepasar el límite */
-    bottom: -25vh; /* Mueve el contenedor hacia arriba para que se muestre el borde redondeado */
-    left: 50%; /* Centra el contenedor horizontalmente */
-    transform: translateX(-50%); /* Centra el contenedor horizontalmente */
-  }
-  
-  .links-user-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-left: 30px;
-    padding: 20px; /* Añade un espacio interior al contenedor de enlaces */
-  }
-  
-  .link-item {
-    display: flex;
-    width: 100%;
-    margin-bottom: 20px; /* Añade espacio entre cada fila de enlaces */
-  }
-  
-  .icon-links {
-    width: 60px;
-    height: 60px;
-    margin-right: 40px; /* Aumenta el espacio entre el icono y el texto */
-  }
-  
-  .link-text {
-    display: flex;
-    align-items: center;
-  }
-  
-  .link-text a {
-    text-decoration: none; /* Elimina el subrayado del enlace */
-    color:white;
-    font-size: 25px; /* Usa el color de texto predeterminado */
+  width: 95vw;
 
-  }
-  
-  .arrow-link {
-    margin: 0; /* Elimina el margen predeterminado del párrafo */
-    color: white;
-    font-size: 30px;
-    margin-left: 50px;
-    position: relative;
-  }
+  background-color: #fff2fa;
+  border-radius: 8px;
+}
+
+.links-user-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  height: 400px;
+}
+
+.link-item > button {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 600;
+  color: #023247;
+}
+.link-text a {
+  text-decoration: none; /* Elimina el subrayado del enlace */
+  color: #023247;
+  font-size: 20px;
+  font-weight: 600; /* Usa el color de texto predeterminado */
+}
+
+.link-item {
+  display: flex;
+  margin: 20px;
+  gap: 15px;
+
+  /* Añade espacio entre cada fila de enlaces */
+}
+
+.icon-links {
+  width: 25px;
+  height: 25px;
+}
+
+.link-text {
+  display: flex;
+  align-items: center;
+}
+
+.container-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background: #834d7e;
+  border-radius: 50px;
+  color: #ffe9f6;
+}
+
+.arrow-link {
+  margin: 0; /* Elimina el margen predeterminado del párrafo */
+  color: white;
+  font-size: 30px;
+  margin-left: 50px;
+  position: relative;
+}

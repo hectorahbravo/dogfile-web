@@ -11,7 +11,8 @@ const Input = ({
   onBlur,
   className,
   classNamePlaceholder,
-  style
+  style,
+  extraClassName,
 }) => {
   return (
     <div>
@@ -24,7 +25,7 @@ const Input = ({
         onChange={onChange}
         placeholder={placeholder}
         onBlur={onBlur}
-        className={`${className} ${classNamePlaceholder}`}
+        className={`${className} ${classNamePlaceholder} ${extraClassName}`}
         style={style}
       />
       {error && <div className="error-text">{error}</div>}

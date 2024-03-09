@@ -1,113 +1,112 @@
 /* App.css */
 .app-container {
-    position: fixed;
-    width: 390px;
-    height: 844px;
-    background-color: #f0d6e6;
-  }
-  
-  /* DogProfile.css */
-  .dog-profile-container {
-    width: 100vw;
-    height: 91vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #f0d6e6;
-    position: relative;
-  }
-  
-  .avatar-container {
-    text-align: center;
-    margin-top: -50px;
-  }
-  
-  .avatar {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  .pencil {
-    width: 30px;
-    height: 30px;
-  }
-  
-  .info-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-left: 15px;
-    margin-right: 15px;
-    margin-top: 10px;
-  }
-  
-  .info-box {
-    width: 18vh;
-    height: 14vh;
-    margin-bottom: 10px;
-    padding: 25px;
-    border: 1px solid #f0d6f0;
-    background-color: #eec0e6;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px #6e676d;
-  }
+  position: fixed;
+  width: 390px;
+  height: 844px;
+  background-color: #f0d6e6;
+}
 
-  .info-box h3 {
-    margin-top: -15px;
-  }
-  .info-box p {
-    font-size: 15px;
-    margin-left: -20px;
-    margin-top: -5px;
-  }
-  
-  .traits-container {
-    margin-top: -45px;
-  }
+/* DogProfile.css */
+.dog-profile-container {
+  width: 100vw;
+  height: 91vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0d6e6;
+  position: relative;
+}
 
-  .traits-container h2 {
-    font-size: 18px;
-    margin-top: 70px;
-  }
-  
-  .traits-box {
-    margin-top: 10px;
-    height: 10vh;
-    width: 54vh;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-  }
-  
-  .traits-box h3 {
-    margin-top: 10px;
-    margin-left: 5px;
-    font-size: 15px;
-  }
+.avatar-container {
+  text-align: center;
+  margin-top: -50px;
+}
 
-  .traits-box p {
-    margin-top: 8px;
-    margin-left: 5px;
-    font-size: 15px;
-  }
-  
-  .dog-name {
-    margin-top: -5px;
-    margin-bottom: 5px;
-  }
-  
-  .delete-dog-button {
-    margin-top: 20px;
-    background-color: #f44336; /* Rojo */
-    color: #ffffff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .delete-dog-button:hover {
-    background-color: #d32f2f; /* Rojo más oscuro */
-  }
+.avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.pencil {
+  width: 30px;
+  height: 30px;
+}
+
+.info-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 10px;
+}
+
+.info-box {
+  width: 18vh;
+  height: 14vh;
+  margin-bottom: 10px;
+  border: 1px solid #f0d6f0;
+  background-color: #eec0e6;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px #6e676d;
+}
+
+.info-box h3 {
+  margin-top: -15px;
+}
+.info-box p {
+  font-size: 15px;
+  margin-left: -20px;
+  margin-top: -5px;
+}
+
+.traits-container {
+  margin-top: -45px;
+}
+
+.traits-container h2 {
+  font-size: 18px;
+  margin-top: 70px;
+}
+
+.traits-box {
+  margin-top: 10px;
+  height: 10vh;
+  width: 54vh;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.traits-box h3 {
+  margin-top: 10px;
+  margin-left: 5px;
+  font-size: 15px;
+}
+
+.traits-box p {
+  margin-top: 8px;
+  margin-left: 5px;
+  font-size: 15px;
+}
+
+.dog-name {
+  margin-top: -5px;
+  margin-bottom: 5px;
+}
+
+.delete-dog-button {
+  margin-top: 20px;
+  background-color: #f44336; /* Rojo */
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.delete-dog-button:hover {
+  background-color: #d32f2f; /* Rojo más oscuro */
+}

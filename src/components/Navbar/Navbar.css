@@ -1,16 +1,16 @@
 .navbar-container {
-  position: sticky; /* Establece la navbar como absoluta */
-  bottom: 0; /* Alinea la navbar en la parte inferior del contenedor */
-  left: 0; /* Alinea la navbar a la izquierda del contenedor */
+  background: white;
+  z-index: 10;
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  margin-top: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .navbar-icons {
   width: 40px;
   height: 40px;
-  margin-left: 25px;
-  margin-right: 25px;
+  margin: 20px;
 }

@@ -4,26 +4,26 @@ import Profile from "../../components/Profile/Profile";
 import UserDogs from "../../components/UserDogs/UserDogs";
 import "./UserProfile.css";
 import { Link } from "react-router-dom";
-import Edit from "../../assets/images/editar-perfil.png";
-import Contact from "../../assets/images/contacto.png";
-import Logout from "../../assets/images/logout.png";
 import { deleteUser } from "../../services/UserService";
 import { useNavigate } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
 import { logout } from "../../stores/AccessTokenStore";
+import { GrEdit } from "react-icons/gr";
+import { IoMailOutline } from "react-icons/io5";
+import { LuLogOut } from "react-icons/lu";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
- 
-  
+
   const onDelete = () => {
     if (window.confirm("¿Estás seguro de que deseas eliminar esta cuenta?")) {
       deleteUser(user.id)
         .then(() => {
           navigate(`/`);
         })
-        .catch(error => {
+        .catch((error) => {
           console.error("Error deleting dog:", error);
         });
     }
@@ -39,37 +39,42 @@ const UserProfile = () => {
       <div className="links-container">
         <div className="links-user-container">
           <div className="link-item">
-            <img className="icon-links" src={Edit} alt="Editar perfil" />
+            <div className="container-icon">
+              <GrEdit className="icon-links" />
+            </div>
             <div className="link-text">
               <Link to={`/users/${user.id}/edit`}>Editar perfil</Link>
               <p className="arrow-link"></p>
             </div>
           </div>
           <div className="link-item">
-            <img className="icon-links" src={Contact} alt="contacto" />
+            <div className="container-icon">
+              <IoMailOutline className="icon-links" />
+            </div>
             <div className="link-text">
               <Link to="/">Contacto</Link>
               <p className="arrow-link"></p>
             </div>
           </div>
           <div className="link-item">
-          <button
-              className="text-white hover:text-tw-light-gray"
-              onClick={logout}
-            >
-                Logout
-            </button>
-              <p className="arrow-link"></p>
+            <div className="container-icon">
+              <LuLogOut />
             </div>
+            <button className="icon-link" onClick={logout}>
+              Logout
+            </button>
+            <p className="arrow-link"></p>
           </div>
           <div className="link-item">
-          <button onClick={onDelete}><FaTrash /></button>
-              <p className="arrow-link"></p>
+            <div className="container-icon">
+              <RiDeleteBin6Line />
             </div>
-          {/* Aquí puedes agregar más elementos similares para otros enlaces de editar perfil */}
+            <button onClick={onDelete}>Borrar tu cuenta</button>
+            <p className="arrow-link"></p>
+          </div>
         </div>
       </div>
-   
+    </div>
   );
 };
 
