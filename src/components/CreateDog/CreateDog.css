@@ -1,0 +1,49 @@
+/* CreateDog.css */
+.background {
+  background-color: #f0d6e6;
+  padding: 20px;
+}
+
+.dog-create-container {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 8px #6e676d;
+}
+
+.dog-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #8c8c8c;
+  font-size: 16px;
+}
+
+.dog-input:focus {
+  outline: none;
+  border-color: #654321; /* Marrón oscuro */
+}
+
+.container-buttons {
+  text-align: center;
+}
+
+.btn-register {
+  background-color: #654321; /* Marrón oscuro */
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-register:hover {
+  background-color: #8b4513; /* Marrón claro */
+}
+
+.error-message {
+  color: #ff0000; /* Rojo */
+  font-size: 14px;
+}

@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import Input from '../../components/Input/Input';
 import { createDog, editDog } from '../../services/DogService.js';
 import Button from '../../components/Button/Button';
-import './CreateDog.css';
+import './CreateDog.css'; // Importa el archivo CSS para los estilos
 import { useNavigate, useParams } from 'react-router-dom';
 
 const dogSchema = object({

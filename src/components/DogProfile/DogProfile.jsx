@@ -61,10 +61,6 @@ const DogProfile = () => {
       <div className="traits-container">
         <h2>¿Cómo soy?</h2>
         <div className="traits-box">
-          <h3>Mis miedos</h3>
-          <p>{dog.fears}</p>
-        </div>
-        <div className="traits-box">
           <h3>Mi carácter</h3>
           <p>{dog.temperament}</p>
         </div>

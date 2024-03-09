@@ -9,21 +9,23 @@
   /* DogProfile.css */
   .dog-profile-container {
     width: 100vw;
-    height: 100vh;
+    height: 91vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #f0d6e6;
+    position: relative;
   }
   
   .avatar-container {
     text-align: center;
+    margin-top: -50px;
   }
   
   .avatar {
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     object-fit: cover;
   }
@@ -53,7 +55,7 @@
   }
 
   .info-box h3 {
-    margin-top: -10px;
+    margin-top: -15px;
   }
   .info-box p {
     font-size: 15px;
@@ -62,12 +64,12 @@
   }
   
   .traits-container {
-    margin-top: -25px;
+    margin-top: -45px;
   }
 
   .traits-container h2 {
     font-size: 18px;
-    margin-top: 50px;
+    margin-top: 70px;
   }
   
   .traits-box {
@@ -79,7 +81,7 @@
   }
   
   .traits-box h3 {
-    margin-top: 8px;
+    margin-top: 10px;
     margin-left: 5px;
     font-size: 15px;
   }
@@ -95,3 +97,17 @@
     margin-bottom: 5px;
   }
   
+  .delete-dog-button {
+    margin-top: 20px;
+    background-color: #f44336; /* Rojo */
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .delete-dog-button:hover {
+    background-color: #d32f2f; /* Rojo más oscuro */
+  }

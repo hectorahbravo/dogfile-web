@@ -16,6 +16,6 @@ export const editDog = (body, id, dogId) => {
   return http.put(`/users/${id}/dogs/${dogId}`, body);
 };
 
-export const deleteDog = (id, dogId) => {
-  return http.delete(`/users/${id}/dogs/${dogId}`);
+export const deleteDog = (userId, dogId) => {
+  return http.delete(`/users/${userId}/dogs/${dogId}`);
 };
