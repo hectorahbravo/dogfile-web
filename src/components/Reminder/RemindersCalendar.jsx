@@ -49,7 +49,6 @@ function RemindersCalendar() {
           {eventsOnDay.map((event) => (
             <>
               <div>{event.icon}</div>
-              <div>{event.title}</div>
             </>
           ))}
         </>
@@ -59,7 +58,7 @@ function RemindersCalendar() {
 
   return (
     <div className="react-calendar">
-      <ReactCalendar tileContent={tileContent} />
+      <ReactCalendar tileContent={tileContent} minDate={new Date()} />
     </div>
   );
 }

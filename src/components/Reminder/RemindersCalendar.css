@@ -1,43 +1,113 @@
-/* RemindersCalendar.module.css */
 .react-calendar {
-  width: 100%;
-  max-width: 500px; /* ajusta el máximo ancho según sea necesario */
-  margin: 0 auto;
-  font-family: "Open Sans", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  min-width: 400px;
+  max-width: 100%;
+  color: #222;
+  border-radius: 16px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.react-calendar__tile--active {
-  background-color: beige; /* color de fondo para el día seleccionado */
+.react-calendar__navigation button {
+  color: #6f48eb;
+  min-width: 44px;
+  background: none;
+  font-size: 18px;
+  margin-top: 8px;
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: #e88c7d;
+}
+
+.react-calendar__navigation button[disabled] {
+  background-color: #f0f0f0;
+}
+
+abbr[title] {
+  text-decoration: none;
+  color: #b56576;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background: #eab3aa;
+  color: #000000;
 }
 
 .react-calendar__tile--now {
-  background-color: #1a1707; /* color de fondo para el día actual */
+  background: #6f48eb33;
+  color: #000000;
+}
+
+.react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus {
+  color: #6f48eb;
+}
+
+.react-calendar__tile--hasActive:enabled:hover,
+.react-calendar__tile--hasActive:enabled:focus {
+  background: #f8f8fa;
+}
+
+.react-calendar__tile--active {
+  background: #3c2227;
+  font-weight: bold;
+  color: white;
+}
+
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background: #6f48eb;
+  color: white;
+}
+
+.react-calendar--selectRange .react-calendar__tile--hover {
+  background-color: #f8f8fa;
+}
+
+.react-calendar__tile--range {
+  background: #f8f8fa;
+  color: #6f48eb;
+  border-radius: 0;
+}
+
+/* Custom styles for events on calendar */
+.react-calendar__tile--event {
+  background-color: #b56576; /* Use one of your colors */
+  color: white; /* Making it round */
+  padding: 2px 6px; /* Adjust padding */
+  font-size: 12px; /* Adjust font size */
+}
+
+.react-calendar__tile--event:hover,
+.react-calendar__tile--event:focus {
+  background-color: #e88c7d; /* Hover color */
+}
+
+.react-calendar__month-view__days__day {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  align-content: center;
 }
 
 .react-calendar__tile {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  background-color: #e88c7d;
   display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
-.react-calendar__tile > div {
-  border-radius: 50%; /* hace que los días sean redondos */ /* relación de aspecto para hacer la caja redonda */
-  position: relative;
+.react-react-calendar__month-view {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  color: red;
 }
 
-.react-calendar__tile--hasActive:hover {
-  background-color: #f5deb3; /* color de fondo cuando se pasa el ratón por encima */
-}
-
-.react-calendar__tileContent {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: blueviolet;
+.react-calendar__month-view__days {
+  gap: 10px;
 }
