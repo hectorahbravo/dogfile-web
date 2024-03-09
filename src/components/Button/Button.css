@@ -1,31 +1,30 @@
 .btn-login {
-position: absolute;
-width: 282px;
-height: 54px;
-border: 2px solid rgb(155, 135, 104);
-border-radius: 50px;
-background: rgba(216, 117, 0, 0);
-color: rgb(155, 135, 104);
-
+  position: absolute;
+  width: 282px;
+  height: 54px;
+  border: 2px solid #834d7e;
+  border-radius: 50px;
+  background: #834d7e00;
+  color: #834d7e;
 }
 
 .btn-sign {
-margin-top: 70px;
- position: relative;
- width: 282px;
- height: 54px;
- border: 2px solid rgb(155, 135, 104);
- border-radius: 50px;
- background: rgb(155, 135, 104);
- color: white;
+  margin-top: 70px;
+  position: relative;
+  width: 282px;
+  height: 54px;
+  border: 2px solid #834d7e;
+  border-radius: 50px;
+  background: #834d7e;
+  color: white;
 }
 
 .btn-register {
- position: relative;
- width: 282px;
- height: 54px;
- border: 2px solid rgb(155, 135, 104);
- border-radius: 50px;
- background: rgb(155, 135, 104);
- color: white;
+  position: relative;
+  width: 282px;
+  height: 54px;
+  border: 2px solid #834d7e;
+  border-radius: 50px;
+  background: #834d7e;
+  color: white;
 }
