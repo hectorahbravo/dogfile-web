@@ -14,8 +14,10 @@ import { useLocation } from "react-router-dom";
 import EditDog from "./pages/EditDogProfile/EditDogProfile";
 import ReminderForm from "./components/Reminder/ReminderForm";
 import EditProfile from "./pages/EdtiProfile/EditProfile";
+
 import RemindersCalendar from "./components/Reminder/RemindersCalendar";
 import "./App.css";
+import Activation from "./components/Activation";
 
 function App() {
   const location = useLocation();
@@ -28,6 +30,7 @@ function App() {
           <Navbar className="navbar" />
         )}
       <Routes>
+        <Route path="/activate/:token" element={<Activation />} />
         <Route path="/" element={<Login />} />
         <Route
           path="/create-dog/:userId"

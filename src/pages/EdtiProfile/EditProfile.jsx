@@ -1,53 +1,110 @@
 import Register from "../Register/Register";
-import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useContext, useEffect, useState } from "react";
 import { getUser, editUser } from "../../services/UserService";
+import { object, string, mixed } from "yup";
+import { useFormik } from "formik";
+import Input from "../../components/Input/Input";
+import Button from "../../components/Button";
+import AuthContext from "../../contexts/AuthContext";
+
+const userSchema = object({
+    username: string().required("Campo requerido"),
+    email: string()
+      .email("Introduce un email válido")
+      .required("Campo requerido"),
+    avatar: mixed(),
+  });
 
 const EditProfile = () => {
-  const { userId } = useParams();
-  const navigate = useNavigate();
+    const {user} = useContext(AuthContext);
+    const navigate = useNavigate();
 
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    getUser(userId)
-      .then((userDB) => {
-        setUser(userDB);
-      })
-      .catch((error) => {
-        console.error("Error fetching user:", error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [userId]);
-
-  const onSubmit = (values) => {
-    console.log("entro2");
-    editUser(userId, values)
-      .then((editedUser) => {
-        navigate(`/users/${editedUser.id}`);
-      })
-      .catch((error) => {
-        console.error("Error editing user:", error);
-      });
+    const {
+      values,
+      errors,
+      touched,
+      isValid,
+      setFieldValue,
+      handleSubmit,
+      handleChange,
+      handleBlur,
+    } = useFormik({
+      initialValues: {
+        username: `${user.username}`,
+        email: `${user.email}`,
+        avatar: `${user.avatar}`, // Cambia el valor inicial a null
+      },
+      
+      onSubmit: (values) => {
+        console.log("Submitting form with values:", values)
+        const data = new FormData();
+        Object.keys(values).forEach((keyValue) => {
+          data.append(keyValue, values[keyValue]);
+          editUser(user.id, values).then(() => {
+            navigate('/user');
+          })
+          .catch((err) => console.error(err));
+        });
+      },
+      validationSchema: userSchema,
+      validateOnBlur: true,
+      validateOnMount: true,
+    });
+    
+  
+    console.log(errors)
+    console.log(values)
+  
+    return (
+      <div className="background">
+        <Link to={"/"}>atras</Link>
+        <div className="register-container">
+          <form onSubmit={handleSubmit}>
+            <Input
+            
+              name="avatar"
+              type="file"
+              label="Add your photo"
+              error={touched.avatar && errors.avatar}
+              onChange={(event) => {
+                setFieldValue("avatar", event.currentTarget.files[0]); // Establece el archivo seleccionado en el estado
+              }}
+              onBlur={handleBlur}
+              className="image-canva"
+            />
+            <div className="input-container">
+              <Input
+                autocomplete="off"
+                name="username"
+                label="User name"
+                placeholder="Introduce tu nombre"
+                value={values.username}
+                error={touched.username && errors.username}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className="login-form"
+              />
+              <Input
+                autocomplete="off"
+                name="email"
+                type="email"
+                label="Email"
+                placeholder="Introduce tu e-mail"
+                value={values.email}
+                error={touched.email && errors.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className="login-form"
+              />
+            </div>
+            <div className="container-buttons">
+            <Button type="submit" className="btn-register" text={"Guardar cambios"}  />
+            </div>
+          </form>
+        </div>
+      </div>
+    );
   };
-
-  return (
-    <div>
-      <h1>Editar Perfil</h1>
-
-      {loading ? (
-        <p>Cargando...</p>
-      ) : (
-        user && (
-          <Register initialValues={user} onSubmit={onSubmit} isEdit={true} />
-        )
-      )}
-    </div>
-  );
-};
 
 export default EditProfile;
