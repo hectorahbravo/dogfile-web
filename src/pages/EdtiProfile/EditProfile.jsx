@@ -9,6 +9,9 @@ import Button from "../../components/Button";
 import AuthContext from "../../contexts/AuthContext";
 import "./EditProfile.css";
 import { FaArrowLeft } from "react-icons/fa";
+import '../Register/Register.css'
+import '../../components/Button/Button.css'
+import '../../components/Input/Input.css'
 
 const userSchema = object({
   username: string().required("Campo requerido"),
@@ -62,7 +65,7 @@ const EditProfile = () => {
           <FaArrowLeft className="exit-arrow" />
         </Link>
         <form onSubmit={handleSubmit}>
-          <div className="image-canva">
+          <div>
             <img src={user.avatar} alt="profile_image" />
           </div>
           <Input
@@ -74,7 +77,6 @@ const EditProfile = () => {
               setFieldValue("avatar", event.currentTarget.files[0]); // Establece el archivo seleccionado en el estado
             }}
             onBlur={handleBlur}
-            extraClassName="input-image"
           />
           <div className="input-container">
             <Input

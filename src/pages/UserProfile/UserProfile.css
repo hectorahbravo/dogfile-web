@@ -1,86 +1,105 @@
-.user-container {
-  height: auto; /* Altura automática para adaptarse al contenido */
-  display: flex;
-  flex-direction: column; /* Alinea los elementos verticalmente */
-  justify-content: center;
-  align-items: center;
-}
-
-.user-dogs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start; /* Alinea los elementos al principio del contenedor */
-  max-width: 800px;
-}
-
-.links-container {
-  width: 95vw;
-
-  background-color: #fff2fa;
-  border-radius: 8px;
-}
-
-.links-user-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start;
-  height: 400px;
-}
-
-.link-item > button {
-  margin: 0;
-  padding: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  border: none;
-  text-decoration: none;
-  font-size: 20px;
-  font-weight: 600;
-  color: #023247;
-}
-.link-text a {
-  text-decoration: none; /* Elimina el subrayado del enlace */
-  color: #023247;
-  font-size: 20px;
-  font-weight: 600; /* Usa el color de texto predeterminado */
-}
-
-.link-item {
-  display: flex;
-  margin: 20px;
-  gap: 15px;
-
-  /* Añade espacio entre cada fila de enlaces */
-}
-
-.icon-links {
-  width: 25px;
-  height: 25px;
-}
-
-.link-text {
-  display: flex;
-  align-items: center;
-}
-
-.container-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  height: 50px;
-  background: #834d7e;
-  border-radius: 50px;
-  color: #ffe9f6;
-}
-
-.arrow-link {
-  margin: 0; /* Elimina el margen predeterminado del párrafo */
-  color: white;
-  font-size: 30px;
-  margin-left: 50px;
-  position: relative;
-}
+.background-userprofile {
+    position: fixed;
+    width: 100vw; /* Ancho total del viewport */
+    height: 100vh; /* Altura total del viewport */
+    background-color: #c2a88f; /* Color de fondo marrón clarito */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+  }
+  
+  .userprofile-container {
+    max-width: 400px; /* Tamaño máximo del contenedor */
+    padding: 20px; /* Espaciado interno */
+    background-color: #c2a88f; /* Color de fondo marrón clarito */
+    display: flex;
+    flex-direction: column; /* Alinear elementos en columna */
+    justify-content: center; /* Centrar verticalmente */
+    align-items: center; /* Centrar horizontalmente */
+    height: 100vh; /* Altura total del viewport */
+  }
+  
+  .user-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente */
+  }
+  
+  .user-dogs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px; /* Espacio entre las fotos de los perros */
+    max-width: 90vw; /* Ancho máximo para dispositivos móviles */
+    margin-top: 30px; /* Espacio superior */
+  }
+  
+ 
+  .links-container {
+    width: 100%; /* Ancho máximo para dispositivos móviles */
+    border-radius: 20px;
+    padding: 5px; /* Espaciado interno */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+  }
+  
+  .links-user-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacio entre las opciones */
+    width: 100%; /* Establece el ancho al 100% */
+  }
+  
+  .link-item {
+    width: 100%; /* Est
+    ablece el ancho al 100% */
+  }
+  .link-item > a, .link-item > button {
+    width: 100%; /* Ancho del enlace o botón */
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff; /* Fondo blanco */
+    border: none;
+    color: #604a33; /* Color del texto marrón */
+    border-radius: 10px;
+    text-decoration: none; /* Elimina la decoración del enlace */
+  }
+  
+  .icon-link {
+    width: 100%; /* Ancho del botón */
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff; /* Fondo blanco */
+    border: none;
+    color: #604a33; /* Color del texto marrón */
+    border-radius: 10px;
+    text-decoration: none; /* Elimina la decoración del enlace */
+  }
+  
+  .container-icon {
+    background-color: #ecdfcd; /* Fondo blanco para el icono */
+    padding: 5px; /* Espacio alrededor del icono */
+    border-radius: 50%; /* Hace que el contenedor del icono sea circular */
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center; /* Espacio entre el icono y el texto */
+  }
+  
+  .link-text {
+    color: #343738; /* Color del texto gris */
+    flex-grow: 1;
+    align-items: left; /* Permite que el texto ocupe el espacio restante */
+  }
+  
+  .arrow-link {
+    font-size: 30px; /* Tamaño de la flecha */
+  }
+  

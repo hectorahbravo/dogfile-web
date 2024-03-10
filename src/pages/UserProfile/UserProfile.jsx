@@ -29,53 +29,57 @@ const UserProfile = () => {
     }
   };
   return (
-    <div className="background">
-      <div className="user-container">
-        <Profile user={user} />
-        <div className="user-dogs">
-          <UserDogs />
+      <div className="background-userprofile">
+        <div className="userprofile-container">
+          <div className="user-container">
+            <Profile user={user} />
+            <div className="user-dogs">
+              <UserDogs />
+            </div>
+          </div>
+          <div className="links-container">
+            <div className="links-user-container">
+              <div className="link-item">
+                <Link to={`/users/${user.id}/edit`} className="icon-link">
+                  <div className="container-icon">
+                    <GrEdit className="icon-links" />
+                  </div>
+                  <div className="link-text">Editar perfil</div>
+                  <p className="arrow-link">&rarr;</p>
+                </Link>
+              </div>
+              <div className="link-item">
+                <Link to="/" className="icon-link">
+                  <div className="container-icon">
+                    <IoMailOutline className="icon-links" />
+                  </div>
+                  <div className="link-text">Contacto</div>
+                  <p className="arrow-link">&rarr;</p>
+                </Link>
+              </div>
+              <div className="link-item">
+                <button className="icon-link" onClick={logout}>
+                  <div className="container-icon">
+                    <LuLogOut className="icon-links" />
+                  </div>
+                  <div className="link-text">Logout</div>
+                  <p className="arrow-link">&rarr;</p>
+                </button>
+              </div>
+              <div className="link-item">
+                <button className="icon-link" onClick={onDelete}>
+                  <div className="container-icon">
+                    <RiDeleteBin6Line className="icon-links" />
+                  </div>
+                  <div className="link-text">Borrar tu cuenta</div>
+                  <p className="arrow-link">&rarr;</p>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="links-container">
-        <div className="links-user-container">
-          <div className="link-item">
-            <div className="container-icon">
-              <GrEdit className="icon-links" />
-            </div>
-            <div className="link-text">
-              <Link to={`/users/${user.id}/edit`}>Editar perfil</Link>
-              <p className="arrow-link"></p>
-            </div>
-          </div>
-          <div className="link-item">
-            <div className="container-icon">
-              <IoMailOutline className="icon-links" />
-            </div>
-            <div className="link-text">
-              <Link to="/">Contacto</Link>
-              <p className="arrow-link"></p>
-            </div>
-          </div>
-          <div className="link-item">
-            <div className="container-icon">
-              <LuLogOut />
-            </div>
-            <button className="icon-link" onClick={logout}>
-              Logout
-            </button>
-            <p className="arrow-link"></p>
-          </div>
-          <div className="link-item">
-            <div className="container-icon">
-              <RiDeleteBin6Line />
-            </div>
-            <button onClick={onDelete}>Borrar tu cuenta</button>
-            <p className="arrow-link"></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+    );
+  };
 
 export default UserProfile;
