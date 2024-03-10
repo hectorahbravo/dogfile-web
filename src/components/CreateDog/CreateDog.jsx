@@ -25,7 +25,6 @@ const CreateDog = ({ initialValues, isEdit }) => {
   const navigate = useNavigate();
   const [avatarFile, setAvatarFile] = useState(null);
 
-
   const {
     values,
     errors,
@@ -71,7 +70,6 @@ const CreateDog = ({ initialValues, isEdit }) => {
     validateOnMount: true,
   });
 
-
   const handleAvatarChange = (event) => {
     const file = event.currentTarget.files[0];
     setAvatarFile(file);
@@ -116,7 +114,7 @@ const CreateDog = ({ initialValues, isEdit }) => {
             onBlur={handleBlur}
             className="dog-input"
           />
-          <div>
+          <div className="dog-input">
             <label htmlFor="vaccines">Vaccines</label>
             <select
               id="vaccines"
@@ -124,7 +122,6 @@ const CreateDog = ({ initialValues, isEdit }) => {
               value={values.vaccines}
               onChange={handleChange}
               onBlur={handleBlur}
-              className="dog-input"
             >
               <option value="">Select vaccine</option>
               <option value="vaccine1">Vaccine 1</option>
@@ -175,7 +172,7 @@ const CreateDog = ({ initialValues, isEdit }) => {
             onBlur={handleBlur}
             className="dog-input"
           />
-          <div>
+          <div className="dog-input">
             <label htmlFor="temperament">Temperament</label>
             <select
               id="temperament"
@@ -183,7 +180,6 @@ const CreateDog = ({ initialValues, isEdit }) => {
               value={values.temperament}
               onChange={handleChange}
               onBlur={handleBlur}
-              className="dog-input"
             >
               <option value="">Select temperament</option>
               <option value="Estable">Estable</option>
@@ -194,7 +190,7 @@ const CreateDog = ({ initialValues, isEdit }) => {
               <div className="error-message">{errors.temperament}</div>
             )}
           </div>
-          <div>
+          <div className="dog-input">
             <label htmlFor="avatar">Avatar</label>
             <input
               id="avatar"
@@ -202,7 +198,6 @@ const CreateDog = ({ initialValues, isEdit }) => {
               type="file"
               onChange={handleAvatarChange}
               onBlur={handleBlur}
-              className="dog-input"
             />
             {touched.avatar && errors.avatar && (
               <div className="error-message">{errors.avatar}</div>

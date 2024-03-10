@@ -1,21 +1,35 @@
-.login-container {
-  width: 100vw;
-  height: 100vh;
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; /* Ancho total del viewport */
+  height: 100vh; /* Altura total del viewport */
+  background-color:#c2a88f; /* Color de fondo marrón clarito */
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #f0d6e6;
-  gap: 50px;
-  /* Ajusta la altura del contenedor al 100% del viewport */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+}
+
+.login-container {
+  max-width: 400px; /* Tamaño máximo del contenedor */
+  padding: 20px; /* Espaciado interno */
+  background-color: #c2a88f;; /* Color de fondo marrón clarito */
+  display: flex;
+  flex-direction: column; /* Alinear elementos en columna */
+  justify-content: center; /* Centrar verticalmente */
+  align-items: center; /* Centrar horizontalmente */
+  height: 100vh; /* Altura total del viewport */
 }
 
 .logo {
   width: 200px;
-  height: 200px; /* Ajusta el espacio entre el logo y el formulario */
+  height: 200px;
+  margin-bottom: 20px; /* Espacio entre el logo y el formulario */
 }
 
 .container-buttons {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  
 }

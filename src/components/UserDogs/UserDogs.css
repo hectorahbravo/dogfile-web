@@ -20,7 +20,7 @@
 }
 
 .empty-circle {
-  background-color: lightgray; /* Color de fondo para el círculo vacío */
+  background-color: #8e6c49; /* Color de fondo para el círculo vacío */
   display: flex;
   justify-content: center;
   text-align: center;
@@ -34,8 +34,8 @@
 }
 
 .empty-circle p {
-  text-align: center;
-  margin: 0px;
-  font-size: 24px;
+  margin-top: -5px;
   position: absolute;
+  font-size: 24px;
+  color: white;
 }

@@ -26,6 +26,7 @@ function App() {
       {location.pathname !== "/" &&
         location.pathname !== "/register" &&
         location.pathname !== "/user" &&
+        location.pathname !== "/users/:userId/edit" &&
         location.pathname !== "/create-dog/:userId" && (
           <Navbar className="navbar" />
         )}
