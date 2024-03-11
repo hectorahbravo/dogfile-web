@@ -18,6 +18,7 @@ import EditProfile from "./pages/EdtiProfile/EditProfile";
 import RemindersCalendar from "./components/Reminder/RemindersCalendar";
 import "./App.css";
 import Activation from "./components/Activation";
+import CalendarDay from "./pages/CalendarDay/CalendarDay";
 
 function App() {
   const location = useLocation();
@@ -88,6 +89,7 @@ function App() {
         <Route path="/recommendation/new" element={<Recommendation />} />
         <Route path="/reminder/new" element={<ReminderForm />} />
         <Route path="/reminders" element={<RemindersCalendar />} />
+        <Route path="/calendar/day" element={<CalendarDay />} />
       </Routes>
     </div>
   );

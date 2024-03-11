@@ -1,9 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
-import { FaHome } from "react-icons/fa";
 import { FaMapMarkerAlt, FaCalendarAlt, FaCog } from "react-icons/fa";
 import { useContext } from "react";
-import AuthContext from "../../contexts/AuthContext";
 import DogContext from "../../contexts/DogContext";
 
 const Navbar = () => {
@@ -27,7 +25,7 @@ const Navbar = () => {
       <NavLink to={"/"}>
         <FaMapMarkerAlt className="navbar-icons" color="grey" />
       </NavLink>
-      <NavLink to={"/"}>
+      <NavLink to={"/reminders"}>
         <FaCalendarAlt className="navbar-icons" color="grey" />
       </NavLink>
       <NavLink to={"/"}>
