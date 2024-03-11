@@ -2,7 +2,7 @@ import "./Profile.css";
 
 const Profile = ({ user }) => {
   return (
-    <div>
+    <div className="container-profile">
       <div className="image-canva">
         <img src={user.avatar} alt="profile_picture" />
       </div>

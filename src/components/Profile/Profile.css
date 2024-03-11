@@ -5,7 +5,12 @@
 }
 
 .image-canva {
-    width: 80px;
-    height: 80px;
-    
+  width: 80px;
+  height: 80px;
+}
+.container-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
