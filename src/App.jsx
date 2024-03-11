@@ -15,6 +15,7 @@ import EditDog from "./pages/EditDogProfile/EditDogProfile";
 import ReminderForm from "./components/Reminder/ReminderForm";
 import EditProfile from "./pages/EdtiProfile/EditProfile";
 
+
 import RemindersCalendar from "./components/Reminder/RemindersCalendar";
 import "./App.css";
 import Activation from "./components/Activation";
@@ -64,14 +65,6 @@ function App() {
           element={
             <ProtectedRoute>
               <EditProfile />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/user/"
-          element={
-            <ProtectedRoute>
-              <UserProfile />
             </ProtectedRoute>
           }
         />
