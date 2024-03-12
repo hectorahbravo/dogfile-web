@@ -1,0 +1,79 @@
+
+.background-map {
+      max-height: 700px;
+      overflow-y: auto;
+}
+
+.map-page {
+     position: relative;
+    /* Altura total del viewport */
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+
+.map-title {
+padding: 15px;
+margin-bottom: -15px;
+font-size: 20px;
+
+}
+
+.text-map {
+    padding: 15px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.last-reports {
+display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  border: 1px solid rgb(205, 192, 172);
+  border-radius: 11px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background: #ecdfcd;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-top: 50px;
+}
+
+.map-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    margin-left: -50px;
+    margin-top: -80px;
+    gap: 25px;
+    height: 320px;
+}
+
+.leyend {
+
+  height: 50px;
+  border: 1px solid rgb(205, 192, 172);
+  border-radius: 11px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background: #ecdfcd;
+  padding: 10px;
+  margin-bottom: 5px;
+  margin-top: 90px;
+}
+
+.text-add {
+display: flex;
+flex-direction: column;
+justify-content: left;
+align-items: left;
+}
+
+.leyend h3 {
+margin-top: -40px;
+}
