@@ -89,7 +89,7 @@ function App() {
         <Route path="/recommendation/new" element={<Recommendation />} />
         <Route path="/reminder/new" element={<ReminderForm />} />
         <Route path="/reminders" element={<RemindersCalendar />} />
-        <Route path="/calendar/day" element={<CalendarDay />} />
+        <Route path="/calendar/day/:date" element={<CalendarDay />} />
       </Routes>
     </div>
   );

@@ -52,7 +52,6 @@ const Reports = () => {
       user: "",
     },
     onSubmit: (values) => {
-      console.log({ ...values, user: user.id });
       reportCreate({ ...values, user: user.id });
     },
     validationSchema: reportSchema,

@@ -9,3 +9,7 @@ export const getReminders = () => {
 export const reminderCreate = (data) => {
   return http.post("/reminders", data);
 };
+
+export const getRemindersDay = (date, userId) => {
+  return http.get(`/reminders/day/${date}`, userId);
+};

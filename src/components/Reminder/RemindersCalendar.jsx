@@ -1,24 +1,32 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import ReactCalendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import AuthContext from "../../contexts/AuthContext";
 import "./RemindersCalendar.css";
+import { useNavigate } from "react-router-dom";
 
 function RemindersCalendar() {
   const { user } = useContext(AuthContext);
-  const [reminders, setReminders] = useState([]);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (user && user.reminders) {
-      setReminders(user.reminders);
-    }
-  }, [user]);
+  const handleClickDay = (date) => {
+    const formattedDate = formatDate(date);
+    navigate(`/calendar/day/${formattedDate}`);
+  };
+
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const day = date.getDate().toString().padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+  };
 
   const tileContent = ({ date, view }) => {
-    if (view === "month") {
+    if (view === "month" && user && user.reminders) {
       const currentDate = new Date(date);
 
-      const eventsOnDay = reminders.filter((reminder) => {
+      const eventsOnDay = user.reminders.filter((reminder) => {
         const reminderDate = new Date(reminder.startDate);
         const endDate = new Date(reminder.endDate);
 
@@ -46,10 +54,8 @@ function RemindersCalendar() {
 
       return (
         <>
-          {eventsOnDay.map((event) => (
-            <>
-              <div>{event.icon}</div>
-            </>
+          {eventsOnDay.map((event, index) => (
+            <div key={index}>{event.icon}</div>
           ))}
         </>
       );
@@ -58,7 +64,11 @@ function RemindersCalendar() {
 
   return (
     <div className="react-calendar">
-      <ReactCalendar tileContent={tileContent} minDate={new Date()} />
+      <ReactCalendar
+        onClickDay={handleClickDay}
+        tileContent={tileContent}
+        minDate={new Date()}
+      />
     </div>
   );
 }

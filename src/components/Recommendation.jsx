@@ -8,7 +8,7 @@ import AuthContext from "../contexts/AuthContext";
 import { recommendationCreate } from "../services/RecommendationService";
 
 mapboxgl.accessToken =
-  "pk.eyJ1IjoiZG9nZmlsZSIsImEiOiJjbHN6dXUwNjEwaHdhMmxucmJqZzZ6cmtuIn0.ewRuBpz297DIvwMjqYls9Q";
+  "pk.eyJ1IjoiZG9nZmlsZSIsImEiOiJjbHRvcHQweDgwaXh3MmptZXVwNnBmY3UyIn0.xyszSwJvLRUMFHKtIPb0ew";
 
 const recommendationSchema = object({
   title: string().required("El título es obligatorio"),
