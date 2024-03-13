@@ -4,8 +4,9 @@ import AuthContext from '../../contexts/AuthContext';
 import './MapPage.css'
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import {AiOutlinePlusCircle } from 'react-icons/ai'
+import { Link } from 'react-router-dom';
 const MapPage = () => {
-    const { dog } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
   
     return (
         <div className="background-map">
