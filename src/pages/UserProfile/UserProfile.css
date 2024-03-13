@@ -54,7 +54,7 @@
     width: 100%; /* Est
     ablece el ancho al 100% */
   }
-  .link-item > a, .link-item > button {
+  .link-item > a {
     width: 100%; /* Ancho del enlace o botón */
     padding: 10px;
     display: flex;
@@ -65,6 +65,19 @@
     color: #604a33; /* Color del texto marrón */
     border-radius: 10px;
     text-decoration: none; /* Elimina la decoración del enlace */
+  }
+
+  .link-item > button {
+    width: 100%; /* Ancho del enlace o botón */
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #ffffff; /* Fondo blanco */
+    border: none;
+    color: #604a33; /* Color del texto marrón */
+    border-radius: 10px;
+    text-decoration: none;
+  
   }
   
   .icon-link {
