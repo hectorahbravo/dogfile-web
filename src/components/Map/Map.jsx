@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
-import { getReports } from "../services/ReportService";
+import { getReports } from "../../services/ReportService";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZG9nZmlsZSIsImEiOiJjbHRrMjZjMzIwdGk3Mmtxb3RsMjNvZWZhIn0.iwiwLx0iNECX9mWSKOTANA";
@@ -89,8 +89,7 @@ export default function Map() {
       ) : (
         <div
           ref={mapContainer}
-          className="map-container"
-          style={{ height: "500px" }}
+          style={{ height: "400px" }}
         ></div>
       )}
     </div>

@@ -18,7 +18,7 @@ const recommendationSchema = object({
   longitude: number().required("La longitud es obligatoria"),
 });
 
-const Recpmendations = () => {
+const Recommendation = () => {
   const mapContainer = useRef(null);
   const [lng, setLng] = useState(-3.703462);
   const [lat, setLat] = useState(40.416816);
@@ -110,8 +110,7 @@ const Recpmendations = () => {
     <div>
       <div
         ref={mapContainer}
-        className="map-container"
-        style={{ height: "500px" }}
+        style={{ height: "300px" }}
       ></div>
 
       <form onSubmit={handleSubmit}>
@@ -151,4 +150,4 @@ const Recpmendations = () => {
   );
 };
 
-export default Recpmendations;
+export default Recommendation;

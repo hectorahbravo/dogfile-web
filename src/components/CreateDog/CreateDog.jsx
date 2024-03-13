@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import Input from '../../components/Input/Input';
 import { createDog, editDog } from '../../services/DogService.js';
 import Button from '../../components/Button/Button';
-import './CreateDog.css'; // Importa el archivo CSS para los estilos
+import './CreateDog.css';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const dogSchema = object({
@@ -39,7 +39,7 @@ const CreateDog = ({ initialValues, isEdit }) => {
       name: '',
       birthdate: '',
       weight: '',
-      vaccines: '',
+      vaccines: [],
       allergies: '',
       foodType: '',
       foodTimes: '',
@@ -48,9 +48,9 @@ const CreateDog = ({ initialValues, isEdit }) => {
       avatar: '',
       owner: userId,
     },
-    onSubmit:  (values) => {
-      console.log(values)
-  
+    onSubmit: (values) => {
+      console.log(values);
+
       if (isEdit) {
         editDog(values, userId, dogId)
           .then(() => {
@@ -80,9 +80,19 @@ const CreateDog = ({ initialValues, isEdit }) => {
     };
   };
 
+  const handleCheckboxChange = (event) => {
+    const { value } = event.target;
+    if (values.vaccines && values.vaccines.includes(value)) {
+      setFieldValue('vaccines', values.vaccines.filter(v => v !== value));
+    } else {
+      setFieldValue('vaccines', [...values.vaccines, value]);
+    }
+  };
+
   return (
     <div className="background">
       <div className="dog-create-container">
+        <h1>Editar Perfil</h1>
         <form onSubmit={handleSubmit}>
           <Input
             name="name"
@@ -114,24 +124,44 @@ const CreateDog = ({ initialValues, isEdit }) => {
             onBlur={handleBlur}
             className="dog-input"
           />
-          <div className="dog-input">
-            <label htmlFor="vaccines">Vaccines</label>
-            <select
-              id="vaccines"
-              name="vaccines"
-              value={values.vaccines}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            >
-              <option value="">Select vaccine</option>
-              <option value="vaccine1">Vaccine 1</option>
-              <option value="vaccine2">Vaccine 2</option>
-              <option value="vaccine3">Vaccine 3</option>
-            </select>
+          
+            <label className="label-selector">Vaccines</label>
+            <div className="checkbox">
+              <label>
+                Vaccine 1
+                <input
+                  type="checkbox"
+                  name="vaccines"
+                  value="vaccine1"
+                  checked={values.vaccines && values.vaccines.includes('vaccine1')}
+                  onChange={handleCheckboxChange}
+                />
+              </label>
+              <label>
+                Vaccine 2
+                <input
+                  type="checkbox"
+                  name="vaccines"
+                  value="vaccine2"
+                  checked={values.vaccines && values.vaccines.includes('vaccine2')}
+                  onChange={handleCheckboxChange}
+                />
+              </label>
+              <label>
+                Vaccine 3
+                <input
+                  type="checkbox"
+                  name="vaccines"
+                  value="vaccine3"
+                  checked={values.vaccines && values.vaccines.includes('vaccine3')}
+                  onChange={handleCheckboxChange}
+                />
+              </label>
+            </div>
             {touched.vaccines && errors.vaccines && (
               <div className="error-message">{errors.vaccines}</div>
             )}
-          </div>
+         
           <Input
             name="allergies"
             label="Allergies"
@@ -172,24 +202,23 @@ const CreateDog = ({ initialValues, isEdit }) => {
             onBlur={handleBlur}
             className="dog-input"
           />
-          <div className="dog-input">
-            <label htmlFor="temperament">Temperament</label>
-            <select
-              id="temperament"
-              name="temperament"
-              value={values.temperament}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            >
-              <option value="">Select temperament</option>
-              <option value="Estable">Estable</option>
-              <option value="Miedoso">Miedoso</option>
-              <option value="Reactivo">Reactivo</option>
-            </select>
-            {touched.temperament && errors.temperament && (
-              <div className="error-message">{errors.temperament}</div>
-            )}
-          </div>
+          <label htmlFor="temperament" className="label-selector">Temperament</label>
+          <select
+            id="temperament"
+            name="temperament"
+            value={values.temperament}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className="dog-input-selector"
+          >
+            <option value="">Select temperament</option>
+            <option value="Estable">Estable</option>
+            <option value="Miedoso">Miedoso</option>
+            <option value="Reactivo">Reactivo</option>
+          </select>
+          {touched.temperament && errors.temperament && (
+            <div className="error-message">{errors.temperament}</div>
+          )}
           <div className="dog-input">
             <label htmlFor="avatar">Avatar</label>
             <input
@@ -204,7 +233,7 @@ const CreateDog = ({ initialValues, isEdit }) => {
             )}
           </div>
           <div className="container-buttons">
-            <Button type="submit" className="btn-register" text={isEdit ? "Edit Dog" : "Create Dog"}  />
+            <Button type="submit" className="btn-register" text={isEdit ? "Edit Dog" : "Create Dog"} />
           </div>
         </form>
       </div>

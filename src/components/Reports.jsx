@@ -8,7 +8,7 @@ import { reportCreate } from "../services/ReportService";
 import AuthContext from "../contexts/AuthContext";
 
 mapboxgl.accessToken =
-  "pk.eyJ1IjoiZG9nZmlsZSIsImEiOiJjbHN6dXUwNjEwaHdhMmxucmJqZzZ6cmtuIn0.ewRuBpz297DIvwMjqYls9Q";
+  "pk.eyJ1IjoiZG9nZmlsZSIsImEiOiJjbHRvcHQweDgwaXh3MmptZXVwNnBmY3UyIn0.xyszSwJvLRUMFHKtIPb0ew";
 
 const reportSchema = object({
   title: string().required("El título es obligatorio"),
