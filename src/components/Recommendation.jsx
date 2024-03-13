@@ -4,9 +4,11 @@ import { useFormik } from "formik";
 import { number, object, string } from "yup";
 import Input from "./Input/Input";
 import Button from "./Button/Button";
+import '../components/Button/Button.css'
 import AuthContext from "../contexts/AuthContext";
 import { recommendationCreate } from "../services/RecommendationService";
-
+import './Recommendation.css'
+import '../components/Input/Input.css'
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZG9nZmlsZSIsImEiOiJjbHRvcHQweDgwaXh3MmptZXVwNnBmY3UyIn0.xyszSwJvLRUMFHKtIPb0ew";
 
@@ -112,7 +114,7 @@ const Recommendation = () => {
         ref={mapContainer}
         style={{ height: "300px" }}
       ></div>
-
+      <div className="form-recommendation">
       <form onSubmit={handleSubmit}>
         <Input
           label="Título"
@@ -123,6 +125,7 @@ const Recommendation = () => {
           error={touched.title && errors.title}
           onChange={handleChange}
           onBlur={handleBlur}
+          className="login-form"
         />
         <Input
           label="Descripción"
@@ -133,6 +136,7 @@ const Recommendation = () => {
           error={touched.description && errors.description}
           onChange={handleChange}
           onBlur={handleBlur}
+          className="login-form"
         />
         <Input
           label="Lugar"
@@ -143,9 +147,11 @@ const Recommendation = () => {
           error={touched.location && errors.location}
           onChange={handleChange}
           onBlur={handleBlur}
+          className="login-form"
         />
-        <Button type="submit" text="Recomendar" disabled={!isValid} />
+        <Button type="submit" className="btn-login" text="Recomendar" disabled={!isValid} />
       </form>
+      </div>
     </div>
   );
 };

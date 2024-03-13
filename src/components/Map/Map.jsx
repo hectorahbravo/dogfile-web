@@ -60,7 +60,7 @@ export default function Map() {
       () => {
         const mapInstance = new mapboxgl.Map({
           container: mapContainer.current,
-          style: "mapbox://styles/mapbox/navigation-day-v1",
+          style: "mapbox://styles/mapbox/streets-v12",
           center: [DEFAULT_VALUES.lng, DEFAULT_VALUES.lat],
           zoom: DEFAULT_VALUES.zoom,
         });

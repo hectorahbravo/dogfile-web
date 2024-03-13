@@ -1,9 +1,4 @@
 .background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw; /* Ancho total del viewport */
-  height: 100vh; /* Altura total del viewport */
   background-color:#c2a88f; /* Color de fondo marrón clarito */
   display: flex;
   justify-content: center; /* Centra horizontalmente */
