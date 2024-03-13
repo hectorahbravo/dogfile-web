@@ -57,7 +57,7 @@ const EditDog = () => {
 
   return (
     <div className="dog-profile-container">
-      <h1>Editar Perfil</h1>
+     
       {loading ? (
         <p>Cargando...</p>
       ) : (

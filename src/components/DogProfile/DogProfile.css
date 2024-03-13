@@ -1,7 +1,4 @@
 .background-dogprofile {
-  position: fixed;
-  width: 100vw; /* Ancho total del viewport */
-  height: 100vh; /* Altura total del viewport */
   background-color: #c2a88f; /* Color de fondo marrón clarito */
   display: flex;
   justify-content: center; /* Centra horizontalmente */
@@ -9,15 +6,13 @@
 }
 
 .dogprofile-container {
-  max-width: 400px; /* Tamaño máximo del contenedor */
+   /* Tamaño máximo del contenedor */
   padding: 20px; /* Espaciado interno */
   background-color: #c2a88f; /* Color de fondo marrón clarito */
   display: flex;
   flex-direction: column; /* Alinear elementos en columna */
   justify-content: center; /* Centrar verticalmente */
   align-items: center; /* Centrar horizontalmente */
-  height: 100vh;
-  margin-top: -120px; /* Altura total del viewport */
 }
 
 .avatar-container {
