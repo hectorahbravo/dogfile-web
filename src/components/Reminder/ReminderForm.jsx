@@ -7,7 +7,7 @@ import {
   optionsFrecuencia,
   optionsIcono,
   optionsTipo,
-} from "../../dist/constant/reminderSelectForm";
+} from "../../dist/constants/reminderSelectForm.js";
 import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext";
 import { reminderCreate } from "../../services/ReminderService";
