@@ -20,23 +20,28 @@ export const DogContextProvider = ({ children }) => {
   const [isDogProfileFetched, setIsDogProfileFetched] = useState(false);
 
   // Función para obtener el perfil del perro
-  const fetchDogProfile = useCallback((userId, dogId) => {
-    getDog(userId, dogId)
-      .then((profile) => {
-        setDogProfile(profile);
-        setIsDogProfileFetched(true);
-      })
-      .catch((err) => {
-        setIsDogProfileFetched(true); // En caso de error, marcamos como perfil obtenido para evitar bucles de solicitud
-      });
-  }, []);
+  const fetchDogProfile = useCallback(
+    (userId, dogId) => {
+      if (dogId) {
+        getDog(userId, dogId)
+          .then((profile) => {
+            setDogProfile(profile);
+            setIsDogProfileFetched(true);
+          })
+          .catch((err) => {
+            setIsDogProfileFetched(true); // En caso de error, marcamos como perfil obtenido para evitar bucles de solicitud
+          });
+      }
+    },
+    [selectedDogId]
+  );
   useEffect(() => {
     if (user && user.dogs && user.dogs.length > 0) {
-      fetchDogProfile(user.id, selectedDogId || user.dogs[0].id);
+      fetchDogProfile(user.id, selectedDogId);
     } else {
       setIsDogProfileFetched(true); // Marcar como perfil obtenido si no es necesario obtenerlo
     }
-  }, [fetchDogProfile, user]);
+  }, [fetchDogProfile, user, selectedDogId]);
   const contextValue = useMemo(
     () => ({
       dogProfile,

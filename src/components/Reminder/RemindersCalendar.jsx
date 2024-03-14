@@ -4,6 +4,7 @@ import "react-calendar/dist/Calendar.css";
 import AuthContext from "../../contexts/AuthContext";
 import "./RemindersCalendar.css";
 import { useNavigate } from "react-router-dom";
+import NextReminders from "./NextReminders";
 
 function RemindersCalendar() {
   const { user } = useContext(AuthContext);
@@ -46,6 +47,14 @@ function RemindersCalendar() {
               currentDate.getFullYear() >= reminderDate.getFullYear() &&
               currentDate <= endDate
             );
+          } else if (reminder.frequency === "weekly") {
+            // Check if the current date falls within the week range
+            const startOfWeek = new Date(currentDate);
+            startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
+            const endOfWeek = new Date(startOfWeek);
+            endOfWeek.setDate(endOfWeek.getDate() + 6);
+
+            return currentDate >= startOfWeek && currentDate <= endOfWeek;
           }
         } else {
           return currentDate.toDateString() === reminderDate.toDateString();
@@ -63,13 +72,18 @@ function RemindersCalendar() {
   };
 
   return (
-    <div className="react-calendar">
-      <ReactCalendar
-        onClickDay={handleClickDay}
-        tileContent={tileContent}
-        minDate={new Date()}
-      />
-    </div>
+    <>
+      <div className="react-calendar">
+        <ReactCalendar
+          onClickDay={handleClickDay}
+          tileContent={tileContent}
+          minDate={new Date()}
+          view="month" // Cambia la vista predeterminada a "month"
+        />
+      </div>
+
+      <NextReminders reminders={user.reminders} />
+    </>
   );
 }
 
