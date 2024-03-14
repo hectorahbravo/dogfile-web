@@ -115,6 +115,7 @@ const Recommendation = () => {
         style={{ height: "300px" }}
       ></div>
       <div className="form-recommendation">
+      {errors.longitude && <p>Selecciona un punto en el mapa</p>}
       <form onSubmit={handleSubmit}>
         <Input
           label="Título"
