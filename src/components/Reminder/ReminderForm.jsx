@@ -7,25 +7,18 @@ import {
   optionsFrecuencia,
   optionsIcono,
   optionsTipo,
-} from '../../dist/constants/reminderSelectForm';
+} from "../../dist/constant/reminderSelectForm";
 import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext";
 import { reminderCreate } from "../../services/ReminderService";
 
 const reminderSchema = object({
   title: string().required("El título es obligatorio"),
-  type: string()
-    .required("El tipo es obligatorio")
-    .oneOf(["tipo1", "tipo2", "tipo3", "other"], "Tipo inválido"),
-  icon: string()
-    .required("El icono es obligatorio")
-    .oneOf(["icon1", "icon2", "icon3", "icon4"], "Icono inválido"),
+  type: string().required("El tipo es obligatorio"),
+  icon: string().required("El icono es obligatorio"),
   photo: string(),
   repeat: boolean(),
-  frequency: string().oneOf(
-    ["daily", "monthly", "annually"],
-    "Frecuencia inválida"
-  ),
+  frequency: string(),
   startDate: date(),
   endDate: date(),
   hour: string(),

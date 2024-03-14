@@ -12,7 +12,6 @@ const DogProfile = () => {
   const { user } = useContext(AuthContext);
   const { fetchDogProfile, dogProfile } = useContext(DogContext);
   const { userId, dogId } = useParams();
-  console.log(userId, dogId);
   const [dog, setDog] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -61,7 +60,12 @@ const DogProfile = () => {
             </div>
             <div className="info-box">
               <h3>Mis vacunas</h3>
-              <p> {dog.vaccines}</p>
+
+              <ul>
+                {dog.vaccines.map((vaccine, index) => (
+                  <li key={index}>{vaccine}</li>
+                ))}
+              </ul>
             </div>
           </div>
           <div className="info-primer-container">
