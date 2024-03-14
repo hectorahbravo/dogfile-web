@@ -6,8 +6,12 @@ const RecommendationPage = () => {
     const { user } = useContext(AuthContext);
   
     return (
-        <div>
+       <div className="background-recommendation-form">
+        <div className="recommendation-form-container">
+      <div className="map-recommendation-form">
       <Recommendation />
+      </div>  
+      </div>
       </div>
      
     )

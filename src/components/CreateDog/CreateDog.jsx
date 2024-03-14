@@ -234,7 +234,7 @@ const CreateDog = ({ initialValues, isEdit }) => {
           {touched.temperament && errors.temperament && (
             <div className="error-message">{errors.temperament}</div>
           )}
-          <div className="dog-input">
+          <div className="input-avatar">
             <label htmlFor="avatar">Avatar</label>
             <input
               id="avatar"
