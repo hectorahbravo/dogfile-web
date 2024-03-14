@@ -54,14 +54,14 @@ const CreateDog = ({ initialValues, isEdit }) => {
       if (isEdit) {
         editDog(values, userId, dogId)
           .then(() => {
+            console.log("Dog edited successfully");
             navigate("/user");
           })
           .catch((err) => console.error(err));
       } else {
-        createDog(values);
-        console
-          .log(values)
+        createDog(values)
           .then(() => {
+            console.log("Dog created successfully");
             navigate("/user");
           })
           .catch((err) => console.error(err));
@@ -81,7 +81,7 @@ const CreateDog = ({ initialValues, isEdit }) => {
       setFieldValue("avatar", reader.result);
     };
   };
-  console.log(errors);
+
   const handleCheckboxChange = (event) => {
     const { value } = event.target;
 
@@ -93,13 +93,11 @@ const CreateDog = ({ initialValues, isEdit }) => {
     } else {
       setFieldValue("vaccines", [...values.vaccines, value]);
     }
-    console.log(...values.vaccines, value);
   };
 
   return (
     <div className="background">
       <div className="dog-create-container">
-        <h1>Editar Perfil</h1>
         <form onSubmit={handleSubmit}>
           <Input
             name="name"

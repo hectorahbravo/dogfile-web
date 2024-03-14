@@ -6,6 +6,8 @@ import Input from "./Input/Input";
 import Button from "./Button/Button";
 import { reportCreate } from "../services/ReportService";
 import AuthContext from "../contexts/AuthContext";
+import './Reports.css'
+import '../components/Input/Input.css'
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZG9nZmlsZSIsImEiOiJjbHRvcHQweDgwaXh3MmptZXVwNnBmY3UyIn0.xyszSwJvLRUMFHKtIPb0ew";
@@ -111,8 +113,9 @@ const Reports = () => {
       <div
         ref={mapContainer}
         className="map-container"
-        style={{ height: "500px" }}
+        style={{ height: "300px" }}
       ></div>
+      <div className="form-report">
       {errors.longitude && <p>Selecciona un punto en el mapa</p>}
 
       <form onSubmit={handleSubmit}>
@@ -125,6 +128,7 @@ const Reports = () => {
           error={touched.title && errors.title}
           onChange={handleChange}
           onBlur={handleBlur}
+          className="login-form"
         />
         <Input
           label="Descripción"
@@ -135,6 +139,7 @@ const Reports = () => {
           error={touched.description && errors.description}
           onChange={handleChange}
           onBlur={handleBlur}
+          className="login-form"
         />
         <Input
           label="Fecha de inicio"
@@ -145,6 +150,7 @@ const Reports = () => {
           error={touched.startDate && errors.startDate}
           onChange={handleChange}
           onBlur={handleBlur}
+          className="login-form"
         />
         <Input
           label="Fecha de fin"
@@ -155,6 +161,7 @@ const Reports = () => {
           error={touched.endDate && errors.endDate}
           onChange={handleChange}
           onBlur={handleBlur}
+          className="login-form"
         />
         <Input
           label="Hora"
@@ -165,6 +172,7 @@ const Reports = () => {
           error={touched.time && errors.time}
           onChange={handleChange}
           onBlur={handleBlur}
+          className="login-form"
         />
         <Input
           label="Lugar"
@@ -175,9 +183,11 @@ const Reports = () => {
           error={touched.location && errors.location}
           onChange={handleChange}
           onBlur={handleBlur}
+          className="login-form"
         />
-        <Button type="submit" text="Reportar" disabled={!isValid} />
+        <Button type="submit" text="Reportar" className="btn-login" disabled={!isValid} />
       </form>
+    </div>
     </div>
   );
 };
