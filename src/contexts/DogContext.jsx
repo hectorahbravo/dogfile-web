@@ -1,4 +1,4 @@
-import React, {
+import {
   createContext,
   useCallback,
   useContext,
@@ -15,6 +15,7 @@ export default DogContext; // Hook personalizado para acceder al contexto del pe
 
 export const DogContextProvider = ({ children }) => {
   const { user } = useContext(AuthContext);
+  const [selectedDogId, setSelectedDogId] = useState(null);
   const [dogProfile, setDogProfile] = useState(null);
   const [isDogProfileFetched, setIsDogProfileFetched] = useState(false);
 
@@ -30,8 +31,8 @@ export const DogContextProvider = ({ children }) => {
       });
   }, []);
   useEffect(() => {
-    if (user) {
-      fetchDogProfile();
+    if (user && user.dogs && user.dogs.length > 0) {
+      fetchDogProfile(user.id, selectedDogId || user.dogs[0].id);
     } else {
       setIsDogProfileFetched(true); // Marcar como perfil obtenido si no es necesario obtenerlo
     }

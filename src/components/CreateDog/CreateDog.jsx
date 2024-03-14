@@ -1,22 +1,22 @@
-import { useState } from 'react';
-import { object, string } from 'yup';
-import { useFormik } from 'formik';
-import Input from '../../components/Input/Input';
-import { createDog, editDog } from '../../services/DogService.js';
-import Button from '../../components/Button/Button';
-import './CreateDog.css';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useState } from "react";
+import { array, object, string } from "yup";
+import { useFormik } from "formik";
+import Input from "../../components/Input/Input";
+import { createDog, editDog } from "../../services/DogService.js";
+import Button from "../../components/Button/Button";
+import "./CreateDog.css";
+import { useNavigate, useParams } from "react-router-dom";
 
 const dogSchema = object({
-  name: string().required('Campo requerido'),
+  name: string().required("Campo requerido"),
   birthdate: string(),
-  weight: string().required('Campo requerido'),
-  vaccines: string().oneOf(['vaccine1', 'vaccine2', 'vaccine3']),
+  weight: string().required("Campo requerido"),
+  vaccines: array(),
   allergies: string(),
   foodType: string(),
   foodTimes: string(),
   foodKg: string(),
-  temperament: string().oneOf(['Estable', 'Miedoso', 'Reactivo']),
+  temperament: string(),
   avatar: string(),
 });
 
@@ -36,16 +36,16 @@ const CreateDog = ({ initialValues, isEdit }) => {
     setFieldValue,
   } = useFormik({
     initialValues: initialValues || {
-      name: '',
-      birthdate: '',
-      weight: '',
+      name: "",
+      birthdate: "",
+      weight: "",
       vaccines: [],
-      allergies: '',
-      foodType: '',
-      foodTimes: '',
-      foodKg: '',
-      temperament: '',
-      avatar: '',
+      allergies: "",
+      foodType: "",
+      foodTimes: "",
+      foodKg: "",
+      temperament: "",
+      avatar: "",
       owner: userId,
     },
     onSubmit: (values) => {
@@ -54,13 +54,15 @@ const CreateDog = ({ initialValues, isEdit }) => {
       if (isEdit) {
         editDog(values, userId, dogId)
           .then(() => {
-            navigate('/user');
+            navigate("/user");
           })
           .catch((err) => console.error(err));
       } else {
-        createDog(values)
+        createDog(values);
+        console
+          .log(values)
           .then(() => {
-            navigate('/user');
+            navigate("/user");
           })
           .catch((err) => console.error(err));
       }
@@ -76,17 +78,22 @@ const CreateDog = ({ initialValues, isEdit }) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      setFieldValue('avatar', reader.result);
+      setFieldValue("avatar", reader.result);
     };
   };
-
+  console.log(errors);
   const handleCheckboxChange = (event) => {
     const { value } = event.target;
+
     if (values.vaccines && values.vaccines.includes(value)) {
-      setFieldValue('vaccines', values.vaccines.filter(v => v !== value));
+      setFieldValue(
+        "vaccines",
+        values.vaccines.filter((v) => v !== value)
+      );
     } else {
-      setFieldValue('vaccines', [...values.vaccines, value]);
+      setFieldValue("vaccines", [...values.vaccines, value]);
     }
+    console.log(...values.vaccines, value);
   };
 
   return (
@@ -124,44 +131,50 @@ const CreateDog = ({ initialValues, isEdit }) => {
             onBlur={handleBlur}
             className="dog-input"
           />
-          
-            <label className="label-selector">Vaccines</label>
-            <div className="checkbox">
-              <label>
-                Vaccine 1
-                <input
-                  type="checkbox"
-                  name="vaccines"
-                  value="vaccine1"
-                  checked={values.vaccines && values.vaccines.includes('vaccine1')}
-                  onChange={handleCheckboxChange}
-                />
-              </label>
-              <label>
-                Vaccine 2
-                <input
-                  type="checkbox"
-                  name="vaccines"
-                  value="vaccine2"
-                  checked={values.vaccines && values.vaccines.includes('vaccine2')}
-                  onChange={handleCheckboxChange}
-                />
-              </label>
-              <label>
-                Vaccine 3
-                <input
-                  type="checkbox"
-                  name="vaccines"
-                  value="vaccine3"
-                  checked={values.vaccines && values.vaccines.includes('vaccine3')}
-                  onChange={handleCheckboxChange}
-                />
-              </label>
-            </div>
-            {touched.vaccines && errors.vaccines && (
-              <div className="error-message">{errors.vaccines}</div>
-            )}
-         
+
+          <label className="label-selector">Vaccines</label>
+          <div className="checkbox">
+            <label>
+              Vaccine 1
+              <input
+                type="checkbox"
+                name="vaccines"
+                value="vaccine1"
+                checked={
+                  values.vaccines && values.vaccines.includes("vaccine1")
+                }
+                onChange={handleCheckboxChange}
+              />
+            </label>
+            <label>
+              Vaccine 2
+              <input
+                type="checkbox"
+                name="vaccines"
+                value="vaccine2"
+                checked={
+                  values.vaccines && values.vaccines.includes("vaccine2")
+                }
+                onChange={handleCheckboxChange}
+              />
+            </label>
+            <label>
+              Vaccine 3
+              <input
+                type="checkbox"
+                name="vaccines"
+                value="vaccine3"
+                checked={
+                  values.vaccines && values.vaccines.includes("vaccine3")
+                }
+                onChange={handleCheckboxChange}
+              />
+            </label>
+          </div>
+          {touched.vaccines && errors.vaccines && (
+            <div className="error-message">{errors.vaccines}</div>
+          )}
+
           <Input
             name="allergies"
             label="Allergies"
@@ -202,7 +215,9 @@ const CreateDog = ({ initialValues, isEdit }) => {
             onBlur={handleBlur}
             className="dog-input"
           />
-          <label htmlFor="temperament" className="label-selector">Temperament</label>
+          <label htmlFor="temperament" className="label-selector">
+            Temperament
+          </label>
           <select
             id="temperament"
             name="temperament"
@@ -233,7 +248,11 @@ const CreateDog = ({ initialValues, isEdit }) => {
             )}
           </div>
           <div className="container-buttons">
-            <Button type="submit" className="btn-register" text={isEdit ? "Edit Dog" : "Create Dog"} />
+            <Button
+              type="submit"
+              className="btn-register"
+              text={isEdit ? "Edit Dog" : "Create Dog"}
+            />
           </div>
         </form>
       </div>

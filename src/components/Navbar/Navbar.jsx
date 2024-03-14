@@ -1,17 +1,18 @@
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
-import { FaMapMarkerAlt, FaCalendarAlt, FaCog, FaHome} from "react-icons/fa";
+import { FaMapMarkerAlt, FaCalendarAlt, FaCog, FaHome } from "react-icons/fa";
 import { useContext } from "react";
 import DogContext from "../../contexts/DogContext";
+import AuthContext from "../../contexts/AuthContext";
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
   const { dogProfile } = useContext(DogContext);
 
   return (
     <nav className="navbar-container">
-      {/* Avatar del perfil del perro o un círculo si no hay perfil */}
       {dogProfile ? (
-        <NavLink to={`/${dogProfile.owner._id}/dogs/${dogProfile.dogId}`}>
+        <NavLink to={`/${user._id}/dogs/${dogProfile.id}`}>
           <img
             src={dogProfile.avatar}
             alt="dog_profile_image"
@@ -25,7 +26,7 @@ const Navbar = () => {
       <NavLink to={"/maps"}>
         <FaMapMarkerAlt className="navbar-icons" color="grey" />
       </NavLink>
-      <NavLink to={"/calendar"}>
+      <NavLink to={"/reminders"}>
         <FaCalendarAlt className="navbar-icons" color="grey" />
       </NavLink>
       <NavLink to={"/user"}>
