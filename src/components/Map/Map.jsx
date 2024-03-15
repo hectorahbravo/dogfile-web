@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import { getReports } from "../../services/ReportService";
+import { getRecommendations } from "../../services/RecommendationService";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZG9nZmlsZSIsImEiOiJjbHRrMjZjMzIwdGk3Mmtxb3RsMjNvZWZhIn0.iwiwLx0iNECX9mWSKOTANA";
@@ -20,12 +21,13 @@ export default function Map() {
   const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {
-    getReports()
-      .then((reports) => {
-        setReports(reports);
+    Promise.all([getReports(), getRecommendations()])
+      .then(([reportsData, recommendationsData]) => {
+        setReports(reportsData);
+        setRecommendations(recommendationsData);
       })
       .catch((err) => console.error(err))
-      .finally(() => setLoading(false)); // Update loading state regardless of success or failure
+      .finally(() => setLoading(false));
   }, []);
 
   useEffect(() => {
@@ -42,10 +44,14 @@ export default function Map() {
           zoom: DEFAULT_VALUES.zoom,
         });
 
-        const newMarkers = reports.map((coord) => {
-          const marker = new mapboxgl.Marker()
+        const allMarkers = [...reports, ...recommendations];
+        const newMarkers = allMarkers.map((coord) => {
+          const markerColor = coord.type === "report" ? "red" : "green"; 
+
+          const marker = new mapboxgl.Marker({ color: markerColor })
             .setLngLat([coord.longitude, coord.latitude])
             .addTo(mapInstance);
+
           const popup = new mapboxgl.Popup({ offset: 25 }).setText(
             coord.description,
             coord.title
@@ -66,9 +72,10 @@ export default function Map() {
         });
 
         const newMarkers = reports.map((coord) => {
-          const marker = new mapboxgl.Marker()
+          const marker = new mapboxgl.Marker({ color: "red" })
             .setLngLat([coord.longitude, coord.latitude])
             .addTo(mapInstance);
+
           const popup = new mapboxgl.Popup({ offset: 25 }).setText(
             `<p>${coord.description}</p>`
           );
@@ -80,17 +87,14 @@ export default function Map() {
         setMarkers(newMarkers);
       }
     );
-  }, [reports]);
+  }, [reports, recommendations]);
 
   return (
     <div>
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <div
-          ref={mapContainer}
-          style={{ height: "400px" }}
-        ></div>
+        <div ref={mapContainer} style={{ height: "400px" }}></div>
       )}
     </div>
   );

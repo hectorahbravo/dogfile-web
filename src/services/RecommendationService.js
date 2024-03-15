@@ -2,8 +2,8 @@ import { createHttp } from "./BaseService";
 
 const http = createHttp(true);
 
-export const getRecommendation = () => {
-  return http.get("/reminders");
+export const getRecommendations = () => {
+  return http.get("/recommendations");
 };
 
 export const recommendationCreate = (data) => {
