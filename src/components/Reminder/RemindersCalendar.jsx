@@ -65,19 +65,26 @@ function RemindersCalendar() {
 
   return (
     <>
-      <div className="react-calendar">
-        <ReactCalendar
-          onClickDay={handleClickDay}
-          tileContent={tileContent}
-          minDate={new Date()}
-          view="month"
-        />
-      </div>
+      {/* Si user.reminders es null, muestra un mensaje de carga */}
+      {user.reminders === null ? (
+        <div>Cargando...</div>
+      ) : (
+        <>
+          <div className="react-calendar">
+            <ReactCalendar
+              onClickDay={handleClickDay}
+              tileContent={tileContent}
+              minDate={new Date()}
+              view="month"
+            />
+          </div>
 
-      <NextReminders reminders={user.reminders} />
+          <NextReminders reminders={user.reminders} />
 
-      {/* Enlace para agregar un nuevo recordatorio */}
-      <Link to="/reminder/new">Agregar nuevo recordatorio</Link>
+          {/* Enlace para agregar un nuevo recordatorio */}
+          <Link to="/reminder/new">Agregar nuevo recordatorio</Link>
+        </>
+      )}
     </>
   );
 }
