@@ -6,7 +6,7 @@
 }
 
 .dogprofile-container {
-   /* Tamaño máximo del contenedor */
+  /* Tamaño máximo del contenedor */
   padding: 20px; /* Espaciado interno */
   background-color: #c2a88f; /* Color de fondo marrón clarito */
   display: flex;
@@ -63,12 +63,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 25vh;
-  height: 20vh;
+  /* align-items: center; */
+  width: 150px;
+  height: 150px;
   margin-bottom: 10px;
-  border: 1px solid #f0d6f0;
   background-color: #ecdfcd;
-  border-radius: 10px;
+  border-radius: 12px;
   box-shadow: 0px 4px 8px #6e676d;
 }
 
@@ -85,22 +85,22 @@
 }
 
 .traits-container {
+  width: 100%;
   margin-top: -60px;
 }
 
 .traits-container h2 {
   font-size: 20px;
   margin-top: 70px;
-  color: #604a33
+  color: #604a33;
 }
 
 .traits-box {
   margin-top: 10px;
   height: 10vh;
-  width: 54vh;
   background-color: white;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 .traits-box h3 {

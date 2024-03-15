@@ -1,9 +1,9 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import ReactCalendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import AuthContext from "../../contexts/AuthContext";
 import "./RemindersCalendar.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NextReminders from "./NextReminders";
 
 function RemindersCalendar() {
@@ -47,14 +47,6 @@ function RemindersCalendar() {
               currentDate.getFullYear() >= reminderDate.getFullYear() &&
               currentDate <= endDate
             );
-          } else if (reminder.frequency === "weekly") {
-            // Check if the current date falls within the week range
-            const startOfWeek = new Date(currentDate);
-            startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
-            const endOfWeek = new Date(startOfWeek);
-            endOfWeek.setDate(endOfWeek.getDate() + 6);
-
-            return currentDate >= startOfWeek && currentDate <= endOfWeek;
           }
         } else {
           return currentDate.toDateString() === reminderDate.toDateString();
@@ -73,16 +65,26 @@ function RemindersCalendar() {
 
   return (
     <>
-      <div className="react-calendar">
-        <ReactCalendar
-          onClickDay={handleClickDay}
-          tileContent={tileContent}
-          minDate={new Date()}
-          view="month" // Cambia la vista predeterminada a "month"
-        />
-      </div>
+      {/* Si user.reminders es null, muestra un mensaje de carga */}
+      {user.reminders === null ? (
+        <div>Cargando...</div>
+      ) : (
+        <>
+          <div className="react-calendar">
+            <ReactCalendar
+              onClickDay={handleClickDay}
+              tileContent={tileContent}
+              minDate={new Date()}
+              view="month"
+            />
+          </div>
 
-      <NextReminders reminders={user.reminders} />
+          <NextReminders reminders={user.reminders} />
+
+          {/* Enlace para agregar un nuevo recordatorio */}
+          <Link to="/reminder/new">Agregar nuevo recordatorio</Link>
+        </>
+      )}
     </>
   );
 }

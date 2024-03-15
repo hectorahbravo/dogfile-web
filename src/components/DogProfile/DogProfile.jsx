@@ -8,7 +8,7 @@ import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext";
 import DogContext from "../../contexts/DogContext";
 
-function formatFecha(fecha) {
+export function formatFecha(fecha) {
   const date = new Date(fecha);
   const year = date.getFullYear();
   const month = ("0" + (date.getMonth() + 1)).slice(-2);
@@ -36,11 +36,6 @@ const DogProfile = () => {
         setLoading(false);
       });
   }, [userId, dogId, fetchDogProfile]);
-
-  console.log("profile", dogProfile);
-  /*  if (loading) {
-    return <p>Loading...</p>;
-  } */
 
   return (
     <div>
