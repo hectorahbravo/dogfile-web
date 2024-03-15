@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
 import ReactCalendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
 import AuthContext from "../../contexts/AuthContext";
-import "./RemindersCalendar.css";
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { IoMdAddCircleOutline } from "react-icons/io";
 import NextReminders from "./NextReminders";
+import "react-calendar/dist/Calendar.css";
+import "./RemindersCalendar.css";
 
 function RemindersCalendar() {
   const { user } = useContext(AuthContext);
@@ -54,19 +55,26 @@ function RemindersCalendar() {
       });
 
       return (
-        <>
-          {eventsOnDay.map((event, index) => (
-            <div key={index}>{event.icon}</div>
-          ))}
-        </>
+        <div className="tile-content-container">
+          <div className="icons">
+            {eventsOnDay.map((event, index) => (
+              <span key={index}>
+                {event.icon === "icon1" && "💊"}
+                {event.icon === "icon2" && "💉"}
+                {event.icon === "icon3" && "🏥"}
+                {event.icon === "icon4" && "🪮"}
+              </span>
+            ))}
+          </div>
+        </div>
       );
     }
   };
 
   return (
-    <>
+    <div className="reminders-page">
       {/* Si user.reminders es null, muestra un mensaje de carga */}
-      {user.reminders === null ? (
+      {user === null && user.reminders === null ? (
         <div>Cargando...</div>
       ) : (
         <>
@@ -78,14 +86,14 @@ function RemindersCalendar() {
               view="month"
             />
           </div>
-
+          <Link className="reminder-new" to="/reminder/new">
+            Nuevo recordatorio
+            <IoMdAddCircleOutline />
+          </Link>
           <NextReminders reminders={user.reminders} />
-
-          {/* Enlace para agregar un nuevo recordatorio */}
-          <Link to="/reminder/new">Agregar nuevo recordatorio</Link>
         </>
       )}
-    </>
+    </div>
   );
 }
 

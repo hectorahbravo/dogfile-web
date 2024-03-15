@@ -1,0 +1,52 @@
+.next-reminders-container {
+  margin: 20px;
+  margin-bottom: 80px;
+}
+.reminder-card {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.reminder-card-hours {
+  font-size: 12px;
+  padding: 5px 10px;
+  color: white;
+  background-color: #9c8265;
+  border-radius: 20px;
+}
+
+.reminder-card h3 {
+  font-weight: 600;
+  margin-top: 0;
+  color: #866949;
+}
+
+.reminder-card p {
+  margin-bottom: 0;
+  color: #866949;
+}
+
+.reminder-card-delete {
+  background-color: #fcf8f3;
+  font-size: 18px;
+  border-radius: 50%;
+  border: none;
+  width: 45px;
+  height: 45px;
+}
+.reminder-card-icons {
+  font-size: 25px;
+}
+
+.reminders-title {
+  margin: 20px 0;
+  font-weight: 500;
+  color: #604a33;
+}
