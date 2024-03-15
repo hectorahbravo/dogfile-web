@@ -7,6 +7,7 @@ import NextReminders from "./NextReminders";
 import "react-calendar/dist/Calendar.css";
 import "./RemindersCalendar.css";
 
+
 function RemindersCalendar() {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();

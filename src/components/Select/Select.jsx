@@ -6,12 +6,14 @@ const Select = ({
   label,
   error,
   className,
+  extraClassName,
 }) => {
   return (
     <div>
       <label htmlFor={name}>{label}</label>
       <select
-        className={className}
+        style={{ width: "100%" }}
+        className={`${extraClassName} ${className} `}
         id={name}
         name={name}
         value={value}

@@ -13,3 +13,7 @@ export const reminderCreate = (data) => {
 export const getRemindersDay = (date, userId) => {
   return http.get(`/reminders/day/${date}`, userId);
 };
+
+export const deleteReminder = (id) => {
+  return http.delete(`/reminders/${id}`);
+}

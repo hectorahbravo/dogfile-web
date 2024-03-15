@@ -13,9 +13,11 @@ const Input = ({
   classNamePlaceholder,
   style,
   extraClassName,
+  label,
 }) => {
   return (
     <div>
+      <label>{label}</label>
       <input
         autoComplete={autocomplete}
         type={type}
