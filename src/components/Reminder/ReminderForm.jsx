@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { object, string, boolean, date } from "yup";
+import { object, string, boolean, date, mixed } from "yup";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import { useContext, useEffect, useState } from "react";
@@ -18,7 +18,7 @@ const reminderSchema = object({
   title: string().required("El título es obligatorio"),
   type: string().required("El tipo es obligatorio"),
   icon: string().required("El icono es obligatorio"),
-  photo: string(),
+  photo: mixed(),
   repeat: boolean(),
   frequency: string(),
   startDate: date(),
@@ -28,35 +28,42 @@ const reminderSchema = object({
 
 const ReminderForm = () => {
   const { user } = useContext(AuthContext);
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: {
-        title: "",
-        type: "",
-        icon: "",
-        photo: "",
-        repeat: false,
-        frequency: "",
-        startDate: "",
-        endDate: "",
-        hour: "",
-      },
-      onSubmit: (values) => {
-        const startDateString = values.startDate.toString();
-        const endDateString = values.endDate.toString();
-        reminderCreate({
-          ...values,
-          startDate: startDateString,
-          endDate: endDateString,
-          user: user.id,
-        });
-        console.log(values);
-      },
-      validationSchema: reminderSchema,
-      validateOnChange: true,
-      validateOnBlur: true,
-      validateOnMount: true,
-    });
+  const {
+    values,
+    errors,
+    touched,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    setFieldValue,
+  } = useFormik({
+    initialValues: {
+      title: "",
+      type: "",
+      icon: "",
+      photo: null,
+      repeat: false,
+      frequency: "",
+      startDate: "",
+      endDate: "",
+      hour: "",
+    },
+    onSubmit: (values) => {
+      const startDateString = values.startDate.toString();
+      const endDateString = values.endDate.toString();
+      reminderCreate({
+        ...values,
+        startDate: startDateString,
+        endDate: endDateString,
+        user: user.id,
+      });
+      console.log(values);
+    },
+    validationSchema: reminderSchema,
+    validateOnChange: true,
+    validateOnBlur: true,
+    validateOnMount: true,
+  });
   console.log(errors);
 
   const [selectedIcon, setSelectedIcon] = useState("");
@@ -107,15 +114,25 @@ const ReminderForm = () => {
           value={values.title}
           error={touched.title && errors.title}
         />
+        {/*name="avatar"
+            type="file"
+            label="Add your photo"
+            error={touched.avatar && errors.avatar}
+            onChange={(event) => {
+              setFieldValue("avatar", event.currentTarget.files[0]); // Establece el archivo seleccionado en el estado
+            }}
+            onBlur={handleBlur}
+            className="image-canva" */}
         <Input
           className={"reminder-input-container"}
-          placeholder="Foto"
-          label="Foto"
           name="photo"
-          type="text"
-          onChange={handleChange}
+          type="file"
+          label="Agrega una foto"
+          placeholder="Foto"
+          onChange={(event) => {
+            setFieldValue("photo", event.currentTarget.files[0]); // Establece el archivo seleccionado en el estado
+          }}
           onBlur={handleBlur}
-          value={values.photo}
           error={touched.photo && errors.photo}
         />
         <Select
