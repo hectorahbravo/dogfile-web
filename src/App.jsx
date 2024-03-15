@@ -17,6 +17,7 @@ import EditProfile from "./pages/EdtiProfile/EditProfile";
 import MapPage from "./pages/MapPage/MapPage";
 import RecommendationPage from "./pages/RecommendationPage/RecommendationPage";
 import ReportsPage from "./pages/ReportsPage/ReportsPage";
+import AboutUs from "./pages/Contact/Contact";
 
 import RemindersCalendar from "./components/Reminder/RemindersCalendar";
 import "./App.css";
@@ -85,6 +86,7 @@ function App() {
         <Route path="/reminder/new" element={<ReminderForm />} />
         <Route path="/reminders" element={<RemindersCalendar />} />
         <Route path="/calendar/day/:date" element={<CalendarDay />} />
+        <Route path="/about-us" element={<AboutUs />} />
       </Routes>
     </div>
   );
