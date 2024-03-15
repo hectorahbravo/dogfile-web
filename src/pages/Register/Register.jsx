@@ -4,7 +4,7 @@ import Input from "../../components/Input/Input";
 import { register } from "../../services/AuthService";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button/Button";
-import { editUser } from "../../services/UserService";
+
 import "./Register.css";
 const userSchema = object({
   username: string().required("Campo requerido"),
