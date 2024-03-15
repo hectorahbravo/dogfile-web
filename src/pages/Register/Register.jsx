@@ -3,6 +3,8 @@ import { useFormik } from "formik";
 import Input from "../../components/Input/Input";
 import { register } from "../../services/AuthService";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
+
 import Button from "../../components/Button/Button";
 
 import "./Register.css";
@@ -63,13 +65,14 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
   console.log(values);
   return (
     <div className="background">
-      <Link to={"/"}>atras</Link>
       <div className="register-container">
+        <Link to={"/"}>
+          <FaArrowLeft className="exit-arrow" />
+        </Link>
         <form onSubmit={handleSubmit}>
           <Input
             name="avatar"
             type="file"
-            label="Add your photo"
             error={touched.avatar && errors.avatar}
             onChange={(event) => {
               setFieldValue("avatar", event.currentTarget.files[0]); // Establece el archivo seleccionado en el estado
@@ -81,7 +84,6 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
             <Input
               autocomplete="off"
               name="username"
-              label="User name"
               placeholder="Introduce tu nombre"
               value={values.username}
               error={touched.username && errors.username}
@@ -93,7 +95,6 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
               autocomplete="off"
               name="email"
               type="email"
-              label="Email"
               placeholder="Introduce tu e-mail"
               value={values.email}
               error={touched.email && errors.email}
@@ -105,7 +106,6 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
               autocomplete="off"
               name="password"
               type="password"
-              label="Password"
               placeholder="Añade una contraseña"
               value={values.password}
               error={touched.password && errors.password}

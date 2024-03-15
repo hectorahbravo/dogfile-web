@@ -23,7 +23,6 @@
   background-color: #c2a88f;
 }
 
-
 .register-container img {
   background: #d9d9d9;
   border: 2px solid white;
@@ -34,7 +33,7 @@
 }
 
 .background {
-  background-color:#c2a88f; /* Color de fondo marrón clarito */
+  background-color: #c2a88f; /* Color de fondo marrón clarito */
   display: flex;
   justify-content: center; /* Centra horizontalmente */
   align-items: center; /* Centra verticalmente */
@@ -79,4 +78,5 @@
   border-radius: 50px;
   background: #ffffff;
   color: #604a33;
+  width: 100%;
 }

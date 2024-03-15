@@ -5,9 +5,11 @@
 }
 
 .image-canva {
+  margin: 20px;
   width: 80px;
   height: 80px;
 }
+
 .container-profile {
   display: flex;
   flex-direction: column;

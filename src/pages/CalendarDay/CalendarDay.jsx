@@ -3,11 +3,17 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext";
 import './CalendarDay.css'
 import { AiOutlinePlusCircle } from "react-icons/ai";
+import { deleteReminder } from "../../services/ReminderService";
+import Button from "../../components/Button/Button";
+import '../../components/Button/Button.css'
+
+
 const CalendarDay = () => {
   const { user } = useContext(AuthContext);
   const { date } = useParams();
   const navigate = useNavigate();
   const [reminders, setReminders] = useState([]);
+  
 
   useEffect(() => {
     const remindersForDay = user.reminders.filter((reminder) => {
@@ -50,7 +56,10 @@ const CalendarDay = () => {
       >
         <p>{hour}</p>
         {events.map((event, index) => (
-          <p key={index}>{event.title}</p>
+          <div key={index} className='dayhour'>
+          <p>{event.title}</p>
+          
+          <Button onClick={()=>onDelete(event.id)} text={"🗑️"} className="btn-delete" /></div>
         ))}
       </div>
     );
@@ -68,18 +77,34 @@ const CalendarDay = () => {
     (_, hour) => `${hour < 10 ? `0${hour}` : hour}:00`
   );
 
+  const onDelete = (id) => {
+    if (
+      window.confirm(
+        "¿Estás seguro de que deseas eliminar este recordatorio?"
+      )
+    ) {
+      deleteReminder(id)
+        .then(() => {
+          navigate(`/reminders`);
+        })
+        .catch((error) => {
+          console.error("Error deleting dog:", error);
+        });
+    }
+  };
+
   return (
-    <div>
-      <h2>{date}</h2>
-      <div>
+    <div className="background-hours">
+      <h2 className="date">{date}</h2>
+      <div className="container-buttons">
         <button className="round-button" onClick={() => changeDay(-1)}>Día anterior</button>
         <button className="round-button" onClick={() => changeDay(1)}>Siguiente día</button>
-        <p><AiOutlinePlusCircle style={{ color: 'green' }}/> Añadir recordatorio</p>
+        <p><AiOutlinePlusCircle style={{ color: 'green' }}/> Añadir</p>
       </div>
       <div>{hoursOfDay.map((hour) => renderHour(hour))}</div>
 
       {/* Enlace para volver a la página de recordatorios */}
-      <Link to="/reminders">Volver a los recordatorios</Link>
+      
     </div>
   );
 };

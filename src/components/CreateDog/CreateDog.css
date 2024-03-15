@@ -3,6 +3,13 @@
   margin-bottom: 90px;
   margin-top: 25px;
 }
+.container-vaccines {
+  display: flex;
+  flex-direction: column;
+
+  align-items: left;
+  justify-content: center;
+}
 
 /* Estilos para los inputs de texto */
 .dog-input {
@@ -42,7 +49,6 @@
   gap: 15px;
   margin-top: 10px;
   margin-bottom: 10px;
-
 }
 
 .dog-input label {
@@ -78,5 +84,5 @@
 }
 
 .label-selector {
-  color:white;
+  color: white;
 }

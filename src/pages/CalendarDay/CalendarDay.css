@@ -6,5 +6,33 @@
     background-color: #007bff; /* Color de fondo del botón */
     color: white; /* Color del texto dentro del botón */
     border: none; /* Quita el borde del botón */
-    
+    background-color: #c2a88f;
+  }
+  .container-buttons {
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    gap:25px
+  }
+
+  .dayhour {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    gap: 10px
+  }
+
+  .background-hours {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 100px;
+  }
+
+  .date {
+    color: #604a33;
+    margin-top: 10px;
+    align-self: center;
   }

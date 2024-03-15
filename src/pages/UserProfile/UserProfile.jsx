@@ -49,11 +49,11 @@ const UserProfile = () => {
                 </Link>
               </div>
               <div className="link-item">
-                <Link to="/" className="icon-link">
+                <Link to="/about-us" className="icon-link">
                   <div className="container-icon">
                     <IoMailOutline className="icon-links" />
                   </div>
-                  <div className="link-text">Contacto</div>
+                  <div className="link-text">Quiénes somos</div>
                   <p className="arrow-link">&rarr;</p>
                 </Link>
               </div>
