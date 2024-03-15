@@ -5,7 +5,15 @@ import { editDog, getDog, deleteDog } from "../../services/DogService";
 import { FaTrash } from "react-icons/fa";
 import "../../components/DogProfile/DogProfile.css";
 import DogContext from "../../contexts/DogContext";
+// Importa la función para formatear la fecha
 
+function formatDate(dateString) {
+  const dateObject = new Date(dateString);
+  const day = dateObject.getDate().toString().padStart(2, "0");
+  const month = (dateObject.getMonth() + 1).toString().padStart(2, "0");
+  const year = dateObject.getFullYear();
+  return `${year}-${month}-${day}`;
+}
 const EditDog = () => {
   const { fetchDogProfile } = useContext(DogContext);
   const { userId, dogId } = useParams();
@@ -18,7 +26,12 @@ const EditDog = () => {
     setLoading(true);
     getDog(userId, dogId)
       .then((dogDB) => {
-        setDog(dogDB);
+        // Formatear la fecha antes de actualizar el estado
+        const formattedDog = {
+          ...dogDB,
+          birthdate: formatDate(dogDB.birthdate),
+        };
+        setDog(formattedDog);
       })
       .catch((error) => {
         console.error("Error fetching dog:", error);
@@ -57,7 +70,6 @@ const EditDog = () => {
 
   return (
     <div className="dog-profile-container">
-     
       {loading ? (
         <p>Cargando...</p>
       ) : (
