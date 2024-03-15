@@ -24,12 +24,10 @@
   background-color: white;
 }
 
-abbr[title] {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+abbr {
+  text-align: center;
   text-decoration: none;
-  color: #b99169;
+  color: #604a33;
 }
 
 .react-calendar__tile:enabled:hover,
@@ -93,11 +91,11 @@ abbr[title] {
   width: 80px;
   height: 80px;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: stretch;
+  justify-content: space-between;
   color: #604a33;
+  overflow: hidden;
+  margin-inline-end: 0px;
+  flex-direction: column;
 }
 
 .react-calendar__tile {
@@ -124,4 +122,19 @@ abbr[title] {
 .react-calendar__navigation__arrow,
 .react-calendar__navigation__prev-button {
   background-color: white;
+}
+
+.reminders-page {
+  padding: 20px 0;
+  background-color: #ecdfcd;
+}
+
+.reminder-new {
+  margin-top: 20px;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: #604a33;
 }

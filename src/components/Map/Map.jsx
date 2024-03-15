@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from "react";
-import mapboxgl from "mapbox-gl";
+import mapboxgl, { PositionOptions } from "mapbox-gl";
 import { getReports } from "../../services/ReportService";
 import { getRecommendations } from "../../services/RecommendationService";
 
@@ -45,17 +45,16 @@ export default function Map() {
         });
 
         const allMarkers = [...reports, ...recommendations];
+
         const newMarkers = allMarkers.map((coord) => {
-          const markerColor = coord.type === "report" ? "red" : "green"; 
+          const customPopup = `<h4 style='color: blue;'>${coord.title}</h5> <div style='font-size: 9px;'>${coord.description}</div><div style='font-size: 8px; color: gray'>${coord.location}</div>`;
+          const markerColor = coord.type === "report" ? "red" : "green";
 
           const marker = new mapboxgl.Marker({ color: markerColor })
             .setLngLat([coord.longitude, coord.latitude])
             .addTo(mapInstance);
 
-          const popup = new mapboxgl.Popup({ offset: 25 }).setText(
-            coord.description,
-            coord.title
-          );
+          const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(customPopup);
           marker.setPopup(popup);
           return { marker, popup };
         });
@@ -76,9 +75,7 @@ export default function Map() {
             .setLngLat([coord.longitude, coord.latitude])
             .addTo(mapInstance);
 
-          const popup = new mapboxgl.Popup({ offset: 25 }).setText(
-            `<p>${coord.description}</p>`
-          );
+          const popup = new mapboxgl.Popup({ offset: 25 }).setText();
           marker.setPopup(popup);
           return { marker, popup };
         });
@@ -90,7 +87,7 @@ export default function Map() {
   }, [reports, recommendations]);
 
   return (
-    <div>
+    <div className="background-map">
       {loading ? (
         <div>Loading...</div>
       ) : (

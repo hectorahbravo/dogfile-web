@@ -1,22 +1,27 @@
 export const optionsFrecuencia = [
-    { value: "daily", label: "Diariamente" },
-    { value: "monthly", label: "Mensualmente" },
-    { value: "annually", label: "Anualmente" },
-  ];
-  export const optionsIcono = [
-    { value: "icon1", label: "Icono 1" },
-    { value: "icon2", label: "Icono 2" },
-    { value: "icon3", label: "Icono 3" },
-    { value: "icon4", label: "Icono 4" },
-  ];
-  export const optionsTipo = [
-    { value: "tipo1", label: "Tipo 1" },
-    { value: "tipo2", label: "Tipo 2" },
-    { value: "tipo3", label: "Tipo 3" },
-    { value: "other", label: "Otro" },
-  ];
-  
-  
-  
-  
-  
+  { value: "daily", label: "Diariamente" },
+  { value: "monthly", label: "Mensualmente" },
+  { value: "weekly", label: "Semanalmente" },
+  { value: "annually", label: "Anualmente" },
+  { value: "none", label: "None" },
+];
+
+export const optionsIcono = [
+  { value: "icon1", label: "💊" },
+  { value: "icon2", label: "💉" },
+  { value: "icon3", label: "🏥" },
+  { value: "icon4", label: "🪮" },
+];
+
+export const optionsTipo = [
+  { value: "Medicamentos", label: "Medicamentos" },
+  { value: "Vacuna", label: "Vacuna" },
+  { value: "Baño", label: "Baño" },
+  { value: "Peluqueria", label: "Peluqueria" },
+  { value: "Visita al veterinario", label: "Visita al veterinario" },
+  { value: "Pastillas antiparacitarias", label: "Pastillas antiparacitarias" },
+  { value: "Pipeta antiparacitaria", label: "Pipeta antiparacitaria" },
+  { value: "Collar antiparacitario", label: "Collar antiparacitario" },
+  { value: "Vacuna polivalente rabia", label: "Vacuna polivalente rabia" },
+  { value: "Otros", label: "Otros" },
+];

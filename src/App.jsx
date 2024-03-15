@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
-import Calendar from "./components/Calendar/Calendar";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import ProtectedRoute from "./components/ProtectedRoute";
 import CreateDogPage from "./pages/CreateDogPage/CreateDogPage";
@@ -14,33 +13,21 @@ import EditProfile from "./pages/EdtiProfile/EditProfile";
 import MapPage from "./pages/MapPage/MapPage";
 import RecommendationPage from "./pages/RecommendationPage/RecommendationPage";
 import ReportsPage from "./pages/ReportsPage/ReportsPage";
-
 import RemindersCalendar from "./components/Reminder/RemindersCalendar";
 import "./App.css";
 import Activation from "./components/Activation";
 import CalendarDay from "./pages/CalendarDay/CalendarDay";
-
-function shouldShowNavbar(pathname) {
-  // Definir patrones de ruta que necesitan la barra de navegación
-  const navBarRoutes = [
-    /^\/$/,                // Página de inicio
-    /^\/register$/,        // Página de registro
-    /^\/users(?:\/|$)/,     // Página de perfil de usuario (y subrutas)
-    /^\/create-dog\/\d+$/, // Página de creación de perro para un usuario específico
-    // Agrega aquí más patrones si es necesario
-  ];
-
-  // Verificar si la ruta coincide con algún patrón que necesite la barra de navegación
-  return navBarRoutes.some(regex => regex.test(pathname));
-}
-
 function App() {
   const location = useLocation();
-  const showNavbar = shouldShowNavbar(location.pathname);
-
   return (
     <div>
-      {showNavbar && <Navbar className="navbar" />}
+      {location.pathname !== "/" &&
+        location.pathname !== "/register" &&
+        location.pathname !== "/user" &&
+        location.pathname !== "/users/:userId/edit" &&
+        location.pathname !== "/create-dog/:userId" && (
+          <Navbar className="navbar" />
+        )}
       <Routes>
         <Route path="/activate/:token" element={<Activation />} />
         <Route path="/" element={<Login />} />
@@ -86,7 +73,6 @@ function App() {
           }
         />
         <Route path="/maps" element={<MapPage />} />
-        <Route path="/calendar" element={<Calendar />} />
         <Route path="/reports/new" element={<ReportsPage />} />
         <Route path="/recommendation/new" element={<RecommendationPage />} />
         <Route path="/reminder/new" element={<ReminderForm />} />
@@ -96,5 +82,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
