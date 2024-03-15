@@ -5,7 +5,7 @@ import { getUser, editUser } from "../../services/UserService";
 import { object, string, mixed } from "yup";
 import { useFormik } from "formik";
 import Input from "../../components/Input/Input";
-import Button from "../../components/Button";
+import Button from '../../components/Button/Button.jsx'
 import AuthContext from "../../contexts/AuthContext";
 import "./EditProfile.css";
 import { FaArrowLeft } from "react-icons/fa";
@@ -65,9 +65,9 @@ const EditProfile = () => {
           <FaArrowLeft className="exit-arrow" />
         </Link>
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className="userprofile-img">
             <img src={user.avatar} alt="profile_image" />
-          </div>
+          
           <Input
             name="avatar"
             type="file"
@@ -78,6 +78,7 @@ const EditProfile = () => {
             }}
             onBlur={handleBlur}
           />
+          </div>
           <div className="input-container">
             <Input
               autocomplete="off"
