@@ -4,11 +4,11 @@ import { useFormik } from "formik";
 import { number, object, string } from "yup";
 import Input from "./Input/Input";
 import Button from "./Button/Button";
-import '../components/Button/Button.css'
+import "../components/Button/Button.css";
 import AuthContext from "../contexts/AuthContext";
 import { recommendationCreate } from "../services/RecommendationService";
-import './Recommendation.css'
-import '../components/Input/Input.css'
+import "./Recommendation.css";
+import "../components/Input/Input.css";
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZG9nZmlsZSIsImEiOiJjbHRvcHQweDgwaXh3MmptZXVwNnBmY3UyIn0.xyszSwJvLRUMFHKtIPb0ew";
 
@@ -50,8 +50,8 @@ const Recommendation = () => {
     onSubmit: (values) => {
       recommendationCreate({
         ...values,
-        latitude: lat,
-        longitude: lng,
+        latitude: values.latitude,
+        longitude: values.longitude,
         user: user.id,
       });
     },
@@ -79,6 +79,7 @@ const Recommendation = () => {
 
         mapInstance.on("click", (e) => {
           const { lng, lat } = e.lngLat;
+
           setFieldValue("latitude", lat);
           setFieldValue("longitude", lng);
 
@@ -110,48 +111,50 @@ const Recommendation = () => {
   console.log(errors);
   return (
     <div>
-      <div
-        ref={mapContainer}
-        style={{ height: "300px" }}
-      ></div>
+      <div ref={mapContainer} style={{ height: "300px" }}></div>
       <div className="form-recommendation">
-      {errors.longitude && <p>Selecciona un punto en el mapa</p>}
-      <form onSubmit={handleSubmit}>
-        <Input
-          label="Título"
-          name="title"
-          type="text"
-          placeholder="Ingrese el título"
-          value={values.title}
-          error={touched.title && errors.title}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          className="login-form"
-        />
-        <Input
-          label="Descripción"
-          name="description"
-          type="text"
-          placeholder="Ingrese la descripción"
-          value={values.description}
-          error={touched.description && errors.description}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          className="login-form"
-        />
-        <Input
-          label="Lugar"
-          name="location"
-          type="text"
-          placeholder="Ingrese el lugar"
-          value={values.location}
-          error={touched.location && errors.location}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          className="login-form"
-        />
-        <Button type="submit" className="btn-login" text="Recomendar" disabled={!isValid} />
-      </form>
+        {errors.longitude && <p>Selecciona un punto en el mapa</p>}
+        <form onSubmit={handleSubmit}>
+          <Input
+            label="Título"
+            name="title"
+            type="text"
+            placeholder="Ingrese el título"
+            value={values.title}
+            error={touched.title && errors.title}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className="login-form"
+          />
+          <Input
+            label="Descripción"
+            name="description"
+            type="text"
+            placeholder="Ingrese la descripción"
+            value={values.description}
+            error={touched.description && errors.description}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className="login-form"
+          />
+          <Input
+            label="Lugar"
+            name="location"
+            type="text"
+            placeholder="Ingrese el lugar"
+            value={values.location}
+            error={touched.location && errors.location}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className="login-form"
+          />
+          <Button
+            type="submit"
+            className="btn-login"
+            text="Recomendar"
+            disabled={!isValid}
+          />
+        </form>
       </div>
     </div>
   );

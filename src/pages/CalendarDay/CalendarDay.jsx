@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext";
 import './CalendarDay.css'
 import { AiOutlinePlusCircle } from "react-icons/ai";
@@ -17,14 +17,6 @@ const CalendarDay = () => {
 
       if (reminder.frequency === "daily") {
         return checkDate >= startDate && checkDate <= endDate;
-      } else if (reminder.frequency === "weekly") {
-        const weekStartDate = new Date(startDate);
-        while (weekStartDate.getDay() !== 0) {
-          weekStartDate.setDate(weekStartDate.getDate() - 1);
-        }
-        const weekEndDate = new Date(weekStartDate);
-        weekEndDate.setDate(weekEndDate.getDate() + 6);
-        return checkDate >= weekStartDate && checkDate <= weekEndDate;
       } else if (reminder.frequency === "monthly") {
         return checkDate.getDate() === startDate.getDate();
       } else if (reminder.frequency === "annually") {
@@ -85,6 +77,9 @@ const CalendarDay = () => {
         <p><AiOutlinePlusCircle style={{ color: 'green' }}/> Añadir recordatorio</p>
       </div>
       <div>{hoursOfDay.map((hour) => renderHour(hour))}</div>
+
+      {/* Enlace para volver a la página de recordatorios */}
+      <Link to="/reminders">Volver a los recordatorios</Link>
     </div>
   );
 };

@@ -1,8 +1,22 @@
-const Select = ({ options, value, onChange, name, label, error }) => {
+const Select = ({
+  options,
+  value,
+  onChange,
+  name,
+  label,
+  error,
+  className,
+}) => {
   return (
     <div>
       <label htmlFor={name}>{label}</label>
-      <select id={name} name={name} value={value} onChange={onChange}>
+      <select
+        className={className}
+        id={name}
+        name={name}
+        value={value}
+        onChange={onChange}
+      >
         <option value="none">Selecciona</option>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
