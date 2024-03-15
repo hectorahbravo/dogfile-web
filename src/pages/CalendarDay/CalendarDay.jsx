@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext";
-
+import './CalendarDay.css'
+import { AiOutlinePlusCircle } from "react-icons/ai";
 const CalendarDay = () => {
   const { user } = useContext(AuthContext);
   const { date } = useParams();
@@ -77,10 +78,11 @@ const CalendarDay = () => {
 
   return (
     <div>
-      <h2>Day View</h2>
+      <h2>{date}</h2>
       <div>
-        <button onClick={() => changeDay(-1)}>Previous Day</button>
-        <button onClick={() => changeDay(1)}>Next Day</button>
+        <button className="round-button" onClick={() => changeDay(-1)}>Día anterior</button>
+        <button className="round-button" onClick={() => changeDay(1)}>Siguiente día</button>
+        <p><AiOutlinePlusCircle style={{ color: 'green' }}/> Añadir recordatorio</p>
       </div>
       <div>{hoursOfDay.map((hour) => renderHour(hour))}</div>
     </div>
