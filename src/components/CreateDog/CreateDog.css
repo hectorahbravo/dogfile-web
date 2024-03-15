@@ -3,6 +3,13 @@
   margin-bottom: 90px;
   margin-top: 25px;
 }
+.container-vaccines {
+  display: flex;
+  flex-direction: column;
+
+  align-items: left;
+  justify-content: center;
+}
 
 /* Estilos para los inputs de texto */
 .dog-input {

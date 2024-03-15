@@ -3,8 +3,11 @@ import CreateDog from "../../components/CreateDog/CreateDog";
 import { useContext, useEffect, useState } from "react";
 import { editDog, getDog, deleteDog } from "../../services/DogService";
 import { FaTrash } from "react-icons/fa";
+import Button from "../../components/Button/Button";
+import '../../components/Button/Button.css'
 import "../../components/DogProfile/DogProfile.css";
 import DogContext from "../../contexts/DogContext";
+import './EditDogProfile.css'
 // Importa la función para formatear la fecha
 
 function formatDate(dateString) {
@@ -69,7 +72,8 @@ const EditDog = () => {
   };
 
   return (
-    <div className="dog-profile-container">
+    <div className="background">
+    <div className="edit-profile-container">
       {loading ? (
         <p>Cargando...</p>
       ) : (
@@ -79,11 +83,13 @@ const EditDog = () => {
             onSubmit={onSubmit}
             isEdit={true}
           />
-          <button onClick={onDelete}>
-            <FaTrash />
-          </button>
+          <div className="delete-container">
+          <Button className="btn-delete" onClick={onDelete} text={"🗑️"}>
+          </Button> </div>
         </>
+        
       )}
+    </div>
     </div>
   );
 };
