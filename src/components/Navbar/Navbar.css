@@ -17,6 +17,13 @@
   overflow: hidden;
   object-fit: cover;
   }
+  .navbar-icons-calendar {
+    width: 40px;
+    height: 40px;
+    margin: 20px;
+    overflow: hidden;
+    object-fit: cover;
+  }
 
 .placeholder-circle {
   /* Estilos para el círculo de marcador de posición */

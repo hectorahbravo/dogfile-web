@@ -129,50 +129,63 @@ const CreateDog = ({ initialValues, isEdit }) => {
             onBlur={handleBlur}
             className="dog-input"
           />
-
-          <label className="label-selector">Vaccines</label>
+<div className="container-vaccines">
+          <label className="label-selector">Vacunas</label>
           <div className="checkbox">
+
             <label>
-              Vaccine 1
+            Parvovirus y Moquillo
               <input
                 type="checkbox"
                 name="vaccines"
-                value="vaccine1"
+                value="Parvovirus y Moquillo"
                 checked={
-                  values.vaccines && values.vaccines.includes("vaccine1")
+                  values.vaccines && values.vaccines.includes("Parvovirus y Moquillo")
+                }
+                onChange={handleCheckboxChange}
+              />
+            </label></div>
+            <div className="checkbox"><label>
+              Polivalente canina
+              <input
+                type="checkbox"
+                name="vaccines"
+                value="Polivalente canina"
+                checked={
+                  values.vaccines && values.vaccines.includes("Polivalente canina")
+                }
+                onChange={handleCheckboxChange}
+              />
+            </label></div>
+            <div className="container-vaccines">
+            <div className="checkbox"><label>
+              Rabia
+              <input
+                type="checkbox"
+                name="vaccines"
+                value="Rabia"
+                checked={
+                  values.vaccines && values.vaccines.includes("Rabia")
+                }
+                onChange={handleCheckboxChange}
+              />
+            </label></div>
+            <div className="checkbox"><label>
+              Pol. Rabia
+              <input
+                type="checkbox"
+                name="vaccines"
+                value="Pol. Rabia"
+                checked={
+                  values.vaccines && values.vaccines.includes("Pol. Rabia")
                 }
                 onChange={handleCheckboxChange}
               />
             </label>
-            <label>
-              Vaccine 2
-              <input
-                type="checkbox"
-                name="vaccines"
-                value="vaccine2"
-                checked={
-                  values.vaccines && values.vaccines.includes("vaccine2")
-                }
-                onChange={handleCheckboxChange}
-              />
-            </label>
-            <label>
-              Vaccine 3
-              <input
-                type="checkbox"
-                name="vaccines"
-                value="vaccine3"
-                checked={
-                  values.vaccines && values.vaccines.includes("vaccine3")
-                }
-                onChange={handleCheckboxChange}
-              />
-            </label>
-          </div>
+          </div></div></div>
           {touched.vaccines && errors.vaccines && (
             <div className="error-message">{errors.vaccines}</div>
           )}
-
           <Input
             name="allergies"
             label="Allergies"

@@ -27,7 +27,7 @@ const Navbar = () => {
         <FaMapMarkerAlt className="navbar-icons" color="grey" />
       </NavLink>
       <NavLink to={"/reminders"}>
-        <FaCalendarAlt className="navbar-icons" color="grey" />
+        <FaCalendarAlt className="navbar-icons-calendar" color="grey" />
       </NavLink>
       <NavLink to={"/user"}>
         <FaHome className="navbar-icons" color="grey" />
