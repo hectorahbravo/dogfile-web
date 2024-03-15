@@ -2,16 +2,18 @@
     background-color: #c2a88f; /* Color de fondo marrón clarito */
     display: flex;
     justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
+    align-items: center;
+    padding-bottom: 100px; /* Centra verticalmente */
   }
   
-  .userprofile-container { /* Tamaño máximo del contenedor */
-    padding: 20px; /* Espaciado interno */
+  .userprofile-container { /* Tamaño máximo del contenedor *//* Espaciado interno */
+    margin-top: 50px;
     background-color: #c2a88f; /* Color de fondo marrón clarito */
     display: flex;
     flex-direction: column; /* Alinear elementos en columna */
     justify-content: center; /* Centrar verticalmente */
-    align-items: center; /* Centrar horizontalmente */  }
+    align-items: center;
+    margin-right: 15px; /* Centrar horizontalmente */  }
   
   .user-container {
     display: flex;

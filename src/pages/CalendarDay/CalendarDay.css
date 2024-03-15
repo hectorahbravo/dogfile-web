@@ -1,0 +1,10 @@
+.round-button {
+    all: unset;
+    border-radius: 10%; /* Esto hace que el botón sea redondo */
+    width: 100px; /* Ajusta el ancho según tus preferencias */
+    height: 40px; /* Ajusta la altura según tus preferencias */
+    background-color: #007bff; /* Color de fondo del botón */
+    color: white; /* Color del texto dentro del botón */
+    border: none; /* Quita el borde del botón */
+    
+  }
