@@ -7,10 +7,10 @@ export const optionsFrecuencia = [
 ];
 
 export const optionsIcono = [
-  { value: "icon1", label: "Icono 1" },
-  { value: "icon2", label: "Icono 2" },
-  { value: "icon3", label: "Icono 3" },
-  { value: "icon4", label: "Icono 4" },
+  { value: "icon1", label: "💊" },
+  { value: "icon2", label: "💉" },
+  { value: "icon3", label: "🏥" },
+  { value: "icon4", label: "🪮" },
 ];
 
 export const optionsTipo = [
