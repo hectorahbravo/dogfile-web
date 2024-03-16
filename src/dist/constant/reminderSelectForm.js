@@ -19,9 +19,9 @@ export const optionsTipo = [
   { value: "Baño", label: "Baño" },
   { value: "Peluqueria", label: "Peluqueria" },
   { value: "Visita al veterinario", label: "Visita al veterinario" },
-  { value: "Pastillas antiparacitarias", label: "Pastillas antiparacitarias" },
-  { value: "Pipeta antiparacitaria", label: "Pipeta antiparacitaria" },
-  { value: "Collar antiparacitario", label: "Collar antiparacitario" },
+  { value: "Pastillas antiparasitarias", label: "Pastillas antiparasitarias" },
+  { value: "Pipeta antiparasitaria", label: "Pipeta antiparasitaria" },
+  { value: "Collar antiparasitario", label: "Collar antiparasitario" },
   { value: "Vacuna polivalente rabia", label: "Vacuna polivalente rabia" },
   { value: "Otros", label: "Otros" },
 ];

@@ -262,7 +262,7 @@ const CreateDog = ({ initialValues, isEdit }) => {
             <Button
               type="submit"
               className="btn-register"
-              text={isEdit ? "Edit Dog" : "Create Dog"}
+              text={isEdit ? "Guardar" : "Create Dog"}
             />
           </div>
         </form>
