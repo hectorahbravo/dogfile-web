@@ -47,9 +47,9 @@ const ReminderForm = () => {
         photo: "",
         repeat: false,
         frequency: "",
-        startDate: "",
-        endDate: "",
-        hour: "",
+        startDate: formatDate(new Date()),
+        endDate: formatDate(new Date()),
+        hour: "12:00",
       },
       onSubmit: (values) => {
         const startDateString = values.startDate.toString();
@@ -62,7 +62,7 @@ const ReminderForm = () => {
         });
         console.log(values);
 
-        navigate("/");
+        navigate("/reminders");
       },
       validationSchema: reminderSchema,
       validateOnChange: true,
@@ -103,7 +103,7 @@ const ReminderForm = () => {
             className="reminder-input-container"
           />
 
-          <label>
+          <label className="reminder-form-repeat">
             <input
               type="checkbox"
               name="repeat"
@@ -129,7 +129,7 @@ const ReminderForm = () => {
             type="date"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.startDate || formatDate(new Date())}
+            value={values.startDate}
             error={touched.startDate && errors.startDate}
             className="reminder-input-container"
           />
@@ -140,7 +140,7 @@ const ReminderForm = () => {
             type="date"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.endDate || formatDate(new Date())}
+            value={values.endDate}
             error={touched.endDate && errors.endDate}
             className="reminder-input-container"
           />
@@ -151,7 +151,7 @@ const ReminderForm = () => {
             type="time"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.hour || "12:00"}
+            value={values.hour}
             error={touched.hour && errors.hour}
             className="reminder-input-container"
           />

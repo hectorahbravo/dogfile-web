@@ -1,19 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import AuthContext from "../../contexts/AuthContext";
-import './CalendarDay.css'
+import "./CalendarDay.css";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { deleteReminder } from "../../services/ReminderService";
 import Button from "../../components/Button/Button";
-import '../../components/Button/Button.css'
-
+import "../../components/Button/Button.css";
+import { FaArrowLeft } from "react-icons/fa";
 
 const CalendarDay = () => {
   const { user } = useContext(AuthContext);
   const { date } = useParams();
   const navigate = useNavigate();
   const [reminders, setReminders] = useState([]);
-  
 
   useEffect(() => {
     const remindersForDay = user.reminders.filter((reminder) => {
@@ -46,20 +45,37 @@ const CalendarDay = () => {
 
     return (
       <div
+        className="hour"
         key={hour}
         style={{
           border: "1px solid #ccc",
           height: "60px",
           padding: "5px",
           marginBottom: "5px",
+          margin: "5px",
         }}
       >
         <p>{hour}</p>
         {events.map((event, index) => (
-          <div key={index} className='dayhour'>
-          <p>{event.title}</p>
-          
-          <Button onClick={()=>onDelete(event.id)} text={"🗑️"} className="btn-delete" /></div>
+          <div key={index} className="dayhour">
+            <div className="event-body">
+              <p className="event-title">{event.title}</p>
+              <p className="event-title">{event.type}</p>
+              <p className="event-title">{event.descriptions}</p>
+              <span key={index}>
+                {event.icon === "icon1" && "💊"}
+                {event.icon === "icon2" && "💉"}
+                {event.icon === "icon3" && "🏥"}
+                {event.icon === "icon4" && "🪮"}
+              </span>
+            </div>
+
+            <Button
+              onClick={() => onDelete(event.id)}
+              text={"🗑️"}
+              className="btn-delete"
+            />
+          </div>
         ))}
       </div>
     );
@@ -79,9 +95,7 @@ const CalendarDay = () => {
 
   const onDelete = (id) => {
     if (
-      window.confirm(
-        "¿Estás seguro de que deseas eliminar este recordatorio?"
-      )
+      window.confirm("¿Estás seguro de que deseas eliminar este recordatorio?")
     ) {
       deleteReminder(id)
         .then(() => {
@@ -95,16 +109,23 @@ const CalendarDay = () => {
 
   return (
     <div className="background-hours">
+      <Link to={"/reminders"}>
+        <FaArrowLeft className="exit-arrow exit-arrow-about" />
+      </Link>
       <h2 className="date">{date}</h2>
       <div className="container-buttons">
-        <button className="round-button" onClick={() => changeDay(-1)}>Día anterior</button>
-        <button className="round-button" onClick={() => changeDay(1)}>Siguiente día</button>
-        <p><AiOutlinePlusCircle style={{ color: 'green' }}/> Añadir</p>
+        <button className="round-button" onClick={() => changeDay(-1)}>
+          Día anterior
+        </button>
+        <button className="round-button" onClick={() => changeDay(1)}>
+          Siguiente día
+        </button>
+        <Link className="reminder-new-day" to={"/reminder/new"}>
+          <AiOutlinePlusCircle />
+          Añadir
+        </Link>
       </div>
       <div>{hoursOfDay.map((hour) => renderHour(hour))}</div>
-
-      {/* Enlace para volver a la página de recordatorios */}
-      
     </div>
   );
 };

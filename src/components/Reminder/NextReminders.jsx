@@ -1,10 +1,22 @@
 import "./NextReminders.css";
 import Button from "../../components/Button/Button";
-//import { deleteReminder } from "../../services/ReminderService";
+import { deleteReminder } from "../../services/ReminderService";
+import { useNavigate } from "react-router-dom";
 
 function NextReminders({ reminders }) {
-  const onDelete = () => {
-    //deleteReminder(id).then(() => {}).catch(()=>{});
+  const navigate = useNavigate();
+  const onDelete = (id) => {
+    if (
+      window.confirm("¿Estás seguro de que deseas eliminar este recordatorio?")
+    ) {
+      deleteReminder(id)
+        .then(() => {
+          navigate(`/reminders`);
+        })
+        .catch((error) => {
+          console.error("Error deleting dog:", error);
+        });
+    }
   };
   const currentDate = new Date();
   const upcomingReminders = reminders
@@ -30,14 +42,16 @@ function NextReminders({ reminders }) {
               {reminder.icon === "icon3" && "🏥"}
               {reminder.icon === "icon4" && "🪮"}
             </div>
-            <div>
+            <div className="reminder-title-date-container">
               <h3>{reminder.title}</h3>
               <p>{new Date(reminder.startDate).toLocaleDateString()}</p>
             </div>
             <div className="reminder-card-hours">{reminder.hour}</div>
             <Button
               className="reminder-card-delete"
-              onClick={onDelete(reminder.id)}
+              onClick={() => {
+                onDelete(reminder.id);
+              }}
               text={"🗑️"}
             />
           </div>

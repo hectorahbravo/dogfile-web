@@ -1,28 +1,32 @@
 .img-developers {
-    width: 150px;
-    height: 150px;
+  width: 150px;
+  height: 150px;
 }
 
 .aboutus-container {
-    display: flex;
-    font-family:Arial, Helvetica, sans-serif;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    text-align: justify;
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: justify;
 }
 
-h1, h2 {
-    color: #604a33;
-    text-align: left;
+h1,
+h2 {
+  color: #604a33;
+  text-align: left;
 }
 
 .images-container {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.exit-arrow-about {
+  color: #604a33;
 }
