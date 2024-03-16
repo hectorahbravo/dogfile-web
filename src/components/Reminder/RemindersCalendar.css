@@ -111,7 +111,7 @@ abbr {
 }
 
 .react-calendar__tile:disabled {
-  background-color: white;
+  background-color: #ecdfcd;
   color: #879281;
 }
 
@@ -121,7 +121,7 @@ abbr {
 
 .react-calendar__navigation__arrow,
 .react-calendar__navigation__prev-button {
-  background-color: white;
+  background-color: #ecdfcd;
 }
 
 .reminders-page {
@@ -137,4 +137,8 @@ abbr {
   align-items: center;
   font-size: 12px;
   color: #604a33;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  background-color: #ecdfcd;
 }
