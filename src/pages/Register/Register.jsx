@@ -61,8 +61,7 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
     validateOnBlur: true,
     validateOnMount: true,
   });
-  console.log(errors);
-  console.log(values);
+
   return (
     <div className="background">
       <div className="register-container">
