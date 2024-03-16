@@ -6,8 +6,9 @@ import Input from "./Input/Input";
 import Button from "./Button/Button";
 import { reportCreate } from "../services/ReportService";
 import AuthContext from "../contexts/AuthContext";
-import './Reports.css'
-import '../components/Input/Input.css'
+import "./Reports.css";
+import "../components/Input/Input.css";
+import { useNavigate } from "react-router-dom";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZG9nZmlsZSIsImEiOiJjbHRvcHQweDgwaXh3MmptZXVwNnBmY3UyIn0.xyszSwJvLRUMFHKtIPb0ew";
@@ -25,6 +26,7 @@ const reportSchema = object({
 
 const Reports = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const mapContainer = useRef(null);
   const [lng, setLng] = useState(-3.703462);
@@ -55,6 +57,7 @@ const Reports = () => {
     },
     onSubmit: (values) => {
       reportCreate({ ...values, user: user.id });
+      navigate("/maps");
     },
     validationSchema: reportSchema,
     validateOnChange: true,
@@ -108,6 +111,8 @@ const Reports = () => {
     });
   };
 
+  console.log(errors);
+
   return (
     <div>
       <div
@@ -116,78 +121,83 @@ const Reports = () => {
         style={{ height: "300px" }}
       ></div>
       <div className="form-report">
-      {errors.longitude && <p>Selecciona un punto en el mapa</p>}
+        {errors.longitude && <p>Selecciona un punto en el mapa</p>}
 
-      <form onSubmit={handleSubmit}>
-        <Input
-          label="Título"
-          name="title"
-          type="text"
-          placeholder="Ingrese el título"
-          value={values.title}
-          error={touched.title && errors.title}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          className="login-form"
-        />
-        <Input
-          label="Descripción"
-          name="description"
-          type="text"
-          placeholder="Ingrese la descripción"
-          value={values.description}
-          error={touched.description && errors.description}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          className="login-form"
-        />
-        <Input
-          label="Fecha de inicio"
-          name="startDate"
-          type="date"
-          placeholder="Seleccione la fecha de inicio"
-          value={values.startDate}
-          error={touched.startDate && errors.startDate}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          className="login-form"
-        />
-        <Input
-          label="Fecha de fin"
-          name="endDate"
-          type="date"
-          placeholder="Seleccione la fecha de fin"
-          value={values.endDate}
-          error={touched.endDate && errors.endDate}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          className="login-form"
-        />
-        <Input
-          label="Hora"
-          name="time"
-          type="time"
-          placeholder="Ingrese la hora"
-          value={values.time}
-          error={touched.time && errors.time}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          className="login-form"
-        />
-        <Input
-          label="Lugar"
-          name="location"
-          type="text"
-          placeholder="Ingrese el lugar"
-          value={values.location}
-          error={touched.location && errors.location}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          className="login-form"
-        />
-        <Button type="submit" text="Reportar" className="btn-login" disabled={!isValid} />
-      </form>
-    </div>
+        <form onSubmit={handleSubmit}>
+          <Input
+            label="Título"
+            name="title"
+            type="text"
+            placeholder="Ingrese el título"
+            value={values.title}
+            error={touched.title && errors.title}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className="login-form"
+          />
+          <Input
+            label="Descripción"
+            name="description"
+            type="text"
+            placeholder="Ingrese la descripción"
+            value={values.description}
+            error={touched.description && errors.description}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className="login-form"
+          />
+          <Input
+            label="Fecha de inicio"
+            name="startDate"
+            type="date"
+            placeholder="Seleccione la fecha de inicio"
+            value={values.startDate}
+            error={touched.startDate && errors.startDate}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className="login-form"
+          />
+          <Input
+            label="Fecha de fin"
+            name="endDate"
+            type="date"
+            placeholder="Seleccione la fecha de fin"
+            value={values.endDate}
+            error={touched.endDate && errors.endDate}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className="login-form"
+          />
+          <Input
+            label="Hora"
+            name="time"
+            type="time"
+            placeholder="Ingrese la hora"
+            value={values.time}
+            error={touched.time && errors.time}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className="login-form"
+          />
+          <Input
+            label="Lugar"
+            name="location"
+            type="text"
+            placeholder="Ingrese el lugar"
+            value={values.location}
+            error={touched.location && errors.location}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className="login-form"
+          />
+          <Button
+            type="submit"
+            text="Reportar"
+            className="btn-login"
+            disabled={!isValid}
+          />
+        </form>
+      </div>
     </div>
   );
 };
