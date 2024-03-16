@@ -71,7 +71,7 @@ const EditProfile = () => {
           <Input
             name="avatar"
             type="file"
-            label="Add your photo"
+            label="Sube una foto"
             error={touched.avatar && errors.avatar}
             onChange={(event) => {
               setFieldValue("avatar", event.currentTarget.files[0]); // Establece el archivo seleccionado en el estado
