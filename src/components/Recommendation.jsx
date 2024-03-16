@@ -9,6 +9,7 @@ import AuthContext from "../contexts/AuthContext";
 import { recommendationCreate } from "../services/RecommendationService";
 import "./Recommendation.css";
 import "../components/Input/Input.css";
+import { useNavigate } from "react-router-dom";
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZG9nZmlsZSIsImEiOiJjbHRvcHQweDgwaXh3MmptZXVwNnBmY3UyIn0.xyszSwJvLRUMFHKtIPb0ew";
 
@@ -21,6 +22,7 @@ const recommendationSchema = object({
 });
 
 const Recommendation = () => {
+  const navigate = useNavigate();
   const mapContainer = useRef(null);
   const [lng, setLng] = useState(-3.703462);
   const [lat, setLat] = useState(40.416816);
@@ -54,6 +56,7 @@ const Recommendation = () => {
         longitude: values.longitude,
         user: user.id,
       });
+      navigate("/maps");
     },
     validationSchema: recommendationSchema,
     validateOnChange: true,
@@ -108,7 +111,6 @@ const Recommendation = () => {
     });
   };
 
-  console.log(errors);
   return (
     <div>
       <div ref={mapContainer} style={{ height: "300px" }}></div>
