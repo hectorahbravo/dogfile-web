@@ -1,38 +1,69 @@
 .round-button {
-    all: unset;
-    border-radius: 10%; /* Esto hace que el botón sea redondo */
-    width: 100px; /* Ajusta el ancho según tus preferencias */
-    height: 40px; /* Ajusta la altura según tus preferencias */
-    background-color: #007bff; /* Color de fondo del botón */
-    color: white; /* Color del texto dentro del botón */
-    border: none; /* Quita el borde del botón */
-    background-color: #c2a88f;
-  }
-  .container-buttons {
-    margin-left: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: row;
-    gap:25px
-  }
+  all: unset;
+  text-align: center;
+  border-radius: 10px; /* Esto hace que el botón sea redondo */
+  width: 100px; /* Ajusta el ancho según tus preferencias */
+  height: 40px; /* Ajusta la altura según tus preferencias */
+  background-color: #007bff; /* Color de fondo del botón */
+  color: white; /* Color del texto dentro del botón */
+  border: none; /* Quita el borde del botón */
+  background-color: #c2a88f;
+  padding: 0 5px;
+  font-size: 14;
+  font-weight: 600;
+}
+.container-buttons {
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+}
 
-  .dayhour {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-items: center;
-    gap: 10px
-  }
+.dayhour {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  gap: 10px;
+}
 
-  .background-hours {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 100px;
-  }
+.background-hours {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 100px;
+}
 
-  .date {
-    color: #604a33;
-    margin-top: 10px;
-    align-self: center;
-  }
+.date {
+  color: #604a33;
+  margin-top: 10px;
+  align-self: center;
+  font-weight: 400;
+}
+
+.event-body {
+  display: flex;
+  gap: 15px;
+}
+
+.dayhour {
+  justify-content: space-around;
+}
+.hour {
+  border: "1px solid #ccc";
+  height: "60px";
+  padding: "5px";
+  margin-bottom: "5px";
+  margin: "5px";
+  border-radius: 10px;
+}
+.reminder-new-day {
+  font-size: 14px;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #604a33;
+  gap: 2px;
+}

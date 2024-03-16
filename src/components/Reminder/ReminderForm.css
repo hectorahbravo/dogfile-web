@@ -42,4 +42,6 @@
   background-color: #c2a88f;
   padding-bottom: 60px;
 }
-
+.reminder-form-repeat {
+  align-self: center;
+}

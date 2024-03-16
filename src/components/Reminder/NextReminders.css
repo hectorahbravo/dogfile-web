@@ -50,3 +50,14 @@
   font-weight: 500;
   color: #604a33;
 }
+
+.reminder-title-date-container {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.reminder-title-date-container > p {
+  font-size: 12px;
+}

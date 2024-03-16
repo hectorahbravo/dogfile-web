@@ -5,6 +5,8 @@
 }
 
 .image-canva {
+  border: 8px solid #a58466;
+  outline: 8px solid #ffffff;
   margin: 20px;
   width: 80px;
   height: 80px;
