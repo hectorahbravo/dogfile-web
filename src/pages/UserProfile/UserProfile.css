@@ -1,119 +1,118 @@
 .background-userprofile {
-    background-color: #c2a88f; /* Color de fondo marrón clarito */
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center;
-    padding-bottom: 100px; /* Centra verticalmente */
-  }
-  
-  .userprofile-container { /* Tamaño máximo del contenedor *//* Espaciado interno */
-    margin-top: 50px;
-    background-color: #c2a88f; /* Color de fondo marrón clarito */
-    display: flex;
-    flex-direction: column; /* Alinear elementos en columna */
-    justify-content: center; /* Centrar verticalmente */
-    align-items: center;
-    margin-right: 15px; /* Centrar horizontalmente */  }
-  
-  .user-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centra horizontalmente */
-  }
-  
-  .user-dogs {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px; /* Espacio entre las fotos de los perros */
-    max-width: 90vw; /* Ancho máximo para dispositivos móviles */
-    margin-top: 30px; /* Espacio superior */
-  }
-  
- 
-  .links-container {
-    width: 100%; /* Ancho máximo para dispositivos móviles */
-    border-radius: 20px;
-    padding: 5px; /* Espaciado interno */
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-  }
-  
-  .links-user-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px; /* Espacio entre las opciones */
-    width: 100%; /* Establece el ancho al 100% */
-  }
-  
-  .link-item {
-    width: 100%; /* Est
-    ablece el ancho al 100% */
-  }
-  .link-item > a {
-    width: 100%; /* Ancho del enlace o botón */
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #ffffff; /* Fondo blanco */
-    border: none;
-    color: #604a33; /* Color del texto marrón */
-    border-radius: 10px;
-    text-decoration: none; /* Elimina la decoración del enlace */
-  }
+  background-color: #c2a88f; /* Color de fondo marrón clarito */
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;
+  height: 100vh; /* Centra verticalmente */
+}
 
-  .link-item > button {
-    all: unset;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+.userprofile-container {
+  /* Tamaño máximo del contenedor */ /* Espaciado interno */
+  margin-top: 50px;
+  background-color: #c2a88f; /* Color de fondo marrón clarito */
+  display: flex;
+  flex-direction: column; /* Alinear elementos en columna */
+  justify-content: center; /* Centrar verticalmente */
+  align-items: center;
+  margin-right: 15px; /* Centrar horizontalmente */
+}
+
+.user-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra horizontalmente */
+}
+
+.user-dogs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px; /* Espacio entre las fotos de los perros */
+  max-width: 90vw; /* Ancho máximo para dispositivos móviles */
+  margin-top: 30px; /* Espacio superior */
+}
+
+.links-container {
+  width: 100%; /* Ancho máximo para dispositivos móviles */
+  border-radius: 20px;
+  padding: 5px; /* Espaciado interno */
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+}
+
+.links-user-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espacio entre las opciones */
+  width: 100%; /* Establece el ancho al 100% */
+}
+
+.link-item {
+  width: 100%; /* Est
+    ablece el ancho al 100% */
+}
+.link-item > a {
+  width: 100%; /* Ancho del enlace o botón */
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff; /* Fondo blanco */
+  border: none;
+  color: #604a33; /* Color del texto marrón */
+  border-radius: 10px;
+  text-decoration: none; /* Elimina la decoración del enlace */
+}
+
+.link-item > button {
+  all: unset;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    align-items: center;
-    margin: 0;
-    width: 100%; /* Ancho del enlace o botón */
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    background-color: #ffffff; /* Fondo blanco */
-    border: none;
-    color: #604a33; /* Color del texto marrón */
-    border-radius: 10px;
-    text-decoration: none;
-  
-  }
-  
-  .icon-link {
-    width: 100%; /* Ancho del botón */
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #ffffff; /* Fondo blanco */
-    border: none;
-    color: #604a33; /* Color del texto marrón */
-    border-radius: 10px;
-    text-decoration: none; /* Elimina la decoración del enlace */
-  }
-  
-  .container-icon {
-    background-color: #ecdfcd; /* Fondo blanco para el icono */
-    padding: 5px; /* Espacio alrededor del icono */
-    border-radius: 50%; /* Hace que el contenedor del icono sea circular */
-    margin-right: 10px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    font-size: 20px;
-    justify-content: center;
-    align-items: center; /* Espacio entre el icono y el texto */
-  }
-  
-  .link-text {
-    color: #343738; /* Color del texto gris */
-    flex-grow: 1;
-    align-items: left; /* Permite que el texto ocupe el espacio restante */
-  }
-  
-  .arrow-link {
-    font-size: 30px; /* Tamaño de la flecha */
-  }
-  
+  align-items: center;
+  margin: 0;
+  width: 100%; /* Ancho del enlace o botón */
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffff; /* Fondo blanco */
+  border: none;
+  color: #604a33; /* Color del texto marrón */
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.icon-link {
+  width: 100%; /* Ancho del botón */
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff; /* Fondo blanco */
+  border: none;
+  color: #604a33; /* Color del texto marrón */
+  border-radius: 10px;
+  text-decoration: none; /* Elimina la decoración del enlace */
+}
+
+.container-icon {
+  background-color: #ecdfcd; /* Fondo blanco para el icono */
+  padding: 5px; /* Espacio alrededor del icono */
+  border-radius: 50%; /* Hace que el contenedor del icono sea circular */
+  margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center; /* Espacio entre el icono y el texto */
+}
+
+.link-text {
+  color: #343738; /* Color del texto gris */
+  flex-grow: 1;
+  align-items: left; /* Permite que el texto ocupe el espacio restante */
+}
+
+.arrow-link {
+  font-size: 30px; /* Tamaño de la flecha */
+}

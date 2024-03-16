@@ -21,15 +21,29 @@ import CalendarDay from "./pages/CalendarDay/CalendarDay";
 
 function App() {
   const location = useLocation();
-  return (
-    <div>
-      {location.pathname !== "/" &&
+
+  const getNavbar = () => {
+    if (
+      location.pathname.includes("/dogs") ||
+      location.pathname.includes("/maps") ||
+      location.pathname.includes("/reminders") ||
+      location.pathname.includes("/reports") ||
+      location.pathname.includes("/recommendation") ||
+      location.pathname.includes("/calendar") ||
+      (location.pathname !== "/" &&
         location.pathname !== "/register" &&
         location.pathname !== "/user" &&
-        location.pathname !== "/users/:userId/edit" &&
-        location.pathname !== "/create-dog/:userId" && (
-          <Navbar className="navbar" />
-        )}
+        location.pathname.includes("/edit") &&
+        location.pathname.includes("/dogs") &&
+        location.pathname !== "/create-dog/:userId")
+    ) {
+      return <Navbar className="navbar" />;
+    }
+  };
+
+  return (
+    <div>
+      {getNavbar()}
       <Routes>
         <Route path="/activate/:token" element={<Activation />} />
         <Route path="/" element={<Login />} />
