@@ -70,6 +70,7 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
           <FaArrowLeft className="exit-arrow" />
         </Link>
         <form onSubmit={handleSubmit}>
+          <img src="" className="image-canva" alt="" />
           <Input
             name="avatar"
             type="file"
@@ -78,7 +79,6 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
               setFieldValue("avatar", event.currentTarget.files[0]); // Establece el archivo seleccionado en el estado
             }}
             onBlur={handleBlur}
-            className="image-canva"
           />
           <div className="input-container">
             <Input
