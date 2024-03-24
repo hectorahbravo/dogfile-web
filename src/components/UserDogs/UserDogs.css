@@ -1,6 +1,5 @@
 .user-dogs-container {
   display: flex;
-  flex-wrap: wrap; /* Permite que los elementos se envuelvan si no caben en una sola fila */
   justify-content: center; /* Centra los elementos horizontalmente */
   margin-top: -25px;
 }
