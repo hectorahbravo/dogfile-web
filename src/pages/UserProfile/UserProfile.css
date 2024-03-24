@@ -1,9 +1,10 @@
 .background-userprofile {
+  min-width: 350px;
   background-color: #c2a88f; /* Color de fondo marrón clarito */
   display: flex;
   justify-content: center; /* Centra horizontalmente */
   align-items: center;
-  height: 100vh; /* Centra verticalmente */
+  /* Centra verticalmente */
 }
 
 .userprofile-container {
