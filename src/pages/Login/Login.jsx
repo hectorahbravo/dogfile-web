@@ -55,7 +55,7 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
           <div className="input-container">
             <Input
-              autoComplete="off" // Corregido a autoComplete
+              autoComplete="off"
               name="email"
               type="email"
               placeholder="Tuemail@dogfile.com"
@@ -74,25 +74,25 @@ const Login = () => {
               error={touched.password && errors.password}
               onChange={handleChange}
               onBlur={handleBlur}
-              autoComplete="off" // Corregido a autoComplete
+              autoComplete="off"
               className="login-form"
               classNamePlaceholder="placeholder"
             />
           </div>
           <div className="container-buttons-login">
             <Button
+              type="submit"
+              disabled={!isValid || formSubmitted}
+              text="Log in"
+              className="btn-login"
+            />
+            <Button
               type={"button"}
               extraClassName="mt-4"
-              disabled={!isValid || formSubmitted} // Deshabilitar si el formulario ha sido enviado
+              disabled={!isValid || formSubmitted}
               text="Sign in"
               className="btn-sign"
               onClick={handleSignIn}
-            />
-            <Button
-              type="submit"
-              disabled={!isValid || formSubmitted} // Deshabilitar si el formulario ha sido enviado
-              text="Log in"
-              className="btn-login"
             />
           </div>
         </form>

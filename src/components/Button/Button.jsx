@@ -1,8 +1,20 @@
-import './Button.css'; // Importar el archivo CSS
+import "./Button.css"; // Importar el archivo CSS
 
-const Button = ({ type, onClick, text, extraClassName, className }) => {
+const Button = ({
+  type,
+  onClick,
+  text,
+  extraClassName,
+  className,
+  disabled,
+}) => {
   return (
-    <button type={type} onClick={onClick} className={`${className} ${extraClassName}`}>
+    <button
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+      className={`${className} ${extraClassName}`}
+    >
       {text}
     </button>
   );
