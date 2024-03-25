@@ -34,7 +34,6 @@ export const AuthContextProvider = ({ children }) => {
     (data) => {
       return loginService(data)
         .then((response) => {
-          // Guardo el token en el store que hemos creado para que sea accesible a los servicios
           setAccessToken(response.accessToken);
         })
         .then(() => {
@@ -49,7 +48,7 @@ export const AuthContextProvider = ({ children }) => {
     if (getAccessToken()) {
       fetchCurrentUser();
     } else {
-      if (pathname !== "/login") {
+      if (pathname !== "/") {
         setIsAuthFetched(true);
       } else {
         setIsAuthFetched(false);
@@ -62,9 +61,9 @@ export const AuthContextProvider = ({ children }) => {
       isAuthFetched,
       user,
       login,
-      fetchCurrentUser
+      fetchCurrentUser,
     }),
-    [isAuthFetched, user, login,fetchCurrentUser]
+    [isAuthFetched, user, login, fetchCurrentUser]
   );
 
   return (

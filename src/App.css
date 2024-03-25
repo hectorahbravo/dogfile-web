@@ -1,1 +1,7 @@
-
+.container-app {
+  background-color: #c2a88f;
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}

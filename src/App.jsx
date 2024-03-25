@@ -42,7 +42,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="container-app">
       {getNavbar()}
       <Routes>
         <Route path="/activate/:token" element={<Activation />} />

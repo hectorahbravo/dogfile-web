@@ -1,14 +1,19 @@
 .user-dogs-container {
   display: flex;
-  justify-content: center; /* Centra los elementos horizontalmente */
-  margin-top: -25px;
+  justify-content: center;
 }
 
 .avatar-link {
-  text-decoration: none; /* Quita la subrayado predeterminado de los enlaces */
-  color: inherit; /* Hereda el color del texto del padre */
-  margin: 10px; /* Ajusta el margen entre cada perrito */
-  text-align: center; /* Centra el texto dentro del enlace */
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+.avatar-link p {
+  font-size: 12px;
 }
 
 .avatar-preview {
@@ -33,8 +38,6 @@
 }
 
 .empty-circle p {
-  margin-top: -5px;
-  position: absolute;
   font-size: 24px;
   color: white;
 }
