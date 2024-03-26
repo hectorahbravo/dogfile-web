@@ -58,7 +58,7 @@ const Login = () => {
               autoComplete="off"
               name="email"
               type="email"
-              placeholder="Tuemail@dogfile.com"
+              placeholder="Tuemail@mail.com"
               value={values.email}
               error={touched.email && errors.email}
               onChange={handleChange}
@@ -83,14 +83,14 @@ const Login = () => {
             <Button
               type="submit"
               disabled={!isValid || formSubmitted}
-              text="Log in"
+              text="Inicia sesión"
               className="btn-login"
             />
             <Button
               type={"button"}
               extraClassName="mt-4"
               disabled={!isValid || formSubmitted}
-              text="Sign in"
+              text="Crear una cuenta"
               className="btn-sign"
               onClick={handleSignIn}
             />

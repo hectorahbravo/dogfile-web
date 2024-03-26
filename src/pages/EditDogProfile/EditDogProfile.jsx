@@ -2,12 +2,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import CreateDog from "../../components/CreateDog/CreateDog";
 import { useContext, useEffect, useState } from "react";
 import { editDog, getDog, deleteDog } from "../../services/DogService";
-import { FaTrash } from "react-icons/fa";
 import Button from "../../components/Button/Button";
-import '../../components/Button/Button.css'
+import "../../components/Button/Button.css";
 import "../../components/DogProfile/DogProfile.css";
 import DogContext from "../../contexts/DogContext";
-import './EditDogProfile.css'
+import "./EditDogProfile.css";
 // Importa la función para formatear la fecha
 
 function formatDate(dateString) {
@@ -73,23 +72,26 @@ const EditDog = () => {
 
   return (
     <div className="background">
-    <div className="edit-profile-container">
-      {loading ? (
-        <p>Cargando...</p>
-      ) : (
-        <>
-          <CreateDog
-            initialValues={dog || {}}
-            onSubmit={onSubmit}
-            isEdit={true}
-          />
-          <div className="delete-container">
-          <Button className="btn-delete" onClick={onDelete} text={"🗑️"}>
-          </Button> </div>
-        </>
-        
-      )}
-    </div>
+      <div className="edit-profile-container">
+        {loading ? (
+          <p>Cargando...</p>
+        ) : (
+          <>
+            <CreateDog
+              initialValues={dog || {}}
+              onSubmit={onSubmit}
+              isEdit={true}
+            />
+            <div className="delete-container">
+              <Button
+                className="btn-delete"
+                onClick={onDelete}
+                text={"🗑️"}
+              ></Button>{" "}
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 };

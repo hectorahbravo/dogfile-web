@@ -5,7 +5,16 @@
   border: 2px solid #604a33;
   border-radius: 50px;
   background: #8e6c49;
-  color: rgb(255, 255, 255);
+  color: #ffffff;
+}
+.btn-login:active {
+  position: relative;
+  width: 282px;
+  height: 54px;
+  border: 2px solid #fff;
+  border-radius: 50px;
+  background: #fff;
+  color: #8e6c49;
 }
 
 .btn-sign {
@@ -16,15 +25,29 @@
   background: #ffffff;
   color: #604a33;
 }
+.btn-sign:active {
+  width: 282px;
+  height: 54px;
+  border: 2px solid #604a33;
+  border-radius: 50px;
+  background: #8e6c49;
+  color: #fff;
+}
 
 .btn-register {
-  position: relative;
   width: 282px;
   height: 54px;
   border: 2px solid #604a33;
   border-radius: 50px;
   background: #ffffff;
   color: #604a33;
+}
+.btn-register:active {
+  position: relative;
+  border: 2px solid #604a33;
+  border-radius: 50px;
+  background: #604a33;
+  color: #fff;
 }
 
 .btn-delete {

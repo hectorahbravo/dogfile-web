@@ -62,6 +62,10 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
     validateOnMount: true,
   });
 
+  const handleLogin = () => {
+    navigate("/");
+  };
+
   return (
     <div className="background">
       <div className="register-container">
@@ -114,11 +118,17 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
               style={{ display: isEdit ? "none" : "block" }} // Ocultar el campo si isEdit es true
             />
           </div>
-          <div className="container-buttons">
+          <div className="container-buttons-login">
             <Button
               type="submit"
               className="btn-register"
               text={isEdit ? "Guardar cambios" : "Registrar"}
+            />
+            <Button
+              type={"button"}
+              text="Inicia sesión"
+              className="btn-login"
+              onClick={handleLogin}
             />
           </div>
         </form>

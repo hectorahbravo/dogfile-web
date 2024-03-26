@@ -37,8 +37,6 @@
   color: rgba(0, 0, 0, 0.5); /* Color del texto del placeholder */
 }
 .input-image input[type="file"] {
-  /* Estilos personalizados para el input de tipo file */
-  /* Por ejemplo, puedes cambiar el color del borde o el fondo */
   border: 1px solid #ccc;
   padding: 6px 12px;
   cursor: pointer;
@@ -47,7 +45,6 @@
 }
 
 .input-image input[type="file"]:focus {
-  /* Estilos adicionales para cuando el input de tipo file está enfocado */
   outline: none;
   box-shadow: 0 0 5px rgb(139, 142, 143);
 }

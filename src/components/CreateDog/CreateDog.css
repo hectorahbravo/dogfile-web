@@ -51,9 +51,9 @@
   margin-bottom: 10px;
 }
 
-.dog-input label {
-  font-size: 20px;
-  color: #666;
+.dog-input-label {
+  font-size: 10px;
+  color: #000000;
 }
 
 /* Estilos para los mensajes de error */
@@ -83,6 +83,22 @@
   margin-bottom: 10px;
 }
 
-.label-selector {
-  color: white;
+.input-dog-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dog-input-image {
+  box-sizing: border-box;
+  border: 4px solid #a58466;
+  outline: 4px solid #ffffff;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+.dog-input-label {
+  margin: 5px 0;
+  align-self: self-start;
 }

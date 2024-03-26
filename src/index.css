@@ -15,3 +15,7 @@ input {
 input:focus {
   border-color: none;
 }
+select {
+  text-align: center;
+  font-size: 16px;
+}

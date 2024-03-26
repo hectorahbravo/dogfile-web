@@ -37,10 +37,6 @@
   align-items: center; /* Centra verticalmente */
 }
 
-.input-container {
-  margin-bottom: 40px;
-}
-
 .image-canva {
   background: #d9d9d9;
   border: 8px solid #a58466;
@@ -66,15 +62,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.btn-register {
-  position: relative;
-  width: 282px;
-  height: 54px;
-  border: 2px solid #604a33;
-  border-radius: 50px;
-  background: #ffffff;
-  color: #604a33;
-  width: 100%;
 }

@@ -39,8 +39,8 @@
 .pencil {
   text-decoration: none;
   color: #413d40;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
 }
 
 .info-container {
@@ -71,6 +71,13 @@
 .info-box p {
   font-size: 15px;
   color: #413d40;
+}
+.info-box li {
+  margin: 10px 0;
+}
+
+.info-box li:first-child {
+  margin-top: 0;
 }
 
 .traits-container {
@@ -115,3 +122,5 @@
 .delete-dog-button:hover {
   background-color: #d32f2f;
 }
+
+
