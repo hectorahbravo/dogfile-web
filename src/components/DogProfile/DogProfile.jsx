@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getDog } from "../../services/DogService";
 import "./DogProfile.css";
-import { CiEdit } from "react-icons/ci";
+import { GrEdit } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext";
@@ -44,7 +44,7 @@ const DogProfile = () => {
               />
               <div className="pencil-circle">
                 <Link to={`/users/${user.id}/dogs/${dogProfile.id}/edit`}>
-                  <CiEdit className="pencil" />
+                  <GrEdit className="pencil" />
                 </Link>
               </div>
             </div>
@@ -53,6 +53,10 @@ const DogProfile = () => {
                 <p className="dog-name">{dogProfile.name}</p>
               </div>
               <div className="info-primer-container">
+                <div className="info-box">
+                  <h3>Mi carácter</h3>
+                  <p>{dogProfile.temperament}</p>
+                </div>
                 <div className="info-box">
                   <h3>Mis datos</h3>
                   <p>
@@ -90,13 +94,7 @@ const DogProfile = () => {
                   <h3>Mis alergias</h3>
                   <p> {dogProfile.allergies}</p>
                 </div>
-              </div>
-              <div className="traits-container">
-                <h2>¿Cómo soy?</h2>
-                <div className="traits-box">
-                  <h3>Mi carácter</h3>
-                  <p>{dogProfile.temperament}</p>
-                </div>
+                <div className="info-box"></div>
               </div>
             </div>
           </div>

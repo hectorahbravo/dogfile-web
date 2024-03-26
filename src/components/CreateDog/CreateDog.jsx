@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { array, object, string } from "yup";
 import { useFormik } from "formik";
 import Input from "../../components/Input/Input";
@@ -8,10 +8,11 @@ import "./CreateDog.css";
 import { useNavigate, useParams } from "react-router-dom";
 
 const dogSchema = object({
-  name: string().required("Campo requerido"),
+  name: string().required("El nombre es obligatorio"),
   birthdate: string(),
-  weight: string().required("Campo requerido"),
+  weight: string().required("El peso es obligatorio"),
   vaccines: array(),
+  sex: string().required("El sexo es obligatorio"),
   allergies: string(),
   foodType: string(),
   foodTimes: string(),
@@ -24,6 +25,13 @@ const CreateDog = ({ initialValues, isEdit }) => {
   const { userId, dogId } = useParams();
   const navigate = useNavigate();
   const [avatarFile, setAvatarFile] = useState(null);
+  const [avatarURL, setAvatarURL] = useState("");
+
+  useEffect(() => {
+    if (initialValues && initialValues.avatar) {
+      setAvatarURL(initialValues.avatar);
+    }
+  }, [initialValues]);
 
   const {
     values,
@@ -38,7 +46,9 @@ const CreateDog = ({ initialValues, isEdit }) => {
     initialValues: initialValues || {
       name: "",
       birthdate: "",
+      description: "",
       weight: "",
+      sex: "",
       vaccines: [],
       allergies: "",
       foodType: "",
@@ -74,12 +84,15 @@ const CreateDog = ({ initialValues, isEdit }) => {
 
   const handleAvatarChange = (event) => {
     const file = event.currentTarget.files[0];
-    setAvatarFile(file);
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      setFieldValue("avatar", reader.result);
-    };
+    if (file) {
+      setAvatarFile(file);
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        setAvatarURL(reader.result);
+        setFieldValue("avatar", reader.result);
+      };
+    }
   };
 
   const handleCheckboxChange = (event) => {
@@ -99,9 +112,33 @@ const CreateDog = ({ initialValues, isEdit }) => {
     <div className="background">
       <div className="dog-create-container">
         <form onSubmit={handleSubmit}>
+          <div className="input-dog-avatar">
+            {avatarURL && (
+              <img
+                className="dog-input-image"
+                src={avatarURL}
+                alt="dog_profile_image"
+              />
+            )}
+            <label htmlFor="avatar" className="dog-input-label">
+              Foto
+            </label>
+            <input
+              id="avatar"
+              name="avatar"
+              type="file"
+              onChange={handleAvatarChange}
+              onBlur={handleBlur}
+              className="input-file"
+            />
+            {touched.avatar && errors.avatar && (
+              <div className="error-message">{errors.avatar}</div>
+            )}
+          </div>
+
           <Input
             name="name"
-            label="Name"
+            label="Nombre"
             placeholder="Enter name"
             value={values.name}
             error={touched.name && errors.name}
@@ -109,10 +146,27 @@ const CreateDog = ({ initialValues, isEdit }) => {
             onBlur={handleBlur}
             className="dog-input"
           />
+
+          <label className="dog-input-label">Sexo</label>
+          <select
+            id="sex"
+            name="sex"
+            value={values.sex}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className="dog-input-selector"
+          >
+            <option value="">Selecciona el sexo</option>
+            <option value="Macho">Macho</option>
+            <option value="Hembra">Hembra</option>
+          </select>
+          {touched.sex && errors.sex && (
+            <div className="error-message">{errors.sex}</div>
+          )}
           <Input
             name="birthdate"
             type="date"
-            label="Birthdate"
+            label="Fecha de nacimiento"
             value={values.birthdate}
             error={touched.birthdate && errors.birthdate}
             onChange={handleChange}
@@ -120,76 +174,97 @@ const CreateDog = ({ initialValues, isEdit }) => {
             className="dog-input"
           />
           <Input
+            name="description"
+            type="textarea"
+            rows="3"
+            label="Descripcion"
+            placeholder="Soy un amigo fiel..."
+            value={values.description}
+            error={touched.description && errors.description}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className="dog-input"
+          />
+          <Input
             name="weight"
-            label="Weight"
-            placeholder="Enter weight"
+            label="Peso"
+            placeholder="Ingrese el peso"
             value={values.weight}
             error={touched.weight && errors.weight}
             onChange={handleChange}
             onBlur={handleBlur}
             className="dog-input"
           />
-<div className="container-vaccines">
-          <label className="label-selector">Vacunas</label>
-          <div className="checkbox">
-
-            <label>
-            Parvovirus y Moquillo
-              <input
-                type="checkbox"
-                name="vaccines"
-                value="Parvovirus y Moquillo"
-                checked={
-                  values.vaccines && values.vaccines.includes("Parvovirus y Moquillo")
-                }
-                onChange={handleCheckboxChange}
-              />
-            </label></div>
-            <div className="checkbox"><label>
-              Polivalente canina
-              <input
-                type="checkbox"
-                name="vaccines"
-                value="Polivalente canina"
-                checked={
-                  values.vaccines && values.vaccines.includes("Polivalente canina")
-                }
-                onChange={handleCheckboxChange}
-              />
-            </label></div>
+          <div className="container-vaccines">
+            <label className="dog-input-label">Vacunas</label>
+            <div className="checkbox">
+              <label>
+                Parvovirus y Moquillo
+                <input
+                  type="checkbox"
+                  name="vaccines"
+                  value="Parvovirus y Moquillo"
+                  checked={
+                    values.vaccines &&
+                    values.vaccines.includes("Parvovirus y Moquillo")
+                  }
+                  onChange={handleCheckboxChange}
+                />
+              </label>
+            </div>
+            <div className="checkbox">
+              <label>
+                Polivalente canina
+                <input
+                  type="checkbox"
+                  name="vaccines"
+                  value="Polivalente canina"
+                  checked={
+                    values.vaccines &&
+                    values.vaccines.includes("Polivalente canina")
+                  }
+                  onChange={handleCheckboxChange}
+                />
+              </label>
+            </div>
             <div className="container-vaccines">
-            <div className="checkbox"><label>
-              Rabia
-              <input
-                type="checkbox"
-                name="vaccines"
-                value="Rabia"
-                checked={
-                  values.vaccines && values.vaccines.includes("Rabia")
-                }
-                onChange={handleCheckboxChange}
-              />
-            </label></div>
-            <div className="checkbox"><label>
-              Pol. Rabia
-              <input
-                type="checkbox"
-                name="vaccines"
-                value="Pol. Rabia"
-                checked={
-                  values.vaccines && values.vaccines.includes("Pol. Rabia")
-                }
-                onChange={handleCheckboxChange}
-              />
-            </label>
-          </div></div></div>
+              <div className="checkbox">
+                <label>
+                  Rabia
+                  <input
+                    type="checkbox"
+                    name="vaccines"
+                    value="Rabia"
+                    checked={
+                      values.vaccines && values.vaccines.includes("Rabia")
+                    }
+                    onChange={handleCheckboxChange}
+                  />
+                </label>
+              </div>
+              <div className="checkbox">
+                <label>
+                  Pol. Rabia
+                  <input
+                    type="checkbox"
+                    name="vaccines"
+                    value="Pol. Rabia"
+                    checked={
+                      values.vaccines && values.vaccines.includes("Pol. Rabia")
+                    }
+                    onChange={handleCheckboxChange}
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
           {touched.vaccines && errors.vaccines && (
             <div className="error-message">{errors.vaccines}</div>
           )}
           <Input
             name="allergies"
-            label="Allergies"
-            placeholder="Enter allergies"
+            label="Alergias"
+            placeholder="Escriba sus alergias"
             value={values.allergies}
             error={touched.allergies && errors.allergies}
             onChange={handleChange}
@@ -198,8 +273,8 @@ const CreateDog = ({ initialValues, isEdit }) => {
           />
           <Input
             name="foodType"
-            label="Food Type"
-            placeholder="Enter food type"
+            label="Tipo de comida"
+            placeholder="Con que se alimenta"
             value={values.foodType}
             error={touched.foodType && errors.foodType}
             onChange={handleChange}
@@ -208,8 +283,8 @@ const CreateDog = ({ initialValues, isEdit }) => {
           />
           <Input
             name="foodTimes"
-            label="Food Times"
-            placeholder="Enter food times"
+            label="Cuantas veces come"
+            placeholder="Escriba la cantidad..."
             value={values.foodTimes}
             error={touched.foodTimes && errors.foodTimes}
             onChange={handleChange}
@@ -218,16 +293,16 @@ const CreateDog = ({ initialValues, isEdit }) => {
           />
           <Input
             name="foodKg"
-            label="Food Kg"
-            placeholder="Enter food kg"
+            label="Que cantidad come"
+            placeholder="Escriba la cantidad en kg"
             value={values.foodKg}
             error={touched.foodKg && errors.foodKg}
             onChange={handleChange}
             onBlur={handleBlur}
             className="dog-input"
           />
-          <label htmlFor="temperament" className="label-selector">
-            Temperament
+          <label htmlFor="temperament" className="dog-input-label">
+            Temperamento
           </label>
           <select
             id="temperament"
@@ -237,7 +312,7 @@ const CreateDog = ({ initialValues, isEdit }) => {
             onBlur={handleBlur}
             className="dog-input-selector"
           >
-            <option value="">Select temperament</option>
+            <option value="">Select su temperamento</option>
             <option value="Estable">Estable</option>
             <option value="Miedoso">Miedoso</option>
             <option value="Reactivo">Reactivo</option>
@@ -245,19 +320,7 @@ const CreateDog = ({ initialValues, isEdit }) => {
           {touched.temperament && errors.temperament && (
             <div className="error-message">{errors.temperament}</div>
           )}
-          <div className="input-avatar">
-            <label htmlFor="avatar">Avatar</label>
-            <input
-              id="avatar"
-              name="avatar"
-              type="file"
-              onChange={handleAvatarChange}
-              onBlur={handleBlur}
-            />
-            {touched.avatar && errors.avatar && (
-              <div className="error-message">{errors.avatar}</div>
-            )}
-          </div>
+
           <div className="container-buttons">
             <Button
               type="submit"

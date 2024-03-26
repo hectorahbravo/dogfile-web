@@ -1,17 +1,16 @@
-import Register from "../Register/Register";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { getUser, editUser } from "../../services/UserService";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { editUser } from "../../services/UserService";
 import { object, string, mixed } from "yup";
 import { useFormik } from "formik";
 import Input from "../../components/Input/Input";
-import Button from '../../components/Button/Button.jsx'
+import Button from "../../components/Button/Button.jsx";
 import AuthContext from "../../contexts/AuthContext";
 import "./EditProfile.css";
 import { FaArrowLeft } from "react-icons/fa";
-import '../Register/Register.css'
-import '../../components/Button/Button.css'
-import '../../components/Input/Input.css'
+import "../Register/Register.css";
+import "../../components/Button/Button.css";
+import "../../components/Input/Input.css";
 
 const userSchema = object({
   username: string().required("Campo requerido"),
@@ -38,7 +37,7 @@ const EditProfile = () => {
     initialValues: {
       username: `${user.username}`,
       email: `${user.email}`,
-      avatar: `${user.avatar}`, // Cambia el valor inicial a null
+      avatar: `${user.avatar}`,
     },
 
     onSubmit: (values) => {
@@ -67,23 +66,23 @@ const EditProfile = () => {
         <form onSubmit={handleSubmit}>
           <div className="userprofile-img">
             <img src={user.avatar} alt="profile_image" />
-          
-          <Input
-            name="avatar"
-            type="file"
-            label="Sube una foto"
-            error={touched.avatar && errors.avatar}
-            onChange={(event) => {
-              setFieldValue("avatar", event.currentTarget.files[0]); // Establece el archivo seleccionado en el estado
-            }}
-            onBlur={handleBlur}
-          />
+
+            <Input
+              name="avatar"
+              type="file"
+              label="Sube una foto"
+              error={touched.avatar && errors.avatar}
+              onChange={(event) => {
+                setFieldValue("avatar", event.currentTarget.files[0]); 
+              }}
+              onBlur={handleBlur}
+            />
           </div>
           <div className="input-container">
             <Input
               autocomplete="off"
               name="username"
-              label="User name"
+              label="Nombre de usuario"
               placeholder="Introduce tu nombre"
               value={values.username}
               error={touched.username && errors.username}
@@ -95,7 +94,7 @@ const EditProfile = () => {
               autocomplete="off"
               name="email"
               type="email"
-              label="Email"
+              label="Correo electronico"
               placeholder="Introduce tu e-mail"
               value={values.email}
               error={touched.email && errors.email}
