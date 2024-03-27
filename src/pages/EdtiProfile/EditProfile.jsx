@@ -60,7 +60,7 @@ const EditProfile = () => {
   return (
     <div className="background">
       <div className="register-container">
-        <Link to={"/"}>
+        <Link to={"/user"}>
           <FaArrowLeft className="exit-arrow" />
         </Link>
         <form onSubmit={handleSubmit}>
@@ -73,7 +73,7 @@ const EditProfile = () => {
               label="Sube una foto"
               error={touched.avatar && errors.avatar}
               onChange={(event) => {
-                setFieldValue("avatar", event.currentTarget.files[0]); 
+                setFieldValue("avatar", event.currentTarget.files[0]);
               }}
               onBlur={handleBlur}
             />
