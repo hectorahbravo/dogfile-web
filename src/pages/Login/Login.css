@@ -1,24 +1,24 @@
 .background {
-  background-color: #c2a88f; /* Color de fondo marrón clarito */
+  background-color: #c2a88f; 
   display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
+  justify-content: center; 
+  align-items: center; 
 }
 
 .login-container {
   margin-top: 100px;
   max-width: 400px;
-  background-color: #c2a88f; /* Color de fondo marrón clarito */
+  background-color: #c2a88f; 
   display: flex;
-  flex-direction: column; /* Alinear elementos en columna */
-  justify-content: center; /* Centrar verticalmente */
-  align-items: center; /* Centrar horizontalmente  Altura total del viewport */
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
 }
 
 .logo {
   width: 200px;
   height: 200px;
-  margin-bottom: 20px; /* Espacio entre el logo y el formulario */
+  margin-bottom: 20px; 
 }
 
 .container-buttons-login {
