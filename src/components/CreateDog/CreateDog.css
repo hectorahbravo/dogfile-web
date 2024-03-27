@@ -95,15 +95,29 @@
 .dog-input-selector {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
+  justify-content: left;
   width: 340px;
-  height: 55px;
+  height: px;
   border: 1px solid rgb(205, 192, 172);
   border-radius: 11px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background: rgb(255, 255, 255);
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 15px 0;
+  margin-bottom: 15px;
+}
+
+/* Ajustes específicos para Safari */
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    .dog-input {
+      -webkit-appearance: none;
+      appearance: none;
+    }
+  }
+}
+.dog-input-selector:focus {
+  border: none;
 }
 
 .input-dog-avatar {
