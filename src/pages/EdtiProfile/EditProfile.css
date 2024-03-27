@@ -30,12 +30,7 @@
   border-radius: 50%;
 }
 
-.background {
-  background-color: #c2a88f; /* Color de fondo marrón clarito */
-  display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
-}
+
 
 .image-canva {
   background: #d9d9d9;
