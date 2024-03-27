@@ -1,17 +1,19 @@
 .dogprofile-container {
-  margin-bottom: 100px;
-  background-color: #c2a88f; /* Color de fondo marrón clarito */
+  min-width: fit-content;
+  background-color: #c2a88f;
   display: flex;
-  flex-direction: column; /* Alinear elementos en columna */
+  flex-direction: column;
 }
 
 .avatar-container {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra horizontalmente */
+  align-items: center;
 }
+
 .avatar-container-name {
+  margin-top: -20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -105,7 +107,7 @@
 }
 
 .dog-name {
-  font-size: 25px;
+  font-size: 30px;
   font-weight: 900;
 }
 
@@ -123,4 +125,6 @@
   background-color: #d32f2f;
 }
 
-
+.info-box-description p {
+  margin-top: 0;
+}

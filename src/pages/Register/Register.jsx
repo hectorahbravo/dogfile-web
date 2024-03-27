@@ -9,13 +9,13 @@ import Button from "../../components/Button/Button";
 
 import "./Register.css";
 const userSchema = object({
-  username: string().required("Campo requerido"),
+  username: string().required("Nombre de usuario es obligatorio"),
   email: string()
     .email("Introduce un email válido")
-    .required("Campo requerido"),
+    .required("Email es obligatorio"),
   password: string()
     .min(8, "Debe tener 8 caracteres mínimo")
-    .required("Campo requerido"),
+    .required("La contraseña es obligatoria"),
   avatar: mixed(),
 });
 const Register = ({ initialValues, isEdit, onSubmit }) => {
@@ -25,7 +25,6 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
     values,
     errors,
     touched,
-    isValid,
     setFieldValue,
     handleSubmit,
     handleChange,
@@ -35,7 +34,7 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
       username: "",
       email: "",
       password: "",
-      avatar: null, // Cambia el valor inicial a null
+      avatar: null,
     },
     onSubmit: (values) => {
       console.log("Submitting form with values:", values);
@@ -79,7 +78,7 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
             type="file"
             error={touched.avatar && errors.avatar}
             onChange={(event) => {
-              setFieldValue("avatar", event.currentTarget.files[0]); // Establece el archivo seleccionado en el estado
+              setFieldValue("avatar", event.currentTarget.files[0]);
             }}
             onBlur={handleBlur}
           />
@@ -115,7 +114,7 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
               onChange={handleChange}
               onBlur={handleBlur}
               className="login-form"
-              style={{ display: isEdit ? "none" : "block" }} // Ocultar el campo si isEdit es true
+              style={{ display: isEdit ? "none" : "block" }}
             />
           </div>
           <div className="container-buttons-login">

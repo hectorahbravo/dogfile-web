@@ -6,7 +6,7 @@ import { createDog, editDog } from "../../services/DogService.js";
 import Button from "../../components/Button/Button";
 import "./CreateDog.css";
 import { useNavigate, useParams } from "react-router-dom";
-
+import { FaRegImage } from "react-icons/fa";
 const dogSchema = object({
   name: string().required("El nombre es obligatorio"),
   birthdate: string(),
@@ -112,17 +112,7 @@ const CreateDog = ({ initialValues, isEdit }) => {
     <div className="background">
       <div className="dog-create-container">
         <form onSubmit={handleSubmit}>
-          <div className="input-dog-avatar">
-            {avatarURL && (
-              <img
-                className="dog-input-image"
-                src={avatarURL}
-                alt="dog_profile_image"
-              />
-            )}
-            <label htmlFor="avatar" className="dog-input-label">
-              Foto
-            </label>
+          <div className="file-input-wrapper">
             <input
               id="avatar"
               name="avatar"
@@ -131,6 +121,19 @@ const CreateDog = ({ initialValues, isEdit }) => {
               onBlur={handleBlur}
               className="input-file"
             />
+            <label htmlFor="avatar" className="icon-upload-image">
+              <FaRegImage />
+            </label>
+          </div>
+          <div className="input-dog-avatar">
+            {avatarURL && (
+              <img
+                className="dog-input-image"
+                src={avatarURL}
+                alt="dog_profile_image"
+              />
+            )}
+
             {touched.avatar && errors.avatar && (
               <div className="error-message">{errors.avatar}</div>
             )}
