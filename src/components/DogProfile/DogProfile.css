@@ -3,6 +3,7 @@
   background-color: #c2a88f;
   display: flex;
   flex-direction: column;
+  margin-bottom: 80px;
 }
 
 .avatar-container {
@@ -23,10 +24,10 @@
   position: absolute;
   right: 20px;
   top: 20px;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background-color: #c2a88f;
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,13 +37,13 @@
   aspect-ratio: 1 / 1;
   width: 100%;
   object-fit: cover;
-  border-radius: 0 0 20px 20px;
+  border-radius: 0 0 40px 40px;
 }
 .pencil {
   text-decoration: none;
-  color: #413d40;
-  width: 30px;
-  height: 30px;
+  color: #604a33;
+  width: 25px;
+  height: 25px;
 }
 
 .info-container {
