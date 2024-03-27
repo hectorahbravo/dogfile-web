@@ -53,14 +53,21 @@ const DogProfile = () => {
                 <p className="dog-name">{dogProfile.name}</p>
               </div>
               <div className="info-primer-container">
+                <div className="info-box info-box-description ">
+                  <h3>Como soy</h3>
+                  <p>{dogProfile.description}</p>
+                </div>
                 <div className="info-box">
                   <h3>Mi carácter</h3>
                   <p>{dogProfile.temperament}</p>
                 </div>
-                <div className="info-box">
+                <div className="info-box data-box">
                   <h3>Mis datos</h3>
                   <p>
                     <span>Peso:</span> {dogProfile.weight} kg
+                  </p>
+                  <p>
+                    <span>Sexo:</span> {dogProfile.sex}
                   </p>
                   <p>
                     <span>Fecha de nacimiento:</span>

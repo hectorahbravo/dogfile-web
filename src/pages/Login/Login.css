@@ -1,24 +1,28 @@
 .background {
-  background-color: #c2a88f; 
+  background-color: #c2a88f;
   display: flex;
-  justify-content: center; 
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
+}
+
+.background-edit-profile {
+  position: relative;
 }
 
 .login-container {
   margin-top: 100px;
   max-width: 400px;
-  background-color: #c2a88f; 
+  background-color: #c2a88f;
   display: flex;
-  flex-direction: column; 
-  justify-content: center; 
-  align-items: center; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .logo {
   width: 200px;
   height: 200px;
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
 .container-buttons-login {

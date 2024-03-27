@@ -50,15 +50,35 @@
   color: #fff;
 }
 
-.btn-delete {
-  display: flex;
-  flex-direction: center;
-  justify-content: center;
-  align-items: center;
+.btn-delete:active {
+  position: absolute;
+  top: 0px;
+  right: 0px;
   width: 40px;
   height: 40px;
   border: 2px solid #604a33;
   border-radius: 50px;
   background: #604a33;
   color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-delete {
+  position: absolute;
+  top: 20px;
+  right: 0px;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #ffffff;
+  border-radius: 50px;
+  background: #ffffff;
+  color: #604a33;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-delete > * {
+  width: 20px;
+  height: 20px;
 }
