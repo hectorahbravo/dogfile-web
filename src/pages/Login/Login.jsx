@@ -89,7 +89,6 @@ const Login = () => {
             <Button
               type={"button"}
               extraClassName="mt-4"
-              disabled={!isValid || formSubmitted}
               text="Crear una cuenta"
               className="btn-sign"
               onClick={handleSignIn}
