@@ -1,18 +1,16 @@
 import { object, string, mixed } from "yup";
-import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import Input from "../../components/Input/Input";
-import { register } from "../../services/AuthService";
-import { getAllVets } from "../../services/VetService";
+import { registerVet } from "../../services/AuthService";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 
 import Button from "../../components/Button/Button";
 
-import "./Register.css";
+import "./RegisterVet.css";
 
 const userSchema = object({
-  username: string().required("Campo requerido"),
+  name: string().required("Campo requerido"),
   email: string()
     .email("Introduce un email válido")
     .required("Campo requerido"),
@@ -20,20 +18,11 @@ const userSchema = object({
     .min(8, "Debe tener 8 caracteres mínimo")
     .required("Campo requerido"),
   avatar: mixed(),
-  selectedVet: string(),
 });
 
-const Register = ({ initialValues, isEdit, onSubmit }) => {
-  const { userId } = useParams();
+const RegisterVet = ({ initialValues, isEdit, onSubmit }) => {
+  const { vetId } = useParams();
   const navigate = useNavigate();
-  const [vets, setVets] = useState([]);
-
-  useEffect(() => {
-    getAllVets()
-      .then(vets => setVets(vets))
-      .catch(error => console.error('Error fetching vets:', error));
-  }, []);
-
   const {
     values,
     errors,
@@ -45,27 +34,27 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
     handleBlur,
   } = useFormik({
     initialValues: initialValues || {
-      username: "",
+      name: "",
       email: "",
       password: "",
-      avatar: null,
-      selectedVet: "",
+      avatar: null, // Cambia el valor inicial a null
     },
     onSubmit: (values) => {
+      console.log("Submitting form with values:", values);
       const data = new FormData();
       Object.keys(values).forEach((keyValue) => {
         data.append(keyValue, values[keyValue]);
       });
       if (isEdit) {
-        onSubmit(userId, data)
+        onSubmit(vetId, data)
           .then(() => {
-            navigate("/user");
+            navigate("/vets");
           })
           .catch((err) => console.error(err));
       } else {
-        register(data)
+        registerVet(data)
           .then(() => {
-            navigate("/");
+            navigate("/login/vets");
           })
           .catch((err) => console.error(err));
       }
@@ -88,17 +77,17 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
             type="file"
             error={touched.avatar && errors.avatar}
             onChange={(event) => {
-              setFieldValue("avatar", event.currentTarget.files[0]);
+              setFieldValue("avatar", event.currentTarget.files[0]); // Establece el archivo seleccionado en el estado
             }}
             onBlur={handleBlur}
           />
           <div className="input-container">
             <Input
               autoComplete="off"
-              name="username"
+              name="name"
               placeholder="Introduce tu nombre"
-              value={values.username}
-              error={touched.username && errors.username}
+              value={values.name}
+              error={touched.name && errors.name}
               onChange={handleChange}
               onBlur={handleBlur}
               className="login-form"
@@ -124,21 +113,8 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
               onChange={handleChange}
               onBlur={handleBlur}
               className="login-form"
-              style={{ display: isEdit ? "none" : "block" }}
+              style={{ display: isEdit ? "none" : "block" }} // Ocultar el campo si isEdit es true
             />
-          </div>
-          <div className="input-container">
-            <select
-              name="selectedVet"
-              value={values.selectedVet}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            >
-              <option value="">Selecciona una clínica veterinaria</option>
-              {vets.map(vet => (
-                <option key={vet._id} value={vet._id}>{vet.name}</option>
-              ))}
-            </select>
           </div>
           <div className="container-buttons">
             <Button
@@ -153,4 +129,4 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
   );
 };
 
-export default Register;
+export default RegisterVet;
