@@ -1,0 +1,30 @@
+.background {
+  background-color:#c2a88f; /* Color de fondo marrón clarito */
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+}
+
+.login-container {
+  max-width: 400px; /* Tamaño máximo del contenedor */
+  padding: 20px; /* Espaciado interno */
+  background-color: #c2a88f; /* Color de fondo marrón clarito */
+  display: flex;
+  flex-direction: column; /* Alinear elementos en columna */
+  justify-content: center; /* Centrar verticalmente */
+  align-items: center; /* Centrar horizontalmente */
+  height: 100vh; /* Altura total del viewport */
+}
+
+.logo {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 20px; /* Espacio entre el logo y el formulario */
+}
+
+.container-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}

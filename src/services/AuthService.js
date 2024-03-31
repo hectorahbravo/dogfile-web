@@ -9,3 +9,12 @@ export const register = (data) => {
 export const login = (data) => {
   return http.post("/login", data);
 };
+
+
+export const registerVet = (data) => {
+  return http.post("/register/vets", data);
+};
+
+export const loginVet = (data) => {
+  return http.post("/login/vets", data);
+};

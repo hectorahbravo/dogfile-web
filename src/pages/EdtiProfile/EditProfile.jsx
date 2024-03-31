@@ -1,57 +1,71 @@
-import Register from "../Register/Register";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { getUser, editUser } from "../../services/UserService";
-import { object, string, mixed } from "yup";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
+import { object, string, mixed } from "yup";
 import Input from "../../components/Input/Input";
-import Button from '../../components/Button/Button.jsx'
+import Button from '../../components/Button/Button.jsx';
 import AuthContext from "../../contexts/AuthContext";
-import "./EditProfile.css";
+import { editUser } from "../../services/UserService";
 import { FaArrowLeft } from "react-icons/fa";
-import '../Register/Register.css'
-import '../../components/Button/Button.css'
-import '../../components/Input/Input.css'
+import "./EditProfile.css";
+import '../Register/Register.css';
+import '../../components/Button/Button.css';
+import '../../components/Input/Input.css';
 
 const userSchema = object({
   username: string().required("Campo requerido"),
   email: string()
     .email("Introduce un email válido")
     .required("Campo requerido"),
-  avatar: mixed(),
+  avatar: mixed().test('is-file', 'Por favor, sube un archivo de imagen', (value) => {
+    return value instanceof File || value === null;
+  }),
 });
 
 const EditProfile = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const [avatarUrl, setAvatarUrl] = useState(user.avatar);
+
   const {
     values,
     errors,
     touched,
-    isValid,
     setFieldValue,
     handleSubmit,
     handleChange,
     handleBlur,
   } = useFormik({
     initialValues: {
-      username: `${user.username}`,
-      email: `${user.email}`,
-      avatar: `${user.avatar}`, // Cambia el valor inicial a null
+      username: user.username,
+      email: user.email,
+      avatar: null,
     },
 
     onSubmit: (values) => {
       console.log("Submitting form with values:", values);
+
+      // Logging the avatar URL before sending it to the server
+      console.log("Avatar URL before sending:", values.avatar);
+
       const data = new FormData();
       Object.keys(values).forEach((keyValue) => {
-        data.append(keyValue, values[keyValue]);
-        editUser(user.id, values)
-          .then(() => {
-            navigate("/user");
-          })
-          .catch((err) => console.error(err));
+        if (keyValue === 'avatar') {
+          if (values[keyValue] instanceof File) {
+            data.append(keyValue, values[keyValue]);
+          }
+        } else {
+          data.append(keyValue, values[keyValue]);
+        }
       });
+
+      editUser(user.id, data)
+        .then(() => {
+          setAvatarUrl(values.avatar ? URL.createObjectURL(values.avatar) : user.avatar);
+          navigate("/user");
+        })
+        .catch((err) => console.error(err));
     },
     validationSchema: userSchema,
     validateOnBlur: true,
@@ -66,22 +80,21 @@ const EditProfile = () => {
         </Link>
         <form onSubmit={handleSubmit}>
           <div className="userprofile-img">
-            <img src={user.avatar} alt="profile_image" />
-          
-          <Input
-            name="avatar"
-            type="file"
-            label="Sube una foto"
-            error={touched.avatar && errors.avatar}
-            onChange={(event) => {
-              setFieldValue("avatar", event.currentTarget.files[0]); // Establece el archivo seleccionado en el estado
-            }}
-            onBlur={handleBlur}
-          />
+            <img src={avatarUrl} alt="profile_image" />
+            <Input
+              name="avatar"
+              type="file"
+              label="Sube una foto"
+              error={touched.avatar && errors.avatar}
+              onChange={(event) => {
+                setFieldValue("avatar", event.currentTarget.files[0]);
+              }}
+              onBlur={handleBlur}
+            />
           </div>
           <div className="input-container">
             <Input
-              autocomplete="off"
+              autoComplete="off"
               name="username"
               label="User name"
               placeholder="Introduce tu nombre"
@@ -92,7 +105,7 @@ const EditProfile = () => {
               className="login-form"
             />
             <Input
-              autocomplete="off"
+              autoComplete="off"
               name="email"
               type="email"
               label="Email"
