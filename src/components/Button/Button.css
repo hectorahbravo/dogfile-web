@@ -5,39 +5,80 @@
   border: 2px solid #604a33;
   border-radius: 50px;
   background: #8e6c49;
-  color: rgb(255, 255, 255);
+  color: #ffffff;
 }
-
-.btn-sign {
-  margin-top: 150px;
-  position: absolute;
-  width: 282px;
-  height: 54px;
-  border: 2px solid #604a33;
-  border-radius: 50px;
-  background: #ffffff;
-  color: #604a33;
-}
-
-.btn-register {
+.btn-login:active {
   position: relative;
   width: 282px;
   height: 54px;
+  border: 2px solid #fff;
+  border-radius: 50px;
+  background: #fff;
+  color: #8e6c49;
+}
+
+.btn-sign {
+  width: 282px;
+  height: 54px;
   border: 2px solid #604a33;
   border-radius: 50px;
   background: #ffffff;
   color: #604a33;
 }
+.btn-sign:active {
+  width: 282px;
+  height: 54px;
+  border: 2px solid #604a33;
+  border-radius: 50px;
+  background: #8e6c49;
+  color: #fff;
+}
 
-.btn-delete {
-  display: flex;
-  flex-direction: center;
-  justify-content: center;
-  align-items: center;
+.btn-register {
+  width: 282px;
+  height: 54px;
+  border: 2px solid #604a33;
+  border-radius: 50px;
+  background: #ffffff;
+  color: #604a33;
+}
+.btn-register:active {
+  position: relative;
+  border: 2px solid #604a33;
+  border-radius: 50px;
+  background: #604a33;
+  color: #fff;
+}
+
+.btn-delete:active {
+  position: absolute;
+  top: 0px;
+  right: 0px;
   width: 40px;
   height: 40px;
   border: 2px solid #604a33;
   border-radius: 50px;
   background: #604a33;
   color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-delete {
+  position: absolute;
+  top: 20px;
+  right: 0px;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #ffffff;
+  border-radius: 50px;
+  background: #ffffff;
+  color: #604a33;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-delete > * {
+  width: 20px;
+  height: 20px;
 }

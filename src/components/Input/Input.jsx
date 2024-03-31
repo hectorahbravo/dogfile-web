@@ -1,6 +1,7 @@
 import "./Input.css";
 
 const Input = ({
+  rows,
   autocomplete,
   value,
   onChange,
@@ -17,8 +18,9 @@ const Input = ({
 }) => {
   return (
     <div>
-      <label>{label}</label>
+      <label className="dog-input-label">{label}</label>
       <input
+        rows={rows}
         autoComplete={autocomplete}
         type={type}
         name={name}

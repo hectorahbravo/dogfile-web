@@ -6,7 +6,6 @@
 .container-vaccines {
   display: flex;
   flex-direction: column;
-
   align-items: left;
   justify-content: center;
 }
@@ -41,6 +40,30 @@
   margin-bottom: 15px;
 }
 
+.file-input-wrapper {
+  position: absolute;
+}
+.icon-upload-image {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #ffffff;
+  border-radius: 50px;
+  background: #ffffff;
+  color: #604a33;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-file {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
 .checkbox {
   display: flex;
   flex-direction: row;
@@ -51,9 +74,9 @@
   margin-bottom: 10px;
 }
 
-.dog-input label {
-  font-size: 20px;
-  color: #666;
+.dog-input-label {
+  font-size: 10px;
+  color: #000000;
 }
 
 /* Estilos para los mensajes de error */
@@ -72,17 +95,48 @@
 .dog-input-selector {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
+  justify-content: left;
   width: 340px;
-  height: 55px;
+  height: px;
   border: 1px solid rgb(205, 192, 172);
   border-radius: 11px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background: rgb(255, 255, 255);
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 15px 0;
+  margin-bottom: 15px;
 }
 
-.label-selector {
-  color: white;
+/* Ajustes específicos para Safari */
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    .dog-input {
+      -webkit-appearance: none;
+      appearance: none;
+    }
+  }
+}
+.dog-input-selector:focus {
+  border: none;
+}
+
+.input-dog-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dog-input-image {
+  position: relative;
+  box-sizing: border-box;
+  border: 4px solid #a58466;
+  outline: 4px solid #ffffff;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+.dog-input-label {
+  margin: 5px 0;
+  align-self: self-start;
 }

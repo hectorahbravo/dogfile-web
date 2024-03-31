@@ -1,131 +1,119 @@
-.background-dogprofile {
-  background-color: #c2a88f; /* Color de fondo marrón clarito */
-  display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center;
-  height: 800px;/* Centra verticalmente */
-}
-
 .dogprofile-container {
-  /* Tamaño máximo del contenedor */
-  /* Espaciado interno */
-  margin-top: -230px;
-  background-color: #c2a88f; /* Color de fondo marrón clarito */
+  min-width: fit-content;
+  background-color: #c2a88f;
   display: flex;
-  flex-direction: column; /* Alinear elementos en columna */
-  justify-content: center; /* Centrar verticalmente */
-  align-items: center; /* Centrar horizontalmente */
+  flex-direction: column;
+  margin-bottom: 80px;
 }
 
 .avatar-container {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra horizontalmente */
+  align-items: center;
 }
+
 .avatar-container-name {
+  margin-top: -20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   gap: 5px;
 }
 .pencil-circle {
-  width: 20px;
-  height: 20px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background-color: white;
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .avatar {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  width: 100%;
   object-fit: cover;
+  border-radius: 0 0 40px 40px;
 }
 .pencil {
-  width: 30px;
-  height: 30px;
-  margin-left: 4px;
+  text-decoration: none;
+  color: #604a33;
+  width: 25px;
+  height: 25px;
 }
 
 .info-container {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin: 20px;
 }
 
 .info-primer-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   gap: 20px;
 }
+
 .info-box {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  /* align-items: center; */
-  width: 150px;
-  height: 150px;
-  margin-bottom: 10px;
   background-color: #ecdfcd;
   border-radius: 12px;
-  box-shadow: 0px 4px 8px #6e676d;
+}
+.info-box > * {
+  list-style: none;
+  padding: 0;
+  margin: 10px;
+  color: #413d40;
 }
 
-.info-box h3 {
-  margin-top: -5px;
-  margin-left: 5px;
-  color: #413d40;
-}
 .info-box p {
   font-size: 15px;
-  margin-left: 5px;
-  margin-top: 10px;
   color: #413d40;
+}
+.info-box li {
+  margin: 10px 0;
+}
+
+.info-box li:first-child {
+  margin-top: 0;
 }
 
 .traits-container {
   width: 100%;
-  margin-top: -60px;
 }
 
 .traits-container h2 {
   font-size: 20px;
-  margin-top: 70px;
   color: #604a33;
+}
+.info-box span {
+  font-weight: bold;
 }
 
 .traits-box {
-  margin-top: 10px;
   height: 10vh;
-  background-color: white;
+  background-color: #604a33;
   border: 1px solid #ccc;
   border-radius: 12px;
 }
 
-.traits-box h3 {
-  margin-top: 10px;
-  margin-left: 5px;
-  font-size: 15px;
-}
-
-.traits-box p {
-  margin-top: 8px;
-  margin-left: 5px;
-  font-size: 15px;
+.traits-box > * {
+  color: #ecdfcd;
+  margin: 10px;
 }
 
 .dog-name {
-  font-size: 20px;
-  margin-top: -5px;
-  margin-bottom: 5px;
+  font-size: 30px;
+  font-weight: 900;
 }
 
 .delete-dog-button {
-  margin-top: 20px;
-  background-color: #f44336; /* Rojo */
+  background-color: #f44336;
   color: #ffffff;
   padding: 10px 20px;
   border: none;
@@ -135,5 +123,9 @@
 }
 
 .delete-dog-button:hover {
-  background-color: #d32f2f; /* Rojo más oscuro */
+  background-color: #d32f2f;
+}
+
+.info-box-description p {
+  margin-top: 0;
 }
