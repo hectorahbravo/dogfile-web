@@ -1,14 +1,12 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import CreateDog from "../../components/CreateDog/CreateDog";
 import { useContext, useEffect, useState } from "react";
 import { editDog, getDog, deleteDog } from "../../services/DogService";
-import { FaTrash } from "react-icons/fa";
-import Button from "../../components/Button/Button";
-import '../../components/Button/Button.css'
+import "../../components/Button/Button.css";
 import "../../components/DogProfile/DogProfile.css";
 import DogContext from "../../contexts/DogContext";
-import './EditDogProfile.css'
-// Importa la función para formatear la fecha
+import "./EditDogProfile.css";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 function formatDate(dateString) {
   const dateObject = new Date(dateString);
@@ -29,7 +27,6 @@ const EditDog = () => {
     setLoading(true);
     getDog(userId, dogId)
       .then((dogDB) => {
-        // Formatear la fecha antes de actualizar el estado
         const formattedDog = {
           ...dogDB,
           birthdate: formatDate(dogDB.birthdate),
@@ -58,7 +55,7 @@ const EditDog = () => {
   const onDelete = () => {
     if (
       window.confirm(
-        "¿Estás seguro de que deseas eliminar este perfil de perro?"
+        `¿Estás seguro de que quieres eliminar el perfil de ${dog.name}?`
       )
     ) {
       deleteDog(userId, dogId)
@@ -72,24 +69,25 @@ const EditDog = () => {
   };
 
   return (
-    <div className="background">
-    <div className="edit-profile-container">
-      {loading ? (
-        <p>Cargando...</p>
-      ) : (
-        <>
-          <CreateDog
-            initialValues={dog || {}}
-            onSubmit={onSubmit}
-            isEdit={true}
-          />
-          <div className="delete-container">
-          <Button className="btn-delete" onClick={onDelete} text={"🗑️"}>
-          </Button> </div>
-        </>
-        
-      )}
-    </div>
+    <div className="background  ">
+      <div className="edit-profile-container background-edit-profile">
+        {loading ? (
+          <p>Cargando...</p>
+        ) : (
+          <>
+            <CreateDog
+              initialValues={dog || {}}
+              onSubmit={onSubmit}
+              isEdit={true}
+            />
+            <div className="delete-container">
+              <Link className="btn-delete" onClick={onDelete}>
+                <RiDeleteBin5Line />
+              </Link>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 };

@@ -1,6 +1,5 @@
 .register-container {
   width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,7 +8,6 @@
 }
 
 .input-container {
-  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,24 +19,6 @@
   flex-direction: column;
 }
 
-.image-canva {
-  background: #d9d9d9;
-  border: 8px solid #a58466;
-  outline: 8px solid #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.image-canva img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 .container-buttons {
   display: flex;
   flex-direction: column;

@@ -12,13 +12,13 @@ import Button from "../../components/Button/Button";
 import "./Register.css";
 
 const userSchema = object({
-  username: string().required("Campo requerido"),
+  username: string().required("Nombre de usuario es obligatorio"),
   email: string()
     .email("Introduce un email válido")
-    .required("Campo requerido"),
+    .required("Email es obligatorio"),
   password: string()
     .min(8, "Debe tener 8 caracteres mínimo")
-    .required("Campo requerido"),
+    .required("La contraseña es obligatoria"),
   avatar: mixed(),
   selectedVet: string(),
 });
@@ -38,7 +38,6 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
     values,
     errors,
     touched,
-    isValid,
     setFieldValue,
     handleSubmit,
     handleChange,
@@ -74,6 +73,10 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
     validateOnBlur: true,
     validateOnMount: true,
   });
+
+  const handleLogin = () => {
+    navigate("/");
+  };
 
   return (
     <div className="background">
@@ -145,6 +148,12 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
               type="submit"
               className="btn-register"
               text={isEdit ? "Guardar cambios" : "Registrar"}
+            />
+            <Button
+              type={"button"}
+              text="Inicia sesión"
+              className="btn-login"
+              onClick={handleLogin}
             />
           </div>
         </form>

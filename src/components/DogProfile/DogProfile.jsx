@@ -1,21 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getDog } from "../../services/DogService";
-import "./DogProfile.css"; // Importa el archivo CSS para los estilos
-import Pencil from "../../assets/images/pencil.png";
+import "./DogProfile.css";
+import { GrEdit } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext";
 import DogContext from "../../contexts/DogContext";
-
-export function formatFecha(fecha) {
-  const date = new Date(fecha);
-  const year = date.getFullYear();
-  const month = ("0" + (date.getMonth() + 1)).slice(-2);
-  const day = ("0" + date.getDate()).slice(-2);
-
-  return `${year}-${month}-${day}`;
-}
+import { formatFecha, calcularEdad } from "../../helpers/formatDate";
 
 const DogProfile = () => {
   const { user } = useContext(AuthContext);
@@ -45,30 +37,42 @@ const DogProfile = () => {
         <div className="background-dogprofile">
           <div className="dogprofile-container">
             <div className="avatar-container">
-              <div className="avatar-container-name">
-                <p className="dog-name">{dogProfile.name}</p>
-                <div className="pencil-circle">
-                  <Link to={`/users/${user.id}/dogs/${dogProfile.id}/edit`}>
-                    <img className="pencil" src={Pencil} alt="editar-perfil" />
-                  </Link>
-                </div>
-              </div>
               <img
                 src={dogProfile.avatar}
                 alt="Dog Avatar"
                 className="avatar"
               />
+              <div className="pencil-circle">
+                <Link to={`/users/${user.id}/dogs/${dogProfile.id}/edit`}>
+                  <GrEdit className="pencil" />
+                </Link>
+              </div>
             </div>
             <div className="info-container">
+              <div className="avatar-container-name">
+                <p className="dog-name">{dogProfile.name}</p>
+              </div>
               <div className="info-primer-container">
+                <div className="info-box info-box-description ">
+                  <h3>Como soy</h3>
+                  <p>{dogProfile.description}</p>
+                </div>
                 <div className="info-box">
+                  <h3>Mi carácter</h3>
+                  <p>{dogProfile.temperament}</p>
+                </div>
+                <div className="info-box data-box">
                   <h3>Mis datos</h3>
                   <p>
-                    <strong>Peso:</strong> {dogProfile.weight} kg
+                    <span>Peso:</span> {dogProfile.weight} kg
                   </p>
                   <p>
-                    <strong>Fecha de nacimiento:</strong>{" "}
-                    {formatFecha(dogProfile.birthdate)}
+                    <span>Sexo:</span> {dogProfile.sex}
+                  </p>
+                  <p>
+                    <span>Fecha de nacimiento:</span>
+                    {` ${formatFecha(dogProfile.birthdate)}
+                    ${calcularEdad(dogProfile.birthdate)}`}
                   </p>
                 </div>
                 <div className="info-box">
@@ -80,31 +84,24 @@ const DogProfile = () => {
                     ))}
                   </ul>
                 </div>
-              </div>
-              <div className="info-primer-container">
+
                 <div className="info-box">
                   <h3>Mi comida</h3>
                   <p>
-                    <strong>Comida:</strong> {dogProfile.foodType}
+                    <span>Comida:</span> {dogProfile.foodType}
                   </p>
                   <p>
-                    <strong>Cantidad:</strong> {dogProfile.foodKg} kg
+                    <span>Cantidad:</span> {dogProfile.foodKg} kg
                   </p>
                   <p>
-                    <strong>Veces al día:</strong> {dogProfile.foodTimes}
+                    <span>Veces al día:</span> {dogProfile.foodTimes}
                   </p>
                 </div>
                 <div className="info-box">
                   <h3>Mis alergias</h3>
                   <p> {dogProfile.allergies}</p>
                 </div>
-              </div>
-            </div>
-            <div className="traits-container">
-              <h2>¿Cómo soy?</h2>
-              <div className="traits-box">
-                <h3>Mi carácter</h3>
-                <p>{dogProfile.temperament}</p>
+                <div className="info-box"></div>
               </div>
             </div>
           </div>

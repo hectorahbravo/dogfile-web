@@ -1,20 +1,11 @@
 .username {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
-}
-
-.image-canva {
-  border: 8px solid #a58466;
-  outline: 8px solid #ffffff;
-  margin: 20px;
-  width: 80px;
-  height: 80px;
 }
 
 .container-profile {
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
