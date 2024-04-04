@@ -1,6 +1,6 @@
+import { useContext, useEffect, useState } from "react";
 import ReactCalendar from "react-calendar";
 import AuthContext from "../../contexts/AuthContext";
-import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import NextReminders from "./NextReminders";
@@ -10,6 +10,17 @@ import "./RemindersCalendar.css";
 function RemindersCalendar() {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [reminders, setReminders] = useState([]);
+
+  useEffect(() => {
+    if (user && user.reminders) {
+      setReminders(user.reminders);
+    }
+  }, [user]);
+
+  const updateReminders = (newReminderList) => {
+    setReminders(newReminderList);
+  };
 
   const handleClickDay = (date) => {
     const formattedDate = formatDate(date);
@@ -20,25 +31,37 @@ function RemindersCalendar() {
     const year = date.getFullYear();
     const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const day = date.getDate().toString().padStart(2, "0");
-
     return `${year}-${month}-${day}`;
   };
 
   const tileContent = ({ date, view }) => {
-    if (view === "month" && user && user.reminders) {
+    if (view === "month" && reminders.length > 0) {
       const currentDate = new Date(date);
-
-      const eventsOnDay = user.reminders.filter((reminder) => {
+      const eventsOnDay = reminders.filter((reminder) => {
         const reminderDate = new Date(reminder.startDate);
         const endDate = new Date(reminder.endDate);
-
         if (reminder.repeat) {
           if (reminder.frequency === "daily") {
-            return currentDate >= reminderDate && currentDate <= endDate;
+            return (
+              (currentDate >= reminderDate ||
+                currentDate.toDateString() === reminderDate.toDateString()) &&
+              currentDate <= endDate
+            );
+          } else if (reminder.frequency === "weekly") {
+            if (currentDate.getDay() === reminderDate.getDay()) {
+              const weeksDifference = Math.floor(
+                (currentDate - reminderDate) / (7 * 24 * 60 * 60 * 1000)
+              );
+              if (
+                weeksDifference >= 0 &&
+                (!reminder.endDate || currentDate <= new Date(reminder.endDate))
+              ) {
+                return true;
+              }
+            }
           } else if (reminder.frequency === "monthly") {
             return (
               currentDate.getDate() === reminderDate.getDate() &&
-              currentDate >= reminderDate &&
               currentDate <= endDate
             );
           } else if (reminder.frequency === "annually") {
@@ -73,8 +96,7 @@ function RemindersCalendar() {
 
   return (
     <div className="reminders-page">
-      {/* Si user.reminders es null, muestra un mensaje de carga */}
-      {user === null && user.reminders === null ? (
+      {user === null || user.reminders === null ? (
         <div>Cargando...</div>
       ) : (
         <>
@@ -90,7 +112,10 @@ function RemindersCalendar() {
             Nuevo recordatorio
             <IoMdAddCircleOutline />
           </Link>
-          <NextReminders reminders={user.reminders} />
+          <NextReminders
+            reminders={user.reminders}
+            updateReminders={updateReminders}
+          />
         </>
       )}
     </div>

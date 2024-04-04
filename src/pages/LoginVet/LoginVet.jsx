@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import { string, object } from "yup";
 import Button from "../../components/Button/Button";
 import { useContext } from "react";
-import VetContext from '../../contexts/VetContext'
+import VetContext from "../../contexts/VetContext";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/images/logo6.png";
 import "./LoginVet.css";
@@ -81,18 +81,18 @@ const LoginVet = () => {
           </div>
           <div className="container-buttons">
             <Button
+              type="submit"
+              disabled={!isValid}
+              text="Log in"
+              className="btn-login"
+            />
+            <Button
               type={"button"}
               extraClassName="mt-4"
               disabled={!isValid}
               text="Sign in"
               className="btn-sign"
               onClick={handleSignIn}
-            />
-            <Button
-              type="submit"
-              disabled={!isValid}
-              text="Log in"
-              className="btn-login"
             />
           </div>
         </form>
