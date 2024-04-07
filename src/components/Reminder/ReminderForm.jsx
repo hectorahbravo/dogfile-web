@@ -73,7 +73,7 @@ const ReminderForm = () => {
   return (
     <div className="background">
       <div className="newreminder-container">
-        <Link to={"/"} className="exit-arrow">
+        <Link to={"/reminders"} className="exit-arrow">
           <FaArrowLeft />
         </Link>
         <h2>Nuevo recordatorio</h2>
