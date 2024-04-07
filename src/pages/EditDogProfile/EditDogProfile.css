@@ -1,16 +1,14 @@
 .delete-container {
-    margin-top: -140px;
+  margin-top: -140px;
 }
 
 .edit-profile-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  margin-bottom: 90px;
+  margin-top: 25px;
 }
 .background-editdog {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

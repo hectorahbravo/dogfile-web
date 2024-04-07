@@ -70,7 +70,7 @@ const EditDog = () => {
 
   return (
     <div className="background  ">
-      <div className="edit-profile-container background-edit-profile">
+      <div className="background-edit-profile">
         {loading ? (
           <p>Cargando...</p>
         ) : (

@@ -34,7 +34,7 @@ const DogProfile = () => {
       {dogProfile === null ? (
         <p>loading</p>
       ) : (
-        <div className="background-dogprofile">
+        <div className="background">
           <div className="dogprofile-container">
             <div className="avatar-container">
               <img
