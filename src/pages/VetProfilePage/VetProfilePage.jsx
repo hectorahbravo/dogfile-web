@@ -5,7 +5,6 @@ import "./VetProfilePage.css";
 import { Link } from "react-router-dom";
 import { deleteVet } from "../../services/VetService";
 import { useNavigate } from "react-router-dom";
-import { FaTrash } from "react-icons/fa";
 import { logout } from "../../stores/AccessTokenStore";
 import { GrEdit } from "react-icons/gr";
 import { IoMailOutline } from "react-icons/io5";
@@ -32,7 +31,7 @@ const VetProfilePage = () => {
         });
     }
   };
-  
+
   return (
     <div className="background-userprofile">
       <div className="userprofile-container">
@@ -51,7 +50,7 @@ const VetProfilePage = () => {
               </Link>
             </div>
             <div className="link-item">
-              <Link to="/" className="icon-link">
+              <Link to="/vetreminder/new" className="icon-link">
                 <div className="container-icon">
                   <IoMailOutline className="icon-links" />
                 </div>

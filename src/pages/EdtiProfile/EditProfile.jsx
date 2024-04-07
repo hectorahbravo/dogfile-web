@@ -17,9 +17,13 @@ const userSchema = object({
   email: string()
     .email("Introduce un email válido")
     .required("Campo requerido"),
-  avatar: mixed().test('is-file', 'Por favor, sube un archivo de imagen', (value) => {
-    return value instanceof File || value === null;
-  }),
+  avatar: mixed().test(
+    "is-file",
+    "Por favor, sube un archivo de imagen",
+    (value) => {
+      return value instanceof File || value === null;
+    }
+  ),
 });
 
 const EditProfile = () => {
@@ -51,7 +55,7 @@ const EditProfile = () => {
 
       const data = new FormData();
       Object.keys(values).forEach((keyValue) => {
-        if (keyValue === 'avatar') {
+        if (keyValue === "avatar") {
           if (values[keyValue] instanceof File) {
             data.append(keyValue, values[keyValue]);
           }
@@ -62,7 +66,9 @@ const EditProfile = () => {
 
       editUser(user.id, data)
         .then(() => {
-          setAvatarUrl(values.avatar ? URL.createObjectURL(values.avatar) : user.avatar);
+          setAvatarUrl(
+            values.avatar ? URL.createObjectURL(values.avatar) : user.avatar
+          );
           navigate("/user");
         })
         .catch((err) => console.error(err));

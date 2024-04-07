@@ -4,7 +4,7 @@ import AuthContext from "../../contexts/AuthContext";
 import "./CalendarDay.css";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { deleteReminder } from "../../services/ReminderService";
-import Button from "../../components/Button/Button";
+import { FaRegTrashAlt } from "react-icons/fa";
 import "../../components/Button/Button.css";
 import { FaArrowLeft } from "react-icons/fa";
 
@@ -29,6 +29,12 @@ const CalendarDay = () => {
           checkDate.getMonth() === startDate.getMonth() &&
           checkDate.getDate() === startDate.getDate()
         );
+      } else if (reminder.frequency === "weekly") {
+        return (
+          checkDate.getDay() === startDate.getDay() &&
+          checkDate >= startDate &&
+          checkDate <= endDate
+        );
       }
 
       return false;
@@ -44,18 +50,8 @@ const CalendarDay = () => {
     });
 
     return (
-      <div
-        className="hour"
-        key={hour}
-        style={{
-          border: "1px solid #ccc",
-          height: "60px",
-          padding: "5px",
-          marginBottom: "5px",
-          margin: "5px",
-        }}
-      >
-        <p>{hour}</p>
+      <div className="hour" key={hour}>
+        <p className="hour-number">{hour}</p>
         {events.map((event, index) => (
           <div key={index} className="dayhour">
             <div className="event-body">
@@ -70,11 +66,9 @@ const CalendarDay = () => {
               </span>
             </div>
 
-            <Button
-              onClick={() => onDelete(event.id)}
-              text={"🗑️"}
-              className="btn-delete"
-            />
+            <Link onClick={() => onDelete(event.id)} className="btn-delete-day">
+              <FaRegTrashAlt />
+            </Link>
           </div>
         ))}
       </div>
@@ -113,7 +107,7 @@ const CalendarDay = () => {
         <FaArrowLeft className="exit-arrow exit-arrow-about" />
       </Link>
       <h2 className="date">{date}</h2>
-      <div className="container-buttons">
+      <div className="container-buttons-day">
         <button className="round-button" onClick={() => changeDay(-1)}>
           Día anterior
         </button>
