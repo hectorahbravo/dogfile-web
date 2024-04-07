@@ -112,6 +112,7 @@ function App() {
         <Route path="/reminders" element={<RemindersCalendar />} />
         <Route path="/calendar/day/:date" element={<CalendarDay />} />
         <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/vetreminders" element={<RemindersCalendar />} />
       </Routes>
     </div>
   );

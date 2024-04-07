@@ -67,7 +67,7 @@ const RegisterVet = ({ initialValues, isEdit, onSubmit }) => {
   return (
     <div className="background">
       <div className="register-container">
-        <Link to={"/"}>
+        <Link to={"/login/vets"}>
           <FaArrowLeft className="exit-arrow" />
         </Link>
         <form onSubmit={handleSubmit}>
