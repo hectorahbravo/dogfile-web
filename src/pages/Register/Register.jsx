@@ -130,19 +130,6 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
               style={{ display: isEdit ? "none" : "block" }}
             />
           </div>
-          <div className="input-container">
-            <select
-              name="selectedVet"
-              value={values.selectedVet}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            >
-              <option value="">Selecciona una clínica veterinaria</option>
-              {vets.map(vet => (
-                <option key={vet._id} value={vet._id}>{vet.name}</option>
-              ))}
-            </select>
-          </div>
           <div className="container-buttons">
             <Button
               type="submit"

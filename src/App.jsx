@@ -19,10 +19,7 @@ import "./App.css";
 import Activation from "./components/Activation";
 import CalendarDay from "./pages/CalendarDay/CalendarDay";
 import RegisterVet from "./pages/RegisterVet/RegisterVet";
-import LoginVet from "./pages/LoginVet/LoginVet";
 import ActivationVet from "./components/ActivationVet";
-import VetProfilePage from "./pages/VetProfilePage/VetProfilePage";
-import VetReminderForm from "./components/VetReminder/VetReminderForm";
 
 function App() {
   const location = useLocation();
@@ -52,7 +49,6 @@ function App() {
       <Routes>
         <Route path="/activate/:token" element={<Activation />} />
         <Route path="/activatevet/:token" element={<ActivationVet />} />
-        <Route path="/login/vets" element={<LoginVet />} />
         <Route path="/" element={<Login />} />
         <Route
           path="/create-dog/:userId"
@@ -96,23 +92,13 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route
-          path="/vets"
-          element={
-            <ProtectedRoute>
-              <VetProfilePage />
-            </ProtectedRoute>
-          }
-        />
         <Route path="/maps" element={<MapPage />} />
         <Route path="/reports/new" element={<ReportsPage />} />
         <Route path="/recommendation/new" element={<RecommendationPage />} />
         <Route path="/reminder/new" element={<ReminderForm />} />
-        <Route path="/vetreminder/new" element={<VetReminderForm />} />
         <Route path="/reminders" element={<RemindersCalendar />} />
         <Route path="/calendar/day/:date" element={<CalendarDay />} />
         <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/vetreminders" element={<RemindersCalendar />} />
       </Routes>
     </div>
   );
