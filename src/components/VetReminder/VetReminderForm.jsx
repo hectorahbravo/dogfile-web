@@ -1,10 +1,15 @@
-import React, { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { useFormik } from 'formik';
+import Input from "../Input/Input";
+import {
+  optionsFrecuencia,
+  optionsIcono,
+  optionsTipo,
+} from "../../dist/constant/reminderSelectForm";
 import { object, string, boolean, date } from 'yup';
 import Select from '../Select/Select';
 import Button from '../Button/Button';
 import VetAuthContext from '../../contexts/VetContext';
-import AuthContext from '../../contexts/AuthContext';
 import { vetReminderCreate } from '../../services/VetReminderService';
 import { getDogsAssociatedWithVet } from '../../services/VetService';
 import './VetReminderForm.css';
@@ -26,6 +31,51 @@ const vetReminderSchema = object({
 const VetReminderForm = () => {
   const { vet } = useContext(VetAuthContext);
   const navigate = useNavigate();
+  
+
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
+    initialValues: {
+      title: '',
+      type: '',
+      icon: '',
+      photo: '',
+      repeat: false,
+      frequency: '',
+      startDate: formatDate(new Date()),
+      endDate: formatDate(new Date()),
+      hour: '12:00',
+      destinatary: '',
+    },
+    onSubmit: async (values) => {
+      const startDateString = values.startDate.toString();
+      const endDateString = values.endDate.toString();
+      
+      try {
+        await vetReminderCreate({
+          ...values,
+          startDate: startDateString,
+          endDate: endDateString,
+          vet: vet.id,
+        });
+        
+        console.log("Recordatorio creado exitosamente");
+        navigate("/login-vets");
+      } catch (error) {
+        console.error("Error al crear el recordatorio:", error);
+      }
+    },
+    validationSchema: vetReminderSchema,
+    validateOnChange: true,
+    validateOnBlur: true,
+    validateOnMount: true,
+  });
+
   const [dogs, setDogs] = useState([]);
   const [selectedDog, setSelectedDog] = useState('');
 
@@ -54,100 +104,47 @@ const VetReminderForm = () => {
 }, [dogs]);
  // Esta dependencia asegura que el efecto se ejecute después de que dogs se actualice
 
-  const formatDate = (date) => {
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  };
 
-  const handleDogChange = (e) => {
+ const handleDogChange = (e) => {
     setSelectedDog(e.target.value);
-    console.log(e.target.value)
+    console.log("Perro seleccionado:", e.target.value);
   };
 
-  const handleSubmit = (values) => {
-    const startDateString = values.startDate.toString();
-    const endDateString = values.endDate.toString();
-    vetReminderCreate({
-      ...values,
-      startDate: startDateString,
-      endDate: endDateString,
-      vet: vet ? vet.id : null,
-      dogId: selectedDog, // Cambia userId por dogId
-    })
-      .then(() => {
-        navigate('/vetreminders');
-      })
-      .catch((error) => {
-        console.error('Error creating vet reminder:', error);
-      });
-  };
-
-  const { values, errors, touched, handleBlur, handleChange } = useFormik({
-    initialValues: {
-      title: '',
-      type: '',
-      icon: '',
-      photo: '',
-      repeat: false,
-      frequency: '',
-      startDate: formatDate(new Date()),
-      endDate: formatDate(new Date()),
-      hour: '12:00',
-      destinatary: '',
-    },
-    onSubmit: handleSubmit,
-    validationSchema: vetReminderSchema,
-    validateOnChange: true,
-    validateOnBlur: true,
-    validateOnMount: true,
-  });
 
   return (
     <div className="background">
       <div className="newreminder-container">
         <form className="newreminder-form" onSubmit={handleSubmit}>
-          <input
-            placeholder="Título"
+        <Input
+            placeholder="Titulo"
+            label="Título"
             name="title"
             type="text"
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.title}
+            error={touched.title && errors.title}
             className="reminder-input-container"
           />
-          <Select
-            options={[
-              { value: 'Medicamentos', label: 'Medicamentos' },
-              { value: 'Vacuna', label: 'Vacuna' },
-              { value: 'Visita al veterinario', label: 'Visita al veterinario' },
-              // Agrega aquí más opciones si es necesario
-            ]}
+        <Select
+            options={optionsTipo}
             value={values.type}
             onChange={handleChange}
             name="type"
             label="Tipo"
             className="reminder-input-container"
+            extraClassName="reminder-select-form"
           />
-          <input
-            placeholder="Icono"
-            name="icon"
-            type="text"
-            onChange={handleChange}
-            onBlur={handleBlur}
+          <Select
+            options={optionsIcono}
             value={values.icon}
-            className="reminder-input-container"
-          />
-          <input
-            placeholder="Foto"
-            name="photo"
-            type="text"
             onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.photo}
+            name="icon"
+            label="Icono"
+            extraClassName="reminder-select-form"
             className="reminder-input-container"
           />
+
           <label className="reminder-form-repeat">
             <input
               type="checkbox"
@@ -158,33 +155,49 @@ const VetReminderForm = () => {
             />
             Repetir
           </label>
-          <input
+          <Select
+            options={optionsFrecuencia}
+            value={values.frequency}
+            onChange={handleChange}
+            name="frequency"
+            label="Frecuencia"
+            className="reminder-input-container"
+            extraClassName="reminder-select-form"
+          />
+          <Input
             placeholder="Fecha de inicio"
+            label="Fecha de inicio"
             name="startDate"
             type="date"
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.startDate}
+            error={touched.startDate && errors.startDate}
             className="reminder-input-container"
           />
-          <input
-            placeholder="Fecha de fin"
+          <Input
+            placeholder="Fecha de Fin"
+            label="Fecha de inicio"
             name="endDate"
             type="date"
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.endDate}
+            error={touched.endDate && errors.endDate}
             className="reminder-input-container"
           />
-          <input
+          <Input
             placeholder="Hora"
+            label="Hora"
             name="hour"
             type="time"
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.hour}
+            error={touched.hour && errors.hour}
             className="reminder-input-container"
           />
+
           <Select
             options={dogs ? dogs.map((dog) => ({ value: dog.id, label: dog.name })) : []}
             value={selectedDog}
