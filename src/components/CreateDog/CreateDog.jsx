@@ -66,7 +66,7 @@ const CreateDog = ({ initialValues, isEdit }) => {
         editDog(values, userId, dogId)
           .then(() => {
             console.log("Dog edited successfully");
-            navigate("/user");
+            navigate(`/${userId}/dogs/${dogId}`);
           })
           .catch((err) => console.error(err));
       } else {
@@ -130,7 +130,7 @@ const CreateDog = ({ initialValues, isEdit }) => {
             <label
               htmlFor="avatar"
               className={`icon-upload-image ${
-                !isEdit && !avatarURL ? "icon-upload-image-edit" : ""
+                !isEdit && !avatarURL ? "icon-upload-image-edit-dog" : ""
               }`}
             >
               <FaRegImage />

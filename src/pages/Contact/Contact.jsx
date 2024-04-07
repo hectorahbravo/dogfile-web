@@ -9,7 +9,7 @@ const AboutUs = () => {
   return (
     <div className="aboutus-container">
       <Link to={"/user"}>
-        <FaArrowLeft className="exit-arrow exit-arrow-about" />
+        <FaArrowLeft className="exit-arrow" />
       </Link>
       <h1>Quiénes Somos</h1>
       <p>

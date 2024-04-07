@@ -30,7 +30,7 @@ const DogProfile = () => {
   }, [userId, dogId, fetchDogProfile]);
 
   return (
-    <div>
+    <>
       {dogProfile === null ? (
         <p>loading</p>
       ) : (
@@ -91,7 +91,7 @@ const DogProfile = () => {
                     <span>Comida:</span> {dogProfile.foodType}
                   </p>
                   <p>
-                    <span>Cantidad:</span> {dogProfile.foodKg} kg
+                    <span>Cantidad:</span> {dogProfile.foodKg} gr
                   </p>
                   <p>
                     <span>Veces al día:</span> {dogProfile.foodTimes}
@@ -107,7 +107,7 @@ const DogProfile = () => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

@@ -4,7 +4,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f0efd6;
 }
 
 .input-container {
@@ -22,4 +21,12 @@
 .container-buttons {
   display: flex;
   flex-direction: column;
+}
+
+.input-container-register {
+  margin-top: 30px;
+}
+
+.btn-register-view {
+  margin-bottom: 20px;
 }

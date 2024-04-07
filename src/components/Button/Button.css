@@ -52,8 +52,8 @@
 
 .btn-delete:active {
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 20px;
+  right: 20px;
   width: 40px;
   height: 40px;
   border: 2px solid #604a33;
@@ -67,7 +67,7 @@
 .btn-delete {
   position: absolute;
   top: 20px;
-  right: 0px;
+  right: 20px;
   width: 40px;
   height: 40px;
   border: 2px solid #ffffff;

@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import mapboxgl, { PositionOptions } from "mapbox-gl";
 import { getReports } from "../../services/ReportService";
 import { getRecommendations } from "../../services/RecommendationService";
-
+import "./Map.css";
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZG9nZmlsZSIsImEiOiJjbHRrMjZjMzIwdGk3Mmtxb3RsMjNvZWZhIn0.iwiwLx0iNECX9mWSKOTANA";
 
@@ -87,11 +87,15 @@ export default function Map() {
   }, [reports, recommendations]);
 
   return (
-    <div className="background-map">
+    <div>
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <div ref={mapContainer} style={{ height: "400px" }}></div>
+        <div
+          ref={mapContainer}
+          className="only-map-container"
+          style={{ height: "400px" }}
+        ></div>
       )}
     </div>
   );

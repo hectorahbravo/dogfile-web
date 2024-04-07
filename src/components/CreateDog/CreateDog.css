@@ -59,11 +59,6 @@
   z-index: 100;
 }
 
-.icon-upload-image-edit {
-  top: 0;
-  left: 0;
-}
-
 .input-file {
   position: absolute;
   top: -100;
@@ -146,4 +141,9 @@
 .dog-input-label {
   margin: 5px 0;
   align-self: self-start;
+}
+.icon-upload-image-edit-dog {
+  position: relative;
+  top: 0;
+  left: 0;
 }

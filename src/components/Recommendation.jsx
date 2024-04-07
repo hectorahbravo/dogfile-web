@@ -9,9 +9,11 @@ import AuthContext from "../contexts/AuthContext";
 import { recommendationCreate } from "../services/RecommendationService";
 import "./Recommendation.css";
 import "../components/Input/Input.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZG9nZmlsZSIsImEiOiJjbHRvcHQweDgwaXh3MmptZXVwNnBmY3UyIn0.xyszSwJvLRUMFHKtIPb0ew";
+
 
 const recommendationSchema = object({
   title: string().required("El título es obligatorio"),
@@ -88,7 +90,7 @@ const Recommendation = () => {
 
           removeMarkers();
 
-          const newMarker = new mapboxgl.Marker()
+          const newMarker = new mapboxgl.Marker({ color: "green" })
             .setLngLat([lng, lat])
             .addTo(mapInstance);
           setMarker(newMarker);
@@ -112,8 +114,16 @@ const Recommendation = () => {
   };
 
   return (
-    <div>
-      <div ref={mapContainer} style={{ height: "300px" }}></div>
+    <div className="recommendation-form-container">
+      <Link to={"/maps"} className="exit-arrow">
+        <FaArrowLeft />
+      </Link>
+      <h2>Nueva recomendacion</h2>
+      <div
+        ref={mapContainer}
+        className="only-map-container"
+        style={{ height: "400px" }}
+      ></div>
       <div className="form-recommendation">
         {errors.longitude && <p>Selecciona un punto en el mapa</p>}
         <form onSubmit={handleSubmit}>
@@ -152,7 +162,7 @@ const Recommendation = () => {
           />
           <Button
             type="submit"
-            className="btn-login"
+            className="btn-login btn-new-recommendation"
             text="Recomendar"
             disabled={!isValid}
           />

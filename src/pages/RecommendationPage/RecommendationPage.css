@@ -1,0 +1,15 @@
+.recommendation-form-container h2,
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.recommendation-form-container {
+  margin-bottom: 100px;
+}
+
+.btn-new-recommendation {
+  margin-top: 20px;
+}

@@ -1,9 +1,11 @@
 .background {
+  width: 100vw;
   background-color: #c2a88f;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 
 .background-edit-profile {
   position: relative;

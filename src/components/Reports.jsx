@@ -8,7 +8,9 @@ import { reportCreate } from "../services/ReportService";
 import AuthContext from "../contexts/AuthContext";
 import "./Reports.css";
 import "../components/Input/Input.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
+import { formatFecha } from "../helpers/formatDate";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZG9nZmlsZSIsImEiOiJjbHRvcHQweDgwaXh3MmptZXVwNnBmY3UyIn0.xyszSwJvLRUMFHKtIPb0ew";
@@ -27,6 +29,7 @@ const reportSchema = object({
 const Reports = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const today = new Date();
 
   const mapContainer = useRef(null);
   const [lng, setLng] = useState(-3.703462);
@@ -47,9 +50,9 @@ const Reports = () => {
     initialValues: {
       title: "",
       description: "",
-      startDate: "",
-      endDate: "",
-      time: "",
+      startDate: formatFecha(new Date()),
+      endDate: formatFecha(new Date()),
+      time: "12:00",
       location: "",
       latitude: null,
       longitude: null,
@@ -114,11 +117,15 @@ const Reports = () => {
   console.log(errors);
 
   return (
-    <div>
+    <div className="recommendation-form-container">
+      <Link to={"/maps"} className="exit-arrow">
+        <FaArrowLeft />
+      </Link>
+      <h2>Nuevo Reporte</h2>
       <div
         ref={mapContainer}
-        className="map-container"
-        style={{ height: "300px" }}
+        className="only-map-container"
+        style={{ height: "400px" }}
       ></div>
       <div className="form-report">
         {errors.longitude && <p>Selecciona un punto en el mapa</p>}
@@ -193,7 +200,7 @@ const Reports = () => {
           <Button
             type="submit"
             text="Reportar"
-            className="btn-login"
+            className="btn-login btn-new-recommendation"
             disabled={!isValid}
           />
         </form>

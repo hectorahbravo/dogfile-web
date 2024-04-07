@@ -29,7 +29,7 @@
 
 .reminder-input-container button {
   width: 100%; /* Ancho del botón al 100% */
-  margin-top: 10px; /* Espaciado superior */
+  margin-top: 10px; 
 }
 .newreminder-container {
   display: flex;
@@ -40,5 +40,9 @@
 }
 
 .reminder-form-repeat {
+  align-self: center;
+}
+.btn-reminder-new {
+  margin: 20px 0;
   align-self: center;
 }
