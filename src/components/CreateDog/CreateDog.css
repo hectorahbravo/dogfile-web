@@ -45,6 +45,8 @@
 }
 .icon-upload-image {
   position: relative;
+  top: 200px;
+  left: 60px;
   width: 40px;
   height: 40px;
   border: 2px solid #ffffff;
@@ -54,12 +56,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 100;
+}
+
+.icon-upload-image-edit {
+  top: 0;
+  left: 0;
 }
 
 .input-file {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: -100;
   opacity: 0;
   cursor: pointer;
 }

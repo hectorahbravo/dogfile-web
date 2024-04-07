@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { FaArrowLeft } from "react-icons/fa";
 import { array, object, string } from "yup";
 import { useFormik } from "formik";
 import Input from "../../components/Input/Input";
 import { createDog, editDog } from "../../services/DogService.js";
 import Button from "../../components/Button/Button";
 import "./CreateDog.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaRegImage } from "react-icons/fa";
 const dogSchema = object({
   name: string().required("El nombre es obligatorio"),
@@ -111,6 +112,9 @@ const CreateDog = ({ initialValues, isEdit }) => {
   return (
     <div className="background">
       <div className="dog-create-container">
+        <Link to={isEdit ? `/${userId}/dogs/${dogId}` : "/user"}>
+          <FaArrowLeft className="exit-arrow" />
+        </Link>
         <form onSubmit={handleSubmit}>
           <div className="file-input-wrapper">
             <input
@@ -121,11 +125,17 @@ const CreateDog = ({ initialValues, isEdit }) => {
               onBlur={handleBlur}
               className="input-file"
             />
-            <label htmlFor="avatar" className="icon-upload-image">
-              <FaRegImage />
-            </label>
           </div>
           <div className="input-dog-avatar">
+            <label
+              htmlFor="avatar"
+              className={`icon-upload-image ${
+                !isEdit && !avatarURL ? "icon-upload-image-edit" : ""
+              }`}
+            >
+              <FaRegImage />
+            </label>
+
             {avatarURL && (
               <img
                 className="dog-input-image"

@@ -1,11 +1,5 @@
-.exit-arrow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 20px;
-  color: white;
-}
 .userprofile-img {
+  width: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,16 +7,13 @@
   margin-bottom: 30px;
   gap: 20px;
 }
-.register-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #c2a88f;
+.edit-profile-container {
+  margin-bottom: 90px;
+  margin-top: 25px;
 }
 
 .register-container img {
-  background: #d9d9d9;
+  background: #c2a88f;
   border: 2px solid white;
   outline: 10px solid #ffffff;
   width: 200px;
@@ -54,6 +45,21 @@
 }
 
 .input-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-upload-image-edit-profile {
+  position: relative;
+  top: 200px;
+  left: 60px;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #ffffff;
+  border-radius: 50px;
+  background: #ffffff;
+  color: #604a33;
   display: flex;
   justify-content: center;
   align-items: center;

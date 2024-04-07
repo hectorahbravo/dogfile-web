@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { editUser } from "../../services/UserService";
-import { object, string, mixed } from "yup";
+import { object, string } from "yup";
 import { useFormik } from "formik";
 import { useState } from "react";
 import Input from "../../components/Input/Input";
@@ -11,26 +11,21 @@ import { FaArrowLeft } from "react-icons/fa";
 import "../Register/Register.css";
 import "../../components/Button/Button.css";
 import "../../components/Input/Input.css";
+import { FaRegImage } from "react-icons/fa";
 
 const userSchema = object({
   username: string().required("Campo requerido"),
   email: string()
     .email("Introduce un email válido")
     .required("Campo requerido"),
-  avatar: mixed().test(
-    "is-file",
-    "Por favor, sube un archivo de imagen",
-    (value) => {
-      return value instanceof File || value === null;
-    }
-  ),
+  avatar: string(),
 });
 
 const EditProfile = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  const [avatarUrl, setAvatarUrl] = useState(user.avatar);
+  const [avatarFile, setAvatarFile] = useState(null);
+  const [avatarURL, setAvatarURL] = useState(user.avatar);
 
   const {
     values,
@@ -49,26 +44,10 @@ const EditProfile = () => {
 
     onSubmit: (values) => {
       console.log("Submitting form with values:", values);
-
-      // Logging the avatar URL before sending it to the server
       console.log("Avatar URL before sending:", values.avatar);
 
-      const data = new FormData();
-      Object.keys(values).forEach((keyValue) => {
-        if (keyValue === "avatar") {
-          if (values[keyValue] instanceof File) {
-            data.append(keyValue, values[keyValue]);
-          }
-        } else {
-          data.append(keyValue, values[keyValue]);
-        }
-      });
-
-      editUser(user.id, data)
+      editUser(user.id, values)
         .then(() => {
-          setAvatarUrl(
-            values.avatar ? URL.createObjectURL(values.avatar) : user.avatar
-          );
           navigate("/user");
         })
         .catch((err) => console.error(err));
@@ -78,26 +57,45 @@ const EditProfile = () => {
     validateOnMount: true,
   });
 
+  const handleAvatarChange = (event) => {
+    const file = event.currentTarget.files[0];
+    if (file) {
+      setAvatarFile(file);
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        setAvatarURL(reader.result);
+        setFieldValue("avatar", reader.result);
+      };
+    }
+  };
+
   return (
     <div className="background">
-      <div className="register-container">
-        <Link to={"/user"}>
-          <FaArrowLeft className="exit-arrow" />
+      <div className="edit-profile-container">
+        <Link to={"/user"} className="exit-arrow">
+          <FaArrowLeft />
         </Link>
         <form onSubmit={handleSubmit}>
-          <div className="userprofile-img">
-            <img src={user.avatar} alt="profile_image" />
-
-            <Input
-              name="avatar"
-              type="file"
-              label="Sube una foto"
-              error={touched.avatar && errors.avatar}
-              onChange={(event) => {
-                setFieldValue("avatar", event.currentTarget.files[0]);
-              }}
-              onBlur={handleBlur}
+          <div className="input-dog-avatar">
+            <label htmlFor="avatar" className="icon-upload-image">
+              <FaRegImage />
+            </label>
+            <img
+              src={avatarURL}
+              alt="profile_image"
+              className="dog-input-image"
             />
+            <div className="file-input-wrapper">
+              <input
+                id="avatar"
+                name="avatar"
+                type="file"
+                onChange={handleAvatarChange}
+                onBlur={handleBlur}
+                className="input-file"
+              />
+            </div>
           </div>
           <div className="input-container">
             <Input
