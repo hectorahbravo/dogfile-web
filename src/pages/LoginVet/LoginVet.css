@@ -1,9 +1,4 @@
-.background {
-  background-color:#c2a88f; /* Color de fondo marrón clarito */
-  display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
-}
+
 
 .login-container {
   max-width: 400px; /* Tamaño máximo del contenedor */
@@ -26,5 +21,4 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  
 }

@@ -10,7 +10,9 @@ const Select = ({
 }) => {
   return (
     <div>
-      <label htmlFor={name}>{label}</label>
+      <label htmlFor={name} className="dog-input-label">
+        {label}
+      </label>
       <select
         style={{ width: "100%" }}
         className={`${extraClassName} ${className} `}

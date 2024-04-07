@@ -6,12 +6,12 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 const MapPage = () => {
-  const { user } = useContext(AuthContext);
-
   return (
     <div className="background-map">
       <div className="map-page">
+        <h2>Mapas</h2>
         <div className="map-container">
+          <Map />
           <h2 className="map-title">Alertas y recomendaciones</h2>
           <p className="text-map">
             ¿Quieres dar un paseo con tu perro y no sabes dónde? Aquí puedes
@@ -19,27 +19,24 @@ const MapPage = () => {
             los usuarios, y todas las alertas en sitios que pueden poner en
             peligro a tu mascota.
           </p>
-          <Map />
         </div>
         <div className="map-info-container">
-          <div className="leyend">
-            <p>
-              <FaMapMarkerAlt color="red" /> Alertas recibidas de usuarios
-            </p>
-            <p>
-              <FaMapMarkerAlt color="green" /> Sitios recomendados por usuarios
-            </p>
-          </div>
-
-          <div className="text-add">
-            <Link className="add-link" to={"/reports/new"}>
-              <AiOutlinePlusCircle style={{ color: "red" }} /> Añadir alerta
-            </Link>
-            <Link className="add-link" to={"/recommendation/new"}>
-              <AiOutlinePlusCircle style={{ color: "green" }} /> Añadir sitio
-              recomendado
-            </Link>
-          </div>
+          <Link className="add-link" to={"/reports/new"}>
+            <div className="btn-sign leyend">
+              <p>
+                <FaMapMarkerAlt color="red" />
+                Reportar
+              </p>
+            </div>
+          </Link>
+          <Link className="add-link" to={"/recommendation/new"}>
+            <div className="btn-sign leyend">
+              <p>
+                <FaMapMarkerAlt color="green" />
+                Recomedar
+              </p>
+            </div>
+          </Link>
         </div>
       </div>
     </div>

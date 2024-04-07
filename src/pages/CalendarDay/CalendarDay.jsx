@@ -104,7 +104,7 @@ const CalendarDay = () => {
   return (
     <div className="background-hours">
       <Link to={"/reminders"}>
-        <FaArrowLeft className="exit-arrow exit-arrow-about" />
+        <FaArrowLeft className="exit-arrow" />
       </Link>
       <h2 className="date">{date}</h2>
       <div className="container-buttons-day">

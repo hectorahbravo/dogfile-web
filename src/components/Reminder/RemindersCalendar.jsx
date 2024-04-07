@@ -52,6 +52,9 @@ function RemindersCalendar() {
               const weeksDifference = Math.floor(
                 (currentDate - reminderDate) / (7 * 24 * 60 * 60 * 1000)
               );
+              if (currentDate.getDate() === reminderDate.getDate()) {
+                return true;
+              }
               if (
                 weeksDifference >= 0 &&
                 (!reminder.endDate || currentDate <= new Date(reminder.endDate))
@@ -79,7 +82,7 @@ function RemindersCalendar() {
 
       return (
         <div className="tile-content-container">
-          <div className="icons">
+          <div className="icons-calendar">
             {eventsOnDay.map((event, index) => (
               <span key={index}>
                 {event.icon === "icon1" && "💊"}
@@ -100,6 +103,7 @@ function RemindersCalendar() {
         <div>Cargando...</div>
       ) : (
         <>
+          <h2>Recordatorios</h2>
           <div className="react-calendar">
             <ReactCalendar
               onClickDay={handleClickDay}

@@ -1,11 +1,11 @@
-import { object, string, mixed } from "yup";
-import { useEffect, useState } from "react";
+import { object, string } from "yup";
+import { useState } from "react";
 import { useFormik } from "formik";
 import Input from "../../components/Input/Input";
 import { register } from "../../services/AuthService";
-import { getAllVets } from "../../services/VetService";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+import { FaRegImage } from "react-icons/fa";
 
 import Button from "../../components/Button/Button";
 
@@ -19,20 +19,14 @@ const userSchema = object({
   password: string()
     .min(8, "Debe tener 8 caracteres mínimo")
     .required("La contraseña es obligatoria"),
-  avatar: mixed(),
+  avatar: string().required("Selecciona una Foto"),
   selectedVet: string(),
 });
 
-const Register = ({ initialValues, isEdit, onSubmit }) => {
-  const { userId } = useParams();
+const Register = ({ initialValues, isEdit }) => {
   const navigate = useNavigate();
-  const [vets, setVets] = useState([]);
-
-  useEffect(() => {
-    getAllVets()
-      .then(vets => setVets(vets))
-      .catch(error => console.error('Error fetching vets:', error));
-  }, []);
+  const [avatarFile, setAvatarFile] = useState(null);
+  const [avatarURL, setAvatarURL] = useState(null);
 
   const {
     values,
@@ -47,27 +41,14 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
       username: "",
       email: "",
       password: "",
-      avatar: null,
-      selectedVet: "",
+      avatar: "",
     },
     onSubmit: (values) => {
-      const data = new FormData();
-      Object.keys(values).forEach((keyValue) => {
-        data.append(keyValue, values[keyValue]);
-      });
-      if (isEdit) {
-        onSubmit(userId, data)
-          .then(() => {
-            navigate("/user");
-          })
-          .catch((err) => console.error(err));
-      } else {
-        register(data)
-          .then(() => {
-            navigate("/");
-          })
-          .catch((err) => console.error(err));
-      }
+      register(values)
+        .then(() => {
+          navigate("/");
+        })
+        .catch((err) => console.error(err));
     },
     validationSchema: userSchema,
     validateOnBlur: true,
@@ -78,24 +59,48 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
     navigate("/");
   };
 
+  const handleAvatarChange = (event) => {
+    const file = event.currentTarget.files[0];
+    if (file) {
+      setAvatarFile(file);
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        setAvatarURL(reader.result);
+        setFieldValue("avatar", reader.result);
+      };
+    }
+  };
+
   return (
     <div className="background">
       <div className="register-container">
-        <Link to={"/"}>
-          <FaArrowLeft className="exit-arrow" />
+        <Link to={"/"} className="exit-arrow">
+          <FaArrowLeft />
         </Link>
         <form onSubmit={handleSubmit}>
-          <img src="" className="image-canva" alt="" />
-          <Input
-            name="avatar"
-            type="file"
-            error={touched.avatar && errors.avatar}
-            onChange={(event) => {
-              setFieldValue("avatar", event.currentTarget.files[0]);
-            }}
-            onBlur={handleBlur}
-          />
-          <div className="input-container">
+          <div className="input-dog-avatar">
+            <label
+              htmlFor="avatar"
+              className={`icon-upload-image ${
+                avatarURL ? "icon-upload-image-edit" : ""
+              }`}
+            >
+              <FaRegImage />
+            </label>
+            <img src={avatarURL} className="dog-input-image" />
+            <div className="file-input-wrapper">
+              <input
+                id="avatar"
+                name="avatar"
+                type="file"
+                onChange={handleAvatarChange}
+                onBlur={handleBlur}
+                className="input-file"
+              />
+            </div>
+          </div>
+          <div className="input-container input-container-register ">
             <Input
               autoComplete="off"
               name="username"
@@ -133,7 +138,7 @@ const Register = ({ initialValues, isEdit, onSubmit }) => {
           <div className="container-buttons">
             <Button
               type="submit"
-              className="btn-register"
+              className="btn-register btn-register-view"
               text={isEdit ? "Guardar cambios" : "Registrar"}
             />
             <Button

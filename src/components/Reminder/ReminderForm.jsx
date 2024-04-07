@@ -13,7 +13,8 @@ import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext";
 import { reminderCreate } from "../../services/ReminderService";
 import "./ReminderForm.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 
 const reminderSchema = object({
   title: string().required("El título es obligatorio"),
@@ -72,6 +73,10 @@ const ReminderForm = () => {
   return (
     <div className="background">
       <div className="newreminder-container">
+        <Link to={"/"} className="exit-arrow">
+          <FaArrowLeft />
+        </Link>
+        <h2>Nuevo recordatorio</h2>
         <form className="newreminder-form" onSubmit={handleSubmit}>
           <Input
             placeholder="Titulo"
@@ -82,7 +87,7 @@ const ReminderForm = () => {
             onBlur={handleBlur}
             value={values.title}
             error={touched.title && errors.title}
-            className="reminder-input-container"
+            className="reminder-input-container "
           />
           <Select
             options={optionsTipo}
@@ -91,7 +96,7 @@ const ReminderForm = () => {
             name="type"
             label="Tipo"
             className="reminder-input-container"
-            extraClassName="reminder-select-form"
+            extraClassName="reminder-select-form "
           />
           <Select
             options={optionsIcono}

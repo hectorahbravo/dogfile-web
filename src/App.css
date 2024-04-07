@@ -1,7 +1,7 @@
 .container-app {
-  background-color: #c2a88f;
-  width: 100%;
+  min-width: 350px;
   height: 100vh;
+  background-color: #c2a88f;
   overflow-y: auto;
   overflow-x: hidden;
 }
