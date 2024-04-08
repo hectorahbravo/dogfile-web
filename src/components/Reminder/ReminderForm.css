@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 300px; /* Ancho del contenedor al 100% */ /* Máximo ancho del contenedor */
+  min-width: 300px;
   border: 1px solid rgb(205, 192, 172);
   border-radius: 11px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -16,20 +16,14 @@
   flex-direction: column;
   justify-content: center;
 }
-.reminder-input-container input,
-.reminder-input-container select {
-  width: 100%; /* Ancho del input/select al 100% */
-  padding: 8px; /* Espaciado interno */
-  margin-bottom: 8px; /* Espaciado inferior */
-}
+
 
 .reminder-input-container label {
   margin-bottom: 4px; /* Espaciado inferior */
 }
 
 .reminder-input-container button {
-  width: 100%; /* Ancho del botón al 100% */
-  margin-top: 10px; 
+  margin-top: 10px;
 }
 .newreminder-container {
   display: flex;

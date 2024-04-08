@@ -14,7 +14,6 @@ const Select = ({
         {label}
       </label>
       <select
-        style={{ width: "100%" }}
         className={`${extraClassName} ${className} `}
         id={name}
         name={name}
