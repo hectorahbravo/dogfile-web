@@ -11,6 +11,7 @@ import "../components/Input/Input.css";
 import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { formatFecha } from "../helpers/formatDate";
+import { Oval } from "react-loader-spinner";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZG9nZmlsZSIsImEiOiJjbHRvcHQweDgwaXh3MmptZXVwNnBmY3UyIn0.xyszSwJvLRUMFHKtIPb0ew";
@@ -30,6 +31,7 @@ const Reports = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const today = new Date();
+  const [isSubmitting, setIsSubmitting] = useState(false); // Nuevo estado
 
   const mapContainer = useRef(null);
   const [lng, setLng] = useState(-3.703462);
@@ -59,8 +61,16 @@ const Reports = () => {
       user: "",
     },
     onSubmit: (values) => {
-      reportCreate({ ...values, user: user.id });
-      navigate("/maps");
+      setIsSubmitting(true);
+      reportCreate({ ...values, user: user.id })
+        .then(() => {
+          setIsSubmitting(false);
+          navigate("/maps");
+        })
+        .catch((error) => {
+          setIsSubmitting(false);
+          console.error("Error al crear el reporte:", error);
+        });
     },
     validationSchema: reportSchema,
     validateOnChange: true,
@@ -199,9 +209,24 @@ const Reports = () => {
           />
           <Button
             type="submit"
-            text="Reportar"
+            text={
+              isSubmitting ? (
+                <Oval
+                  className="spiner"
+                  visible={true}
+                  height="25"
+                  width="25"
+                  color="white"
+                  ariaLabel="oval-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                />
+              ) : (
+                "Reportar"
+              )
+            }
             className="btn-login btn-new-recommendation"
-            disabled={!isValid}
+            disabled={!isValid || isSubmitting}
           />
         </form>
       </div>

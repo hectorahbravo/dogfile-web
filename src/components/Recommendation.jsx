@@ -4,16 +4,15 @@ import { useFormik } from "formik";
 import { number, object, string } from "yup";
 import Input from "./Input/Input";
 import Button from "./Button/Button";
-import "../components/Button/Button.css";
 import AuthContext from "../contexts/AuthContext";
 import { recommendationCreate } from "../services/RecommendationService";
-import "./Recommendation.css";
-import "../components/Input/Input.css";
 import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+import "./Recommendation.css";
+import { Oval } from "react-loader-spinner";
+
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZG9nZmlsZSIsImEiOiJjbHRvcHQweDgwaXh3MmptZXVwNnBmY3UyIn0.xyszSwJvLRUMFHKtIPb0ew";
-
 
 const recommendationSchema = object({
   title: string().required("El título es obligatorio"),
@@ -32,6 +31,8 @@ const Recommendation = () => {
   const [map, setMap] = useState(null);
   const [marker, setMarker] = useState(null);
   const { user } = useContext(AuthContext);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const {
     values,
     errors,
@@ -52,13 +53,21 @@ const Recommendation = () => {
       user: "",
     },
     onSubmit: (values) => {
+      setIsSubmitting(true);
       recommendationCreate({
         ...values,
         latitude: values.latitude,
         longitude: values.longitude,
         user: user.id,
-      });
-      navigate("/maps");
+      })
+        .then(() => {
+          setIsSubmitting(false);
+          navigate("/maps");
+        })
+        .catch((error) => {
+          setIsSubmitting(false);
+          console.error("Error al crear la recomendación:", error);
+        });
     },
     validationSchema: recommendationSchema,
     validateOnChange: true,
@@ -118,7 +127,7 @@ const Recommendation = () => {
       <Link to={"/maps"} className="exit-arrow">
         <FaArrowLeft />
       </Link>
-      <h2>Nueva recomendacion</h2>
+      <h2>Nueva recomendación</h2>
       <div
         ref={mapContainer}
         className="only-map-container"
@@ -163,8 +172,23 @@ const Recommendation = () => {
           <Button
             type="submit"
             className="btn-login btn-new-recommendation"
-            text="Recomendar"
-            disabled={!isValid}
+            text={
+              isSubmitting ? (
+                <Oval
+                  className="spiner"
+                  visible={true}
+                  height="25"
+                  width="25"
+                  color="white"
+                  ariaLabel="oval-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                />
+              ) : (
+                "Recomendar"
+              )
+            }
+            disabled={!isValid || isSubmitting}
           />
         </form>
       </div>

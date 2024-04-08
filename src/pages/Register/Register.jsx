@@ -1,15 +1,14 @@
-import { object, string } from "yup";
 import { useState } from "react";
+import { object, string } from "yup";
 import { useFormik } from "formik";
-import Input from "../../components/Input/Input";
-import { register } from "../../services/AuthService";
 import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaRegImage } from "react-icons/fa";
-
 import Button from "../../components/Button/Button";
-
+import { register } from "../../services/AuthService";
 import "./Register.css";
+import Input from "../../components/Input/Input";
+import { Oval } from "react-loader-spinner";
 
 const userSchema = object({
   username: string().required("Nombre de usuario es obligatorio"),
@@ -27,6 +26,7 @@ const Register = ({ initialValues, isEdit }) => {
   const navigate = useNavigate();
   const [avatarFile, setAvatarFile] = useState(null);
   const [avatarURL, setAvatarURL] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     values,
@@ -43,12 +43,17 @@ const Register = ({ initialValues, isEdit }) => {
       password: "",
       avatar: "",
     },
-    onSubmit: (values) => {
+    onSubmit: (values, { setSubmitting }) => {
+      setIsSubmitting(true);
       register(values)
         .then(() => {
           navigate("/");
         })
-        .catch((err) => console.error(err));
+        .catch((err) => console.error(err))
+        .finally(() => {
+          setIsSubmitting(false);
+          setSubmitting(false);
+        });
     },
     validationSchema: userSchema,
     validateOnBlur: true,
@@ -88,7 +93,7 @@ const Register = ({ initialValues, isEdit }) => {
             >
               <FaRegImage />
             </label>
-            <img src={avatarURL} className="dog-input-image" />
+            <img src={avatarURL} className="dog-input-image" alt="avatar" />
             <div className="file-input-wrapper">
               <input
                 id="avatar"
@@ -139,7 +144,24 @@ const Register = ({ initialValues, isEdit }) => {
             <Button
               type="submit"
               className="btn-register btn-register-view"
-              text={isEdit ? "Guardar cambios" : "Registrar"}
+              text={
+                isSubmitting ? (
+                  <Oval
+                    className="spiner"
+                    visible={true}
+                    height="25"
+                    width="25"
+                    color="black"
+                    ariaLabel="oval-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                  />
+                ) : isEdit ? (
+                  "Guardar cambios"
+                ) : (
+                  "Registrar"
+                )
+              }
             />
             <Button
               type={"button"}
