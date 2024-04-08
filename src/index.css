@@ -26,3 +26,13 @@ select {
   left: 20px;
   color: #604a33;
 }
+
+.spiner {
+  align-self: center;
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

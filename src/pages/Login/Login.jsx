@@ -1,12 +1,13 @@
-import Input from "../../components/Input/Input";
+import React, { useContext, useState } from "react";
 import { useFormik } from "formik";
 import { string, object } from "yup";
 import Button from "../../components/Button/Button";
-import { useContext, useState } from "react";
-import AuthContext from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/images/logo6.png";
+import AuthContext from "../../contexts/AuthContext";
+import Input from "../../components/Input/Input";
 import "./Login.css";
+import { Oval } from "react-loader-spinner";
 
 const userSchema = object({
   email: string().email("Email no válido").required("El email es requerido"),
@@ -18,7 +19,7 @@ const userSchema = object({
 const Login = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [formSubmitted, setFormSubmitted] = useState(false); // Nuevo estado
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     values,
@@ -33,9 +34,15 @@ const Login = () => {
       email: "",
       password: "",
     },
-    onSubmit: (values) => {
-      setFormSubmitted(true); // Marcamos que el formulario ha sido enviado
-      login(values).then(() => navigate("/user"));
+    onSubmit: (values, { setSubmitting }) => {
+      setIsSubmitting(true);
+      login(values)
+        .then(() => navigate("/user"))
+        .catch((err) => console.error(err))
+        .finally(() => {
+          setIsSubmitting(false);
+          setSubmitting(false);
+        });
     },
     validationSchema: userSchema,
     validateOnChange: true,
@@ -50,7 +57,7 @@ const Login = () => {
   return (
     <div className="background">
       <div className="login-container">
-        <img className="logo" src={Logo} />
+        <img className="logo" src={Logo} alt="Logo" />
 
         <form onSubmit={handleSubmit}>
           <div className="input-container">
@@ -82,8 +89,23 @@ const Login = () => {
           <div className="container-buttons-login">
             <Button
               type="submit"
-              disabled={!isValid || formSubmitted}
-              text="Inicia sesión"
+              disabled={!isValid || isSubmitting}
+              text={
+                isSubmitting ? (
+                  <Oval
+                    className="spiner"
+                    visible={true}
+                    height="25"
+                    width="25"
+                    color="white"
+                    ariaLabel="oval-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                  />
+                ) : (
+                  "Inicia sesión"
+                )
+              }
               className="btn-login"
             />
             <Button

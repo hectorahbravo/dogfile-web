@@ -1,20 +1,20 @@
+import { useContext, useState } from "react";
 import { useFormik } from "formik";
 import { object, string, boolean, date } from "yup";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import Select from "../Select/Select";
-import "../Button/Button.css";
 import {
   optionsFrecuencia,
   optionsIcono,
   optionsTipo,
 } from "../../dist/constant/reminderSelectForm";
-import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext";
 import { reminderCreate } from "../../services/ReminderService";
 import "./ReminderForm.css";
 import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+import { Oval } from "react-loader-spinner";
 
 const reminderSchema = object({
   title: string().required("El título es obligatorio"),
@@ -27,9 +27,11 @@ const reminderSchema = object({
   endDate: date(),
   hour: string(),
 });
+
 const ReminderForm = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false); // Nuevo estado
 
   const formatDate = (date) => {
     const year = date.getFullYear();
@@ -53,6 +55,7 @@ const ReminderForm = () => {
         hour: "12:00",
       },
       onSubmit: (values) => {
+        setIsSubmitting(true);
         const startDateString = values.startDate.toString();
         const endDateString = values.endDate.toString();
         reminderCreate({
@@ -60,16 +63,22 @@ const ReminderForm = () => {
           startDate: startDateString,
           endDate: endDateString,
           user: user.id,
-        });
-        console.log(values);
-
-        navigate("/reminders");
+        })
+          .then(() => {
+            setIsSubmitting(false);
+            navigate("/reminders");
+          })
+          .catch((err) => {
+            setIsSubmitting(false);
+            console.error(err);
+          });
       },
       validationSchema: reminderSchema,
       validateOnChange: true,
       validateOnBlur: true,
       validateOnMount: true,
     });
+
   return (
     <div className="background">
       <div className="newreminder-container">
@@ -163,8 +172,24 @@ const ReminderForm = () => {
 
           <Button
             type="submit"
+            disabled={isSubmitting}
             className="btn-register btn-reminder-new"
-            text={"Crear un reacordatorio"}
+            text={
+              isSubmitting ? (
+                <Oval
+                  className="spiner"
+                  visible={true}
+                  height="25"
+                  width="25"
+                  color="black"
+                  ariaLabel="oval-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                />
+              ) : (
+                "Crear un recordatorio"
+              )
+            }
           />
         </form>
       </div>

@@ -35,9 +35,9 @@ const CalendarDay = () => {
           checkDate >= startDate &&
           checkDate <= endDate
         );
+      } else {
+        return true;
       }
-
-      return false;
     });
 
     setReminders(remindersForDay);
