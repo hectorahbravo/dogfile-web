@@ -1,19 +1,16 @@
 .react-calendar {
+  border-radius: 20px;
+  width: 100%;
   margin: 0 auto;
   border: none;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 .react-calendar__navigation {
-  background-color: #c2a88f;
   margin-bottom: 0;
 }
 
 .react-calendar__navigation button {
   min-width: 44px;
-  background-color: #c2a88f;
   font-size: 14px;
-  margin-top: 8px;
   text-transform: uppercase;
   font-weight: bold;
   color: #604a33;
@@ -22,10 +19,12 @@
 .react-calendar__navigation button:enabled:hover,
 .react-calendar__navigation button:enabled:focus {
   background-color: #947c65;
+  border-radius: 20px;
+  color: #fff;
 }
 
 .react-calendar__navigation button[disabled] {
-  background-color: #c2a88f;
+  background-color: transparent;
 }
 
 abbr {
@@ -37,7 +36,8 @@ abbr {
 .react-calendar__tile:enabled:hover,
 .react-calendar__tile:enabled:focus {
   background: #947c65;
-  color: black;
+  color: #fff;
+  border-radius: 50%;
 }
 
 .react-calendar__tile--now {
@@ -52,7 +52,7 @@ abbr {
 
 .react-calendar__tile--hasActive:enabled:hover,
 .react-calendar__tile--hasActive:enabled:focus {
-  background-color: white;
+  background-color: transparent;
   color: #879281;
   border-radius: 50%;
 }
@@ -66,7 +66,6 @@ abbr {
 .react-calendar__tile--active:enabled:hover,
 .react-calendar__tile--active:enabled:focus {
   background: #8e6c49;
-  color: white;
 }
 
 .react-calendar--selectRange .react-calendar__tile--hover {
@@ -74,16 +73,16 @@ abbr {
 }
 
 .react-calendar__tile {
-  background: #f8f8fa;
+  background: transparent;
   border-radius: 0;
 }
 
 /* Custom styles for events on calendar */
 .react-calendar__tile--event {
-  background-color: #b56576; /* Use one of your colors */
-  color: white; /* Making it round */
-  padding: 2px 6px; /* Adjust padding */
-  font-size: 12px; /* Adjust font size */
+  background-color: #b56576;
+  color: white;
+  padding: 2px 6px;
+  font-size: 12px;
 }
 
 .react-calendar__tile--event:hover,
@@ -106,7 +105,6 @@ abbr {
   width: 50px;
   height: 50px;
   overflow: hidden;
-  background-color: #c2a88f;
   display: flex;
 }
 
@@ -115,11 +113,11 @@ abbr {
 }
 
 .react-calendar__tile:disabled {
-  background-color: #c2a88f;
-  color: #879281;
+  background-color: #fff;
+  color: #a8a6a3;
 }
 .react-calendar__tile:disabled abbr {
-  color: #fff;
+  color: #b9a671;
 }
 
 .react-calendar__month-view__days__day--weekend {
@@ -128,7 +126,7 @@ abbr {
 
 .react-calendar__navigation__arrow,
 .react-calendar__navigation__prev-button {
-  background-color: #c2a88f;
+  background-color: #fff;
 }
 
 .reminders-page {
@@ -150,5 +148,9 @@ abbr {
 }
 
 .react-calendar__month-view__weekdays__weekday {
-  background-color: #c2a88f;
+  background-color: #fff;
+}
+
+.react-calendar-container {
+  margin: 20px;
 }
