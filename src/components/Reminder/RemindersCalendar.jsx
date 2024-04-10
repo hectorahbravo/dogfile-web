@@ -104,7 +104,8 @@ function RemindersCalendar() {
       ) : (
         <>
           <h2>Recordatorios</h2>
-          <div className="react-calendar">
+
+          <div className="react-calendar-container">
             <ReactCalendar
               onClickDay={handleClickDay}
               tileContent={tileContent}
