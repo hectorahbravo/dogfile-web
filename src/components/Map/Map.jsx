@@ -47,18 +47,20 @@ export default function Map() {
         const allMarkers = [...reports, ...recommendations];
 
         const newMarkers = allMarkers.map((coord) => {
-          const customPopup = `<h4 style='color: blue;'>${coord.title}</h5> <div style='font-size: 9px;'>${coord.description}</div><div style='font-size: 8px; color: gray'>${coord.location}</div>`;
+          const customPopup = `<div class="map-info-title">${coord.title}</div> <div class="map-info-description">${coord.description}</div><div class="map-info-location">${coord.location}</div><div class="map-username">${coord.user.username}</div> <img class="map-user-avatar" src=${coord.user.avatar}>`;
           const markerColor = coord.type === "report" ? "red" : "green";
+          
 
           const marker = new mapboxgl.Marker({ color: markerColor })
             .setLngLat([coord.longitude, coord.latitude])
             .addTo(mapInstance);
 
-          const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(customPopup);
+          const popup = new mapboxgl.Popup({ offset: 20 }).setHTML(customPopup);
           marker.setPopup(popup);
           return { marker, popup };
         });
 
+        console.log(allMarkers);
         setMap(mapInstance);
         setMarkers(newMarkers);
       },
