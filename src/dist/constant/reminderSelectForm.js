@@ -3,7 +3,6 @@ export const optionsFrecuencia = [
   { value: "monthly", label: "Mensualmente" },
   { value: "weekly", label: "Semanalmente" },
   { value: "annually", label: "Anualmente" },
-  { value: "none", label: "None" },
 ];
 
 export const optionsIcono = [

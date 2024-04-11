@@ -76,6 +76,7 @@ const Register = ({ initialValues, isEdit }) => {
       };
     }
   };
+  console.log(errors);
 
   return (
     <div className="background">
@@ -93,7 +94,7 @@ const Register = ({ initialValues, isEdit }) => {
             >
               <FaRegImage />
             </label>
-            <img src={avatarURL} className="dog-input-image" alt="avatar" />
+            <img src={avatarURL} className="dog-input-image" />
             <div className="file-input-wrapper">
               <input
                 id="avatar"
@@ -104,6 +105,11 @@ const Register = ({ initialValues, isEdit }) => {
                 className="input-file"
               />
             </div>
+            {errors && (
+              <div className="error-text error-text-avatar">
+                {errors.avatar}
+              </div>
+            )}
           </div>
           <div className="input-container input-container-register ">
             <Input

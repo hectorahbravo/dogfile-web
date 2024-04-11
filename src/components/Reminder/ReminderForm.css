@@ -1,7 +1,6 @@
 .reminder-input-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   min-width: 300px;
   border: 1px solid rgb(205, 192, 172);
   border-radius: 11px;
@@ -17,9 +16,8 @@
   justify-content: center;
 }
 
-
 .reminder-input-container label {
-  margin-bottom: 4px; /* Espaciado inferior */
+  margin-bottom: 4px;
 }
 
 .reminder-input-container button {

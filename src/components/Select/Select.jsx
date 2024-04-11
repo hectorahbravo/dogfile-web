@@ -9,7 +9,7 @@ const Select = ({
   extraClassName,
 }) => {
   return (
-    <div>
+    <>
       <label htmlFor={name} className="dog-input-label">
         {label}
       </label>
@@ -28,7 +28,7 @@ const Select = ({
         ))}
       </select>
       {error && <div className="error-text">{error}</div>}
-    </div>
+    </>
   );
 };
 

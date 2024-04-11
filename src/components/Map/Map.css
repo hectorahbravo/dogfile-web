@@ -1,5 +1,33 @@
 .only-map-container {
-  height: "400px";
   margin: 0 20px;
   border-radius: 20px;
+}
+.mapboxgl-popup-content {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+}
+.map-info-title {
+  text-transform: capitalize;
+  font-size: 14px;
+  font-weight: 600;
+}
+.map-info-description,
+.map-info-location {
+  font-size: 12px;
+  text-transform: capitalize;
+}
+.map-username {
+  align-self: end;
+}
+.map-user-avatar {
+  align-self: end;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.mapboxgl-marker > svg {
+  height: 30px;
 }
