@@ -28,13 +28,8 @@ Nuestro calendario integrado te permite establecer recordatorios importantes par
 
 DogFile ha sido construido utilizando las siguientes tecnologías:
 
-- **JavaScript**
-- **HTML**
-- **CSS**
-- **Axios**
-- **Clsx**
-- **Formik**
-- **Mapbox-gl**
+### Frontend:
+
 - **React**
 - **React Big Calendar**
 - **React Calendar**
@@ -43,7 +38,27 @@ DogFile ha sido construido utilizando las siguientes tecnologías:
 - **React Loader Spinner**
 - **React Map Gl**
 - **React Router Dom**
-- **Yup**
+- **Axios**
+- **Clsx**
+- **Formik**
+- **Mapbox-gl**
+
+### Backend:
+
+- **bcrypt**
+- **cloudinary**
+- **cors**
+- **dotenv**
+- **express**
+- **http-errors**
+- **http-status-codes**
+- **jsonwebtoken**
+- **mongoose**
+- **morgan**
+- **multer**
+- **multer-storage-cloudinary**
+- **nodemailer**
+- **nodemon**
 
 ## Reconocimientos
 
