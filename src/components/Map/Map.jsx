@@ -3,6 +3,7 @@ import mapboxgl, { PositionOptions } from "mapbox-gl";
 import { getReports } from "../../services/ReportService";
 import { getRecommendations } from "../../services/RecommendationService";
 import "./Map.css";
+mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
 
 
 const DEFAULT_VALUES = {
