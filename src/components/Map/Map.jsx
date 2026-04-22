@@ -3,8 +3,7 @@ import mapboxgl, { PositionOptions } from "mapbox-gl";
 import { getReports } from "../../services/ReportService";
 import { getRecommendations } from "../../services/RecommendationService";
 import "./Map.css";
-mapboxgl.accessToken =
-  "pk.eyJ1IjoiZG9nZmlsZSIsImEiOiJjbHRrMjZjMzIwdGk3Mmtxb3RsMjNvZWZhIn0.iwiwLx0iNECX9mWSKOTANA";
+
 
 const DEFAULT_VALUES = {
   lng: -3.703462,
@@ -49,7 +48,7 @@ export default function Map() {
         const newMarkers = allMarkers.map((coord) => {
           const customPopup = `<div class="map-info-title">${coord.title}</div> <div class="map-info-description">${coord.description}</div><div class="map-info-location">${coord.location}</div><div class="map-username">${coord.user.username}</div> <img class="map-user-avatar" src=${coord.user.avatar}>`;
           const markerColor = coord.type === "report" ? "red" : "green";
-          
+
 
           const marker = new mapboxgl.Marker({ color: markerColor })
             .setLngLat([coord.longitude, coord.latitude])
