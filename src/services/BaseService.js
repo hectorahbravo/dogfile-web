@@ -2,6 +2,11 @@ import axios from "axios";
 import { getAccessToken, logout } from "../stores/AccessTokenStore";
 
 const INVALID_CODES = [401];
+const API_URL = import.meta.env.VITE_API_URL;
+
+if (!API_URL) {
+  console.error("❌ VITE_API_URL no está definida");
+}
 
 export const createHttp = (useAccessToken = false) => {
   const http = axios.create({
